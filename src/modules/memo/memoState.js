@@ -8,7 +8,7 @@ import api from '../../utils/api'
 */
 import { actionsGenerator } from '../../store/reducerUtils'
 
-type memoState = {
+type MemoState = {
   loading: boolean,
 }
 
@@ -19,26 +19,26 @@ const initialState = {
 
 // Action Creators
 
-export const { Types: memoTypes, Creators: memoActions } = createActions(
+export const { Types: MemoTypes, Creators: MemoActions } = createActions(
   actionsGenerator({
-    sendMemoRequest: ['title','date','content'],
+    sendMemoRequest: ['pet','content'], // add date after implementing date
   })
 )
 
 // Reducer
-export default function LoginReducer(state: LoginState = initialState, action: Object = {}): LoginState {
+export default function LoginReducer(state: MemoState = initialState, action: Object = {}): MemoState {
   switch (action.type) {
-    case LoginTypes.LOGIN_REQUEST:
+    case MemoTypes.MEMO_REQUEST:
       return {
         ...state,
         loading: true,
       }
-    case LoginTypes.LOGIN_SUCCESS:
+    case MemoTypes.MEMO_SUCCESS:
       return {
         ...state,
         loading: false,
       }
-    case LoginTypes.LOGIN_FAILURE:
+    case MemoTypes.MEMO_FAILURE:
       return {
         ...state,
         loading: false,

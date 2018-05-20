@@ -3,21 +3,17 @@ import React, { Component } from 'react'
 import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
 import autoBind from 'react-autobind'
 
-// import easi6Theme from '../../utils/petStagramTheme'
-// import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-
 type State = {
-  title: string,
-  date: any,
+  pet: string, // temp implementation of pet selecting. manual input.
+  //date: any, // implement date later
   content: string,
-
 };
 
 type Props = {
-  memo: any,
-  dogs: any,
-  postMemoRequest: Function,
-  getMemoRequest: Function,
+  memos: any,
+  //pets: any, // implement selecting pet later
+  //getMemoRequest: Function, // implement get memos of user later
+  onPostMemoRequest: (pet: string, content: string) => void
 };
 
 class memoView extends Component<Props, State> {
@@ -27,36 +23,34 @@ class memoView extends Component<Props, State> {
   }
 
   state = {
-    username: '',
-    password: '',
-    secure: false,
+    pet: '*-*-*-*', // default pet - no pet selected
+    content: '',
   };
   componentDidMount() {
   }
-  onChangeUsername(e) {
-    this.setState({ username: e.target.value })
+  onChangePet(e) {
+    this.setState({ pet: e.target.value })
   }
-  onChangePassword(e) {
-    this.setState({ password: e.target.value })
+  onChangeContent(e) {
+    this.setState({ content: e.target.value })
   }
 
-  onLoginPressed() {
-    if (!this.state.username) {
-      this.renderLoginError('enter_your_login_ID')
-    } else if (!this.state.password) {
-      this.renderLoginError('enter_your_password')
+  onSubmitMemoPressed() {
+
+    if (!this.state.content) {
+      this.renderMemoError('enter_memo_content')
     } else {
-      this.onLoginRequest(this.state.username, this.state.password)
+      this.onPostMemoRequest(this.state.pet, this.state.content)
     }
   }
-  onLoginRequest(username, password){
+  onPostMemoRequest(pet, content){
     console.log(this.props,"this is loginProps");
-    this.props.loginRequest(username, password).then(()=>{
+    this.props.loginRequest(pet, content).then(()=>{
       this.context.router.push('/homePage')
     }).catch((e)=>console.log(e));
   }
 
-  renderLoginError(text) {
+  renderMemoError(text) {
     if (text) {
       return (
         <Alert> {text}</Alert>
@@ -71,13 +65,13 @@ class memoView extends Component<Props, State> {
       <Container fluid>
         <Row>
           <Col>
-            <Input placeholder="USERNAME" onChange={this.onChangeUsername} />
+            <Input placeholder="PET" onChange={this.onChangePet} />
           </Col>
           <Col>
-            <Input type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />
+            <Input placeholder="CONTENT" onChange={this.onChangeContent} />
           </Col>
           <Col>
-            <Button onClick={() => this.onLoginPressed()}>LOGIN</Button>
+            <Button onClick={() => this.onSubmitMemoPressed()}>submit</Button>
           </Col>
         </Row>
       </Container>

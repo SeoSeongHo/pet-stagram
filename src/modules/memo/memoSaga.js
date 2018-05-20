@@ -1,17 +1,15 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { setAuthenticationToken } from '../../utils/authentication'
 import api from '../../utils/api'
-import { LoginActions, LoginTypes } from './loginState'
+import { MemoActions, MemoTypes } from './memoState'
 import Constants from '../../constants/constants'
-// import Storage, { KEYS } from '../../utils/petStagramStorage'
-// import _ from 'lodash'
 
 const { API_ROOT } = Constants
 
-function* requestLogin({ username, password }: {username: string, password: string}) {
+function* requestMemo({ pet, content }: {pet: string, content: string}) { // add date after implementing date
   const body = {
-    username,
-    password,
+    pet,
+    content,
   }
 
   try {
@@ -20,14 +18,14 @@ function* requestLogin({ username, password }: {username: string, password: stri
     if (token) {
       console.log(token)
       yield setAuthenticationToken(token)
-      yield put(LoginActions.loginSuccess(token))
+      yield put(MemoActions.memoSuccess(token))
     }
   } catch (e) {
-    yield put(LoginActions.loginFailure(e))
+    yield put(MemoActions.memoFailure(e))
   }
 }
 
 
 export const memoSaga = [
-  takeLatest(LoginTypes.LOGIN_REQUEST, requestLogin),
+  takeLatest(MemoTypes.MEMO_REQUEST, requestMemo),
 ]

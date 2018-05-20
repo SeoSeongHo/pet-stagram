@@ -7,8 +7,8 @@ import memoView from './memoView'
 export default connect(
   state => ({
     loading: _.get(state, ['memo', 'loading']),
-    memo:_.get(state,['memo','memo']),
-    dogs:_.get(state,['memo','dogs'])
+    //memo:_.get(state,['memo','memo']), // implement get memos of user later
+    //pets:_.get(state,['memo','dogs']), // implement get pets of user later
   }),
   actions,
 )(
