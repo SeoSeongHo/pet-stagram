@@ -2,28 +2,25 @@
 import React, { Component } from 'react'
 import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
 import autoBind from 'react-autobind'
-import eyeSlash from 'react-icons/lib/fa/eye-slash'
-import eye from 'react-icons/lib/fa/eye'
-import { Link, browserHistory } from 'react-router'
+
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-import {
-  withRouter
-} from 'react-router-dom'
 
 type State = {
-  username: string,
-  password: string,
-  secure: boolean,
+  title: string,
+  date: any,
+  content: string,
+
 };
 
 type Props = {
-  t: Function,
-  loading: boolean,
-  onLoginRequest: (username: string, password: string) => void
+  memo: any,
+  dogs: any,
+  postMemoRequest: Function,
+  getMemoRequest: Function,
 };
 
-class LoginView extends Component<Props, State> {
+class memoView extends Component<Props, State> {
   constructor(props,context) {
     super(...arguments);
     autoBind(this)
@@ -88,8 +85,8 @@ class LoginView extends Component<Props, State> {
   }
 }
 
-LoginView.contextTypes = {
+memoView.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default LoginView
+export default memoView

@@ -15,10 +15,10 @@ function* requestLogin({ username, password }: {username: string, password: stri
   }
 
   try {
-    const token = yield api.post('http://127.0.0.1:8000/api-token-auth/', body
+    const token = yield api.post('http://127.0.0.1:8000/api-auth/', body
     )
-    if (token) {
-      console.log(token)
+    if (response) {
+      console.log(response)
       yield setAuthenticationToken(token)
       yield put(LoginActions.loginSuccess(token))
     }

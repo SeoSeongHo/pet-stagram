@@ -28,6 +28,6 @@ function* requestLogin({ username, password }: {username: string, password: stri
 }
 
 
-export const LoginSaga = [
+export const memoSaga = [
   takeLatest(LoginTypes.LOGIN_REQUEST, requestLogin),
 ]

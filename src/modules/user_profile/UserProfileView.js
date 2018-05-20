@@ -4,35 +4,39 @@ import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
 import autoBind from 'react-autobind'
 import eyeSlash from 'react-icons/lib/fa/eye-slash'
 import eye from 'react-icons/lib/fa/eye'
-import { Link, browserHistory } from 'react-router'
+import { Link } from 'react-router'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-import {
-  withRouter
-} from 'react-router-dom'
 
 type State = {
   username: string,
   password: string,
-  secure: boolean,
 };
 
 type Props = {
-  t: Function,
+  userProfile: any,
+  username: string,
+  introduceText: string,
+  petProfile: any,
+  userPicture: any,
+  totalPost: number,
+  totalFollowing: number,
+  totalFollower: number,
   loading: boolean,
-  onLoginRequest: (username: string, password: string) => void
+  sendMessageRequest: function,
+  followRequest: function,
+  goToPetProfileRequest: function,
+  goToCardRequest: function,
 };
 
-class LoginView extends Component<Props, State> {
-  constructor(props,context) {
-    super(...arguments);
+class UserProfileView extends Component<Props, State> {
+  constructor(props, {match}) {
+    super(props, {match})
     autoBind(this)
   }
-
   state = {
-    username: '',
-    password: '',
-    secure: false,
+    username:'',
+    profile: '',
   };
   componentDidMount() {
   }
@@ -49,14 +53,8 @@ class LoginView extends Component<Props, State> {
     } else if (!this.state.password) {
       this.renderLoginError('enter_your_password')
     } else {
-      this.onLoginRequest(this.state.username, this.state.password)
+      this.props.onLoginPressed(this.state.username, this.state.password)
     }
-  }
-  onLoginRequest(username, password){
-    console.log(this.props,"this is loginProps");
-    this.props.loginRequest(username, password).then(()=>{
-      this.context.router.push('/homePage')
-    }).catch((e)=>console.log(e));
   }
 
   renderLoginError(text) {
@@ -88,8 +86,4 @@ class LoginView extends Component<Props, State> {
   }
 }
 
-LoginView.contextTypes = {
-  router: React.PropTypes.object.isRequired
-};
-
-export default LoginView
+export default UserProfileView
