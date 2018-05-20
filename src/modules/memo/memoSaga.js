@@ -26,6 +26,6 @@ function* requestMemo({ pet, content }: {pet: string, content: string}) { // add
 }
 
 
-export const memoSaga = [
+export const MemoSaga = [
   takeLatest(MemoTypes.MEMO_REQUEST, requestMemo),
 ]

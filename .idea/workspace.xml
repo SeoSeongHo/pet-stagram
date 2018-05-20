@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cddba2f0-06a3-4906-beb1-456af59b0e68" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/memo/memoSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/memo/memoSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/memo/memoState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/memo/memoState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/memo/memoView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/memo/memoView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/memo/memoViewContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/memo/memoViewContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,6 +19,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="sagas.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/sagas.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="loginView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/login/loginView.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,23 +64,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loginViewContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/login/loginViewContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="loginSaga.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/login/loginSaga.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
               <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,17 +97,17 @@
       <file leaf-file-name="memoState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/memo/memoState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="42" column="17" lean-forward="true" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+            <state relative-caret-position="445">
+              <caret line="28" column="53" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="memoSaga.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="memoSaga.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/memo/memoSaga.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+            <state relative-caret-position="437">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -104,11 +115,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+      <file leaf-file-name="actions.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/store/actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="171">
+              <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#69#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,16 +169,13 @@
         <option value="$PROJECT_DIR$/src/utils/authentication.js" />
         <option value="$PROJECT_DIR$/src/utils/alert.js" />
         <option value="$PROJECT_DIR$/src/constants/constants.js" />
-        <option value="$PROJECT_DIR$/src/store/sagas.js" />
         <option value="$PROJECT_DIR$/src/components/pages/HomePage/index.js" />
-        <option value="$PROJECT_DIR$/src/store/reducer.js" />
         <option value="$PROJECT_DIR$/src/store/reducerUtils.js" />
         <option value="$PROJECT_DIR$/src/utils/petStagramTheme.js" />
         <option value="$PROJECT_DIR$/src/modules/login/loginView.js" />
         <option value="$PROJECT_DIR$/src/store/configure.js" />
         <option value="$PROJECT_DIR$/src/utils/petStagramStorage.js" />
         <option value="$PROJECT_DIR$/src/modules/login/loginState.js" />
-        <option value="$PROJECT_DIR$/src/store/actions.js" />
         <option value="$PROJECT_DIR$/src/modules/login/loginViewContainer.js" />
         <option value="$PROJECT_DIR$/src/modules/login/loginSaga.js" />
         <option value="$PROJECT_DIR$/.storybook/webpack.config.js" />
@@ -174,7 +185,10 @@
         <option value="$PROJECT_DIR$/src/modules/memo/memoView.js" />
         <option value="$PROJECT_DIR$/src/modules/memo/memoViewContainer.js" />
         <option value="$PROJECT_DIR$/src/modules/memo/memoState.js" />
+        <option value="$PROJECT_DIR$/src/store/reducer.js" />
+        <option value="$PROJECT_DIR$/src/store/sagas.js" />
         <option value="$PROJECT_DIR$/src/modules/memo/memoSaga.js" />
+        <option value="$PROJECT_DIR$/src/store/actions.js" />
       </list>
     </option>
   </component>
@@ -295,12 +309,12 @@
       <workItem from="1525520521113" duration="4529000" />
       <workItem from="1525657677308" duration="11706000" />
       <workItem from="1525751027441" duration="8574000" />
-      <workItem from="1526796516702" duration="6943000" />
+      <workItem from="1526796516702" duration="8728000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31752000" />
+    <option name="totallyTimeSpent" value="33537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -331,6 +345,17 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/store/actions.js</url>
+          <properties lambdaOrdinal="-1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -546,16 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-          <folding>
-            <element signature="e#9#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/login/loginViewContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -566,51 +581,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoViewContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/sagas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/login/loginState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -628,19 +602,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoState.js">
+    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoViewContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="42" column="17" lean-forward="true" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+        <state relative-caret-position="133">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding>
+            <element signature="e#9#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/memo/memoSaga.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+        <state relative-caret-position="437">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/sagas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/login/loginState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="28" column="53" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
           </folding>
         </state>
       </provider>

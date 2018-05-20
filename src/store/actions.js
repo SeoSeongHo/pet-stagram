@@ -1,11 +1,10 @@
 import {LoginActions, LoginTypes} from '../modules/login/loginState';
-import {memoActions, memoTypes} from '../modules/memo/memoState';
+import {MemoActions, MemoTypes} from '../modules/memo/memoState';
 export {
   LoginTypes,
-  memoTypes,
+  MemoTypes,
 }
 export default {
   ...LoginActions,
-  ...memoActions,
+  ...MemoActions,
 };
-
