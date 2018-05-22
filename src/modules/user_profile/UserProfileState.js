@@ -8,43 +8,119 @@ import api from '../../utils/api'
 */
 import { actionsGenerator } from '../../store/reducerUtils'
 
-type LoginState = {
+type UserProfileState = {
+  userProfileImage: any,
+  userProfileName: string,
+  introduceText: string,
+  petProfileImage: any,
+  petId: any,
+  totalPost: number,
+  userPicture: any,
+  cardId: any,
+  isFollow: boolean,
+  totalFollowing: number,
+  totalFollower: number,
   loading: boolean,
 }
 
 // Initial state
 const initialState = {
+  userProfileImage: null,
+  userProfileName: "",
+  introduceText: "",
+  petProfileImage: null,
+  petId: [],
+  totalPost: 0,
+  userPicture: null,
+  cardId: [],
+  totalFollowing: 0,
+  totalFollower: 0,
   loading: false,
+  isFollow: false,
 }
 
 // Action Creators
 
-export const { Types: LoginTypes, Creators: LoginActions } = createActions(
+export const { Types: UserProfileTypes, Creators: UserProfileActions } = createActions(
   actionsGenerator({
-    loginRequest: ['username', 'password'],
+    getUserProfileRequest: ['username'],
+    sendMessageRequest: ['text'],
+    followRequest: ['username'],
+    unFollowRequest:['username'],
+    followCheckRequest:['followerName','followedName']
   })
 )
 
 // Reducer
-export default function LoginReducer(state: LoginState = initialState, action: Object = {}): LoginState {
+export default function UserProfileReducer(state: UserProfileState = initialState, action: Object = {}): UserProfileState {
   switch (action.type) {
-    case LoginTypes.LOGIN_REQUEST:
+    case UserProfileTypes.GET_USER_PROFILE_REQUEST:
+    case UserProfileTypes.FOLLOW_REQUEST:
+    case UserProfileTypes.UN_FOLLOW_REQUEST:
+    case UserProfileTypes.SEND_MESSAGE_REQUEST:
       return {
         ...state,
         loading: true,
       }
-    case LoginTypes.LOGIN_SUCCESS:
+    case UserProfileTypes.GET_USER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        userProfileImage: action.payload.userProfileImage,
+        userProfileName: action.payload.userProfileName,
+        introduceText: action.payload.introduceText,
+        petProfileImage: action.payload.petProfileImage,
+        petId: action.payload.petId,
+        totalPost: action.payload.totalPost,
+        userPicture: action.payload.userPicture,
+        cardId: action.payload.cardId,
+        totalFollowing: action.payload.totalFollowing,
+        totalFollower: action.payload.totalFollower,
+        loading: false,
+      };
+    case UserProfileTypes.FOLLOW_CHECK_SUCCESS:
+      return {
+        ...state,
+        isFollow: action.payload.isFollow
+      }
+    case UserProfileTypes.SEND_MESSAGE_SUCCESS:
       return {
         ...state,
         loading: false,
       }
-    case LoginTypes.LOGIN_FAILURE:
+    case UserProfileTypes.FOLLOW_SUCCESS:
+      return {
+        ...state,
+        totalFollower: state.totalFollower+1,
+      }
+    case UserProfileTypes.UN_FOLLOW_SUCCESS:
+      return {
+        ...state,
+        totalFollower: state.totalFollower-1,
+      }
+    case UserProfileTypes.GET_USER_PROFILE_FAILURE:
+      return {
+        ...state,
+       error:action.error,
+        loading:false,
+      };
+    case UserProfileTypes.SEND_MESSAGE_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.error,
       }
-
+    case UserProfileTypes.FOLLOW_FAILURE:
+      return {
+        ...state,
+        error:action.error,
+        loading:false,
+      }
+    case UserProfileTypes.FOLLOW_CHECK_FAILURE:
+    case UserProfileTypes.UN_FOLLOW_FAILURE:
+      return {
+        ...state,
+        error:action.error,
+        loading:false,
+      }
     default:
       return state
   }

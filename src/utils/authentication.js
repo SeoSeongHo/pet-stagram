@@ -2,9 +2,9 @@ import AsyncStorage from './petStagramStorage'
 
 const AUTHENTICATION_STORAGE_KEY = 'accessToken'
 
-export async function getAuthenticationToken() {
+export function getAuthenticationToken() {
   try {
-    const token = await AsyncStorage.getItem(AUTHENTICATION_STORAGE_KEY)
+    const token = AsyncStorage.get(AUTHENTICATION_STORAGE_KEY)
     if (token) {
       return token
     }
@@ -14,17 +14,17 @@ export async function getAuthenticationToken() {
   }
 }
 
-export async function setAuthenticationToken(token) {
-  return AsyncStorage.setItem(AUTHENTICATION_STORAGE_KEY, token)
+export function setAuthenticationToken(token) {
+  return AsyncStorage.set(AUTHENTICATION_STORAGE_KEY, token)
 }
 
-export async function clearAuthenticationToken() {
-  return AsyncStorage.removeItem(AUTHENTICATION_STORAGE_KEY)
+export function clearAuthenticationToken() {
+  return AsyncStorage.remove(AUTHENTICATION_STORAGE_KEY)
 }
 
-export async function getUserId() {
+export function getUserId() {
   try {
-    return await AsyncStorage.getItem('UserId')
+    return AsyncStorage.get('UserId')
   } catch (e) {
     return null
   }

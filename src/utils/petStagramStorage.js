@@ -10,34 +10,31 @@ export const KEYS = {
   refreshToken: 'refresh_token',
 }
 
-const getItem = async (key: string) => {
-  try {
-    const savedValue = await store.get(`@${namespace}:${key}`);
+export const get = (key) => store.get(`@${namespace}:${key}`)
+export const set = (key, value) => store.set(`@${namespace}:${key}`, value)
+export const remove = (key) => store.remove(`@${namespace}:${key}`)
+const clearAll = () => store.clearAll()
 
-    return JSON.parse(savedValue);
-  } catch (e) {
-    return null;
-  }
-};
 
-const setItem = async (key: string, value: any) => {
-  try {
-    return await store.set(`@${namespace}:${key}`, JSON.stringify(value));
-  } catch (e) {
-    return null;
-  }
-};
+export const getToken = () => get(KEYS.accessToken)
 
-const removeItem = async (key: string) => {
-  try {
-    return await store.remove(`@${namespace}:${key}`);
-  } catch (e) {
-    return null;
-  }
-};
+export const saveToken = payload => set(KEYS.accessToken, payload.token)
 
-export default {
-  getItem,
-  setItem,
-  removeItem,
-};
+export const removeTokens = () => {
+  remove(KEYS.accessToken)
+  remove(KEYS.refreshToken)
+}
+
+export const getUserId = () => get(KEYS.userId)
+
+export const saveUserId = id => set(KEYS.userId, id)
+
+export const removeUserId = () => remove(KEYS.userId)
+
+export const getUsername = () => get(KEYS.username)
+
+export const saveUsername = username => set(KEYS.username, username)
+
+export const removeUsername = () => remove(KEYS.username)
+
+export default {get, set,remove}

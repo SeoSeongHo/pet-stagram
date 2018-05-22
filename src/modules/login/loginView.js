@@ -26,7 +26,7 @@ type Props = {
 class LoginView extends Component<Props, State> {
   constructor(props,context) {
     super(...arguments);
-    autoBind(this)
+    autoBind(this);
   }
 
   state = {
@@ -89,7 +89,9 @@ class LoginView extends Component<Props, State> {
 }
 
 LoginView.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: React.PropTypes.object.isRequired,
+  location: React.PropTypes.object,
+  match: React.PropTypes.object
 };
 
 export default LoginView

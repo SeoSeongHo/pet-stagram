@@ -2,6 +2,8 @@ import 'whatwg-fetch'
 import { stringify } from 'query-string'
 import merge from 'lodash/merge'
 import { apiUrl } from 'config'
+import {KEYS} from "../petStagramStorage";
+import Storage from "../petStagramStorage";
 
 export const checkStatus = (response) => {
   if (response.ok) {
@@ -15,18 +17,24 @@ export const checkStatus = (response) => {
 export const parseJSON = response => response.json()
 
 export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    'Accept-Language': locale,
-  }
-  const settings = {
-    body: data ? JSON.stringify(data) : undefined,
-    method,
-    headers,
-    ...otherSettings,
-  }
-  return settings
+  (async() =>
+  {
+    const token = await Storage.getItem(KEYS.accessToken)
+    if (token)
+      const headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Accept-Language': locale,
+        Authorization: `Token ${Storage.getItem(KEYS.accessToken)}`,
+      }
+    const settings = {
+      body: data ? JSON.stringify(data) : undefined,
+      method,
+      headers,
+      ...otherSettings,
+    };
+    return settings
+  })();
 }
 
 export const parseEndpoint = (endpoint, params) => {
