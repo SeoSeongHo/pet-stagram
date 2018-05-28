@@ -16,26 +16,26 @@ export const checkStatus = (response) => {
 
 export const parseJSON = response => response.json()
 
-export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
-  (async() =>
-  {
-    const token = await Storage.getItem(KEYS.accessToken)
-    if (token)
-      const headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Accept-Language': locale,
-        Authorization: `Token ${Storage.getItem(KEYS.accessToken)}`,
-      }
-    const settings = {
-      body: data ? JSON.stringify(data) : undefined,
-      method,
-      headers,
-      ...otherSettings,
-    };
-    return settings
-  })();
-}
+// export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
+//   (async() =>
+//   {
+//     const token = await Storage.getItem(KEYS.accessToken)
+//     if (token)
+//       const headers = {
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json',
+//         'Accept-Language': locale,
+//         Authorization: `Token ${Storage.getItem(KEYS.accessToken)}`,
+//       }
+//     const settings = {
+//       body: data ? JSON.stringify(data) : undefined,
+//       method,
+//       headers,
+//       ...otherSettings,
+//     };
+//     return settings
+//   })();
+// }
 
 export const parseEndpoint = (endpoint, params) => {
   const url = endpoint.indexOf('http') === 0 ? endpoint : apiUrl + endpoint
