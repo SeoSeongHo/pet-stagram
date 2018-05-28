@@ -1,5 +1,5 @@
 import AsyncStorage from './petStagramStorage'
-
+import {KEYS} from './petStagramStorage'
 const AUTHENTICATION_STORAGE_KEY = 'accessToken'
 
 export function getAuthenticationToken() {
@@ -14,7 +14,9 @@ export function getAuthenticationToken() {
   }
 }
 
-export function setAuthenticationToken(token) {
+export function setAuthenticationToken(token,username,password) {
+  AsyncStorage.set(KEYS.username, username);
+  AsyncStorage.set(KEYS.password, password);
   return AsyncStorage.set(AUTHENTICATION_STORAGE_KEY, token)
 }
 

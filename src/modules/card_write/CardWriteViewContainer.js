@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { compose, withHandlers } from 'recompose'
 import actions from '../../store/actions';
-import UserProfileView from './UserProfileView'
+import CardWriteView from './CardWriteView'
 
 export default connect(
   state => ({
@@ -25,6 +25,6 @@ export default connect(
     withHandlers({
     }),
   )(
-    UserProfileView
+   CardWriteView
   )
 )

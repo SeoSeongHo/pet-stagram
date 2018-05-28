@@ -19,7 +19,7 @@ function* requestLogin({ username, password }: {username: string, password: stri
     )
     if (token) {
       console.log(token)
-      yield setAuthenticationToken(token)
+      yield setAuthenticationToken(token,username,password);
       yield put(LoginActions.loginSuccess(token))
     }
   } catch (e) {

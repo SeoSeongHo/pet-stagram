@@ -24,7 +24,6 @@ type Props = {
   totalFollower: number,
   loading: boolean,
   followCheckRequest: Function,
-  editIntroduceText: Function,
   getUserProfileRequest: Function,
   sendMessageRequest: Function,
   followRequest: Function,
@@ -33,14 +32,13 @@ type Props = {
   goToCardRequest: Function,
 };
 
-class UserProfileView extends Component<Props, State> {
+class UserEditProfileView extends Component<Props, State> {
   constructor(props, context) {
     super(props, context);
     autoBind(this)
   }
 
   state = {
-    isEdit: false,
     getUser: false,
   };
   renderPetProfileImage = () => {
@@ -79,32 +77,7 @@ class UserProfileView extends Component<Props, State> {
   unFollowRequest() {
     this.props.unFollowRequest(Storage.get(KEYS.username), this.props.userProfileName).then(() => this.props.followCheckRequest(Storage.get(KEYS.username), this.props.userProfileName)).catch((e) => console.log(e));
   }
-  renderNormal(){
-    return (
-      <Column>
-        <span> {this.props.introduceText}</span>
-      <Button onClick={() => this.toggleEdit()}> Edit </Button>
-      </Column>
-        )
-  }
-  toggleEdit(){
-    this.setState({isEdit: !this.state.isEdit})
-  }
-  renderForm(){
-    return(
-      <Column>
-      <input value={this.props.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-      <Button onClick={() => this.toggleEdit()}> Save </Button>
-      </Column>
-        )
-        }
-  introduceEditForm() {
-  if (this.state.isEdit) {
-  return this.renderForm()
-} else {
-  return this.renderNormal()
-}
-}
+
   componentWillMount() {
     try {
       this.props.getUserProfileRequest(this.context.match.url.username).then(() => {
@@ -122,45 +95,7 @@ class UserProfileView extends Component<Props, State> {
   render() {
     if (!this.state.getUser) {
       return <div> there is no User on Username {this.context.match.url.username}</div>
-    } else if (this.props.userProfileName === Storage.get(KEYS.username)) {
-      return (
-        <Container fluid>
-          <Row>
-            <Col>
-              <span> {this.props.totalPost}</span>
-              <span> 총 게시글</span>
-            </Col>
-            <span> {this.props.totalFollower}</span>
-            <span> 총 팔로잉</span>
-            <Col>
-              <span> {this.props.totalFollowing}</span>
-              <span> 총 팔로워</span>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span> 나의 이름</span>
-              <span> {this.props.userProfileName}</span>
-            </Col>
-            <Col>
-              <span> 소개글</span>
-              {this.introduceEditForm()}
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <img src={this.props.userProfileImage}/>
-            </Col>
-            <Col>
-              {this.renderPetProfileImage()}
-            </Col>
-            <Col>
-              {this.renderUserPicture()}
-            </Col>
-          </Row>
-        </Container>
-      )
-    } else{
+    } else {
       return (
         <Container fluid>
           <Row>
@@ -211,10 +146,9 @@ class UserProfileView extends Component<Props, State> {
   }
 }
 
-UserProfileView.contextTypes = {
+UserEditProfileView.contextTypes = {
   router: React.PropTypes.object.isRequired,
   location: React.PropTypes.object,
   match: React.PropTypes.object
 };
-
-export default UserProfileView
+export default UserEditProfileView
