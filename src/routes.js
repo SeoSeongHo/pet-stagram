@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
 import { HomePage } from 'components'
 import loginView  from './modules/login/loginViewContainer'
+import CardWriteView  from './modules/card_write/CardWriteViewContainer'
 import CardView  from './modules/main_page/cardView'
 import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
 const routes = (
@@ -12,6 +13,7 @@ const routes = (
     <Route path="/login" component={loginView}/>
     <Route path="/homePage" component={CardView}/>
     <Route path="/userProfile" component={UserProfileView}/>
+    <Route path="/cardWrite" component={CardWriteView}/>
   </Route>
 )
 

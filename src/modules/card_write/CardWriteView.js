@@ -1,130 +1,111 @@
 // @flow
 import React, { Component } from 'react'
-import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
 import autoBind from 'react-autobind'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
+import _ from 'lodash'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-
+import ImageUploader from 'react-images-upload';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert, Container, Row, Col} from 'reactstrap';
 type State = {
+  pictures: any,
+  pets:Array,
+  text:string,
+  title:string,
 };
 
 type Props = {
-  pets: any,
+  pets: Array,
+  pets:{
+    petName: string,
+    petId: number,
+    petImages: any,
+    petBirthDay: Date,
+    petProperty: string,
+  }
 };
 
 class CardWriteView extends Component<Props, State> {
   constructor(props, context) {
     super(props, context);
+    this.state = {pictures: [], pets:[], text:"", title:"",
+    picturesURL:[],
+    };
     autoBind(this)
   }
 
-  state = {
-    getUser: false,
-  };
-  renderPetProfileImage = () => {
-    let table = []
-    let img
-    let i = 0;
-    // Outer loop to create parent
-    for (img in this.props.petProfileImage) {
-      if (this.props.petProfileImage.hasOwnProperty(img)) {
-        table.push(<img src={img} onClick={() =>
-          this.context.router.push(`/petProfile/${this.props.petUsernames[i]}`)}/>)
+  onDrop(picture, pictureDataURL) {
+    console.log("on Drop");
+    this.setState({
+      pictures: this.state.pictures.concat(picture),
+      picturesURL: this.state.picturesURL.concat(pictureDataURL)
+    });
+  }
+  selectPets(event){
+      this.setState({pets: [...event.target.selectedOptions].map(o => o.value)});
+  }
+  onSubmitPressed(){
+    this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text)
+  }
+  titleChange(e){
+    this.setState({title: e.target.value})
+  }
+  textChange(e){
+    this.setState({text: e.target.value})
+  }
+  getIndex(value, arr) {
+    for(let i = 0; i < arr.length; i++) {
+      if(arr[i] === value) {
+        return i;
       }
-      i++;
     }
-    return table
+    return -1; //to handle the case where the value doesn't exist
   }
-  renderUserPicture = () => {
-    let table = []
-    let img
-    let i = 0;
-    // Outer loop to create parent
-    for (img in this.props.userProfileImage) {
-      if (this.props.userProfileImage.hasOwnProperty(img)) {
-        table.push(<img src={img}
-                        onClick={() => this.context.router.push(`/cardDetail/${this.props.userProfileName}/${this.props.userProfileCardId[i]}`)}/>)
-      }
-      i++;
-    }
-    return table
+  deletePicture(e){
+    let index = this.getIndex(e.target.src, this.state.picturesURL);
+    // remove the todo with the ID of id, but only if we have it to begin with
+    this.state.picturesURL = index > -1 ?
+      this.state.picturesURL.remove(index) :
+      this.state.picturesURL;
   }
-
-  followRequest() {
-    this.props.followRequest(Storage.get(KEYS.username), this.props.userProfileName).then(() => this.props.followCheckRequest(Storage.get(KEYS.username), this.props.userProfileName)).catch((e) => console.log(e));
-  }
-
-  unFollowRequest() {
-    this.props.unFollowRequest(Storage.get(KEYS.username), this.props.userProfileName).then(() => this.props.followCheckRequest(Storage.get(KEYS.username), this.props.userProfileName)).catch((e) => console.log(e));
-  }
-
-  componentWillMount() {
-    try {
-      this.props.getUserProfileRequest(this.context.match.url.username).then(() => {
-        this.setState({getUser: true})
-        this.props.followCheckRequest(Storage.get(KEYS.username), this.props.userProfileName);
-      }).catch((e) =>
-        console.log(e));
-
-    }
-    catch (e) {
-      console.log(e);
-    }
-  }
-
   render() {
-    if (!this.state.getUser) {
-      return <div> there is no User on Username {this.context.match.url.username}</div>
-    } else {
-      return (
-        <Container fluid>
-          <Row>
-            <Col>
-              <span> {this.props.totalPost}</span>
-              <span> 총 게시글</span>
-            </Col>
-            <span> {this.props.totalFollower}</span>
-            <span> 총 팔로잉</span>
-            <Col>
-              <span> {this.props.totalFollowing}</span>
-              <span> 총 팔로워</span>
-            </Col>
-          </Row>
-          <Row>
-            {this.props.userProfileName === Storage.get(KEYS.username) ? (this.props.isFollow ?
-              <Button onClick={() => this.unFollowRequest()}> 언팔로우 </Button> :
-              <Button onClick={() => this.followRequest()}> 팔로우 </Button>) :
-              null}
-            {this.props.userProfileName === Storage.get(KEYS.username) ?
-              <Button onClick={() => console.log("send message")}> 메세지보내기 </Button> :
-              null}
-          </Row>
-          <Row>
-            <Col>
-              <span> 유저 네임</span>
-              <span> {this.props.userProfileName}</span>
-            </Col>
-            <Col>
-              <span> 소개글</span>
-              <span> {this.props.introduceText}</span>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <img src={this.props.userProfileImage}/>
-            </Col>
-            <Col>
-              {this.renderPetProfileImage()}
-            </Col>
-            <Col>
-              {this.renderUserPicture()}
-            </Col>
-          </Row>
-        </Container>
-      )
-    }
+    return (
+      <div>
+      <Form>
+        <FormGroup>
+          <Label for="exampleSelectMulti">Select Multiple Pets</Label>
+          <Input onChange={this.selectPets} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+              {this.props.pets.map(function(listValue,index){
+                return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
+              })}
+          </Input>
+        </FormGroup>
+        <FormGroup>
+          <Label for="Title">Title</Label>
+          <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleText">Text Area</Label>
+          <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
+        </FormGroup>
+        <Button onClick={() => this.onSubmitPressed()}>Let's post</Button>
+      </Form>
+    <ImageUploader
+      withIcon={true}
+      buttonText='Choose images'
+      onChange={this.onDrop}
+      imgExtension={['.jpg', '.gif', '.png', '.gif']}
+      maxFileSize={5242880}
+      id="fileUploader"
+    />
+    {this.state.picturesURL.map(function(listValue,index){
+      return <div key={index}>
+        <Img src={listValue} onClick={(e)=>this.deletePicture(e)}/>
+      </div>
+    })}
+    </div>
+    );
   }
 }
 

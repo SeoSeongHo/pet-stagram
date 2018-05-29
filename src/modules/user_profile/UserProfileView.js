@@ -50,7 +50,7 @@ class UserProfileView extends Component<Props, State> {
     // Outer loop to create parent
     for (img in this.props.petProfileImage) {
       if (this.props.petProfileImage.hasOwnProperty(img)) {
-        table.push(<img src={img} onClick={() =>
+        table.concat(<img src={img} onClick={() =>
           this.context.router.push(`/petProfile/${this.props.petUsernames[i]}`)}/>)
       }
       i++;
@@ -64,7 +64,7 @@ class UserProfileView extends Component<Props, State> {
     // Outer loop to create parent
     for (img in this.props.userProfileImage) {
       if (this.props.userProfileImage.hasOwnProperty(img)) {
-        table.push(<img src={img}
+        table.concat(<img src={img}
                         onClick={() => this.context.router.push(`/cardDetail/${this.props.userProfileName}/${this.props.userProfileCardId[i]}`)}/>)
       }
       i++;

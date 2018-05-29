@@ -9,7 +9,6 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from 'store/configure'
 import routes from 'routes'
 import 'bootstrap/dist/css/bootstrap.css'
-
 const baseHistory = useRouterHistory(createHistory)({ basename: process.env.PUBLIC_PATH })
 const store = configureStore({}, baseHistory)
 const history = syncHistoryWithStore(baseHistory, store)

@@ -1,17 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import api from '../../utils/api'
-import { UserProfileActions, UserProfileTypes } from './UserProfileState'
+import { CardWriteActions, CardWriteTypes } from './CardWriteState'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
 import Constants from '../../constants/constants'
 const { API_ROOT } = Constants;
-function* requestGetUserProfile({ username }: {username: string}) {
-  const body = {
-    username,
-  };
-
+function* requestGetPet({ username }: {username: string}) {
   try {
-    const token = yield api.post(`${API_ROOT}/userProfile/`, body,{
+    const token = yield api.get(`${API_ROOT}/user/${username}/pet`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -20,20 +16,23 @@ function* requestGetUserProfile({ username }: {username: string}) {
     );
     if (token) {
       console.log(token)
-      yield put(UserProfileActions.getUserProfileSuccess(token))
+      yield put(CardWriteActions.getPetSuccess(token))
     }
   } catch (e) {
-    yield put(UserProfileActions.getUserProfileFailure(e))
+    yield put(CardWriteActions.getPetFailure(e))
   }
 }
 
-function* requestFollow({ username }: {username: string}) {
+function* requestPostCard({ pets,pictures,title,text }: {pets:Array, pictures:Array, title:string, text:string}) {
   const body = {
-    username,
+    pets,
+    pictures,
+    title,
+    text
   };
 
   try {
-    const token = yield api.post(`${API_ROOT}/follow/`, body,{
+    const token = yield api.post(`${API_ROOT}/card/`, body,{
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -42,61 +41,14 @@ function* requestFollow({ username }: {username: string}) {
     );
     if (token) {
       console.log(token)
-      yield put(UserProfileActions.followSuccess(token))
+      yield put(CardWriteActions.postCardSuccess(token))
     }
   } catch (e) {
-    yield put(UserProfileActions.followFailure(e))
-  }
-}
-function* requestUnFollow({ username }: {username: string}) {
-  const body = {
-    username,
-  };
-
-  try {
-    const token = yield api.post(`${API_ROOT}/unFollow/`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
-    );
-    if (token) {
-      console.log(token)
-      yield put(UserProfileActions.unFollowSuccess(token))
-    }
-  } catch (e) {
-    yield put(UserProfileActions.unFollowFailure(e))
+    yield put(CardWriteActions.postCardFailure(e))
   }
 }
 
-function* requestFollowCheck({ followerName, followedName }: {followerName: string, followedName:string}) {
-  const body = {
-    followerName,
-    followedName
-  };
-
-  try {
-    const token = yield api.get(`${API_ROOT}/Follow/`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
-    );
-    if (token) {
-      console.log(token)
-      yield put(UserProfileActions.followCheckSuccess(token))
-    }
-  } catch (e) {
-    yield put(UserProfileActions.followCheckFailure(e))
-  }
-}
-
-export const UserProfileSaga = [
-  takeLatest(UserProfileTypes.GET_USER_PROFILE_REQUEST, requestGetUserProfile),
-  // takeLatest(UserPRofileTypes.SEND_MESSAGE_REQUEST, requestSendMessage),
-  takeLatest(UserProfileTypes.FOLLOW_REQUEST, requestFollow),
-  takeLatest(UserProfileTypes.UN_FOLLOW_REQUEST, requestUnFollow),
-  takeLatest(UserProfileTypes.FOLLOW_CHECK_REQUEST, requestFollowCheck),
+export const CardWriteSaga = [
+  takeLatest(CardWriteTypes.GET_PET_REQUEST, requestGetPet),
+  takeLatest(CardWriteTypes.POST_CARD_REQUEST, requestPostCard),
 ];
