@@ -3,11 +3,7 @@ import React, { Component } from 'react'
 import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
 import autoBind from 'react-autobind'
 import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption, CardDeck} from 'reactstrap';
+  CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
 import Navigator from '../top_navigator/navigator'
 
 type State = {
