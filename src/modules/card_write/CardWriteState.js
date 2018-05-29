@@ -8,7 +8,7 @@ import api from '../../utils/api'
 */
 import { actionsGenerator } from '../../store/reducerUtils'
 
-type UserProfileState = {
+type CardWriteState = {
  pets:Array,
 }
 
@@ -16,6 +16,11 @@ type UserProfileState = {
 const initialState = {
   pets:[{
     petName:"arong",  petId: "1",
+    petImages: "../../assets/images/examples.jpg",
+    petBirthDay: '2018-04-07T09:09:59.496396Z',
+    petProperty: "she is small",
+  },{
+    petName:"biggy",  petId: "2",
     petImages: "../../assets/images/examples.jpg",
     petBirthDay: '2018-04-07T09:09:59.496396Z',
     petProperty: "she is small",
@@ -27,7 +32,7 @@ const initialState = {
 export const { Types: CardWriteTypes, Creators: CardWriteActions } = createActions(
   actionsGenerator({
     getPetRequest: ['username'],
-    postCardRequest: ['pets','pitures','title','text']
+    postCardRequest: ['pets','pitures','title','text'],
   })
 )
 
