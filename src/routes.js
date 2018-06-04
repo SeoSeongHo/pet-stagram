@@ -7,6 +7,9 @@ import loginView  from './modules/login/loginViewContainer'
 import CardWriteView  from './modules/card_write/CardWriteViewContainer'
 import CardView  from './modules/main_page/cardView'
 import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
+import CardDetailView from './modules/card_detail/CardDetailView'
+import SignUpView from 'modules/sign_up/SignUpView'
+
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
@@ -14,6 +17,8 @@ const routes = (
     <Route path="/homePage" component={CardView}/>
     <Route path="/userProfile" component={UserProfileView}/>
     <Route path="/cardWrite" component={CardWriteView}/>
+    <Route path="/cardDetail" component={CardDetailView}/>
+    <Route path="/signUp" component={SignUpView}/>
   </Route>
 )
 

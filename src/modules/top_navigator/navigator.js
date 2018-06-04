@@ -44,7 +44,7 @@ export default class Navigator extends React.Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink>하트</NavLink>
+                <NavLink href="/cardDetail/">하트</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/userProfile/">프로필</NavLink>
