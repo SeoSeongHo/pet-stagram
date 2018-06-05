@@ -130,53 +130,15 @@ class LoginView extends Component<Props, State> {
       <Container className="cont">
         <Row className="ro1">
           <Col className="main1" xs="3" sm="4">
-            <Jumbotron>
+            <Jumbotron className="jbt1">
               <Container>
                 <h1 className="display-3">Welcome to here!</h1>
                 <p className="lead">Space to share your pet's information and manage your pet's daily.</p>
               </Container>
             </Jumbotron>
-            {/*<style>*/}
-              {/*{*/}
-                {/*`.custom-tag {*/}
-                {/*max-width: 100%;*/}
-                {/*height: 500px;*/}
-                {/*background: black;*/}
-              {/*}`*/}
-              {/*}*/}
-            {/*</style>*/}
-            {/*<Carousel*/}
-              {/*activeIndex={activeIndex}*/}
-              {/*next={this.next}*/}
-              {/*previous={this.previous}*/}
-            {/*>*/}
-              {/*<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />*/}
-              {/*{slides}*/}
-              {/*<CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />*/}
-              {/*<CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />*/}
-            {/*</Carousel>*/}
-          {/*<Carousel*/}
-            {/*activeIndex={activeIndex}*/}
-            {/*next={this.next}*/}
-            {/*previous={this.previous}*/}
-          {/*>*/}
-            {/*<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />*/}
-            {/*{slides}*/}
-            {/*<CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />*/}
-            {/*<CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />*/}
-          {/*</Carousel>*/}
           </Col>
-          {/*<Col>*/}
-            {/*<Input placeholder="USERNAME" onChange={this.onChangeUsername} />*/}
-          {/*</Col>*/}
-          {/*<Col>*/}
-            {/*<Input type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />*/}
-          {/*</Col>*/}
-          {/*<Col>*/}
-            {/*<Button onClick={() => this.onLoginPressed()}>LOGIN</Button>*/}
-          {/*</Col>*/}
           <Col className="main1" xs="6" sm="4">
-          <Card body outline color="secondary">
+          <Card body outline color="#ffe4a8">
             <img width="100%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
             <img width="100%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
             <CardBody className="card3">
@@ -189,8 +151,8 @@ class LoginView extends Component<Props, State> {
                   <Label for="examplePassword" className="mr-sm-2">Password</Label>
                   <Input className="login1" type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />
                 </FormGroup>
-                <Button className="login1" color ="warning" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
-                <Button href="/signUp" className="singup" color ="info">SIGNUP</Button>
+                <Button className="bt1" color ="#ffe4a8" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
+                <Button href="/signUp" className="bt2" color ="#aaffd3">SIGNUP</Button>
               </Form>
               {/*<Input className="login1" placeholder="USERNAME" onChange={this.onChangeUsername} />*/}
             {/*</CardBody>*/}

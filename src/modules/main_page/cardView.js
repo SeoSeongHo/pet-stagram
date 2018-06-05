@@ -100,7 +100,7 @@ class CardView extends Component<Props, State> {
 
   render() {
     return (
-      <Container>
+      <Container className="cnt2">
         <Row>
         <Navigator/>
         </Row>
@@ -108,7 +108,7 @@ class CardView extends Component<Props, State> {
             <Row>
         <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
           {/*<CardImg top width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />*/}
-          <Card className="card2" body outline color="secondary">
+          <Card className="card2" body outline color="#ffe4a8">
             <CardBody>
             <CardTitle>Card title</CardTitle>
             <CardSubtitle>Card subtitle</CardSubtitle>
@@ -123,7 +123,7 @@ class CardView extends Component<Props, State> {
         </Row>
             <Row>
               <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
-          <Card className="card2" body outline color="secondary">
+          <Card className="card2" body outline color="#ffe4a8">
             <CardBody>
               <CardTitle>Card title</CardTitle>
               <CardSubtitle>Card subtitle</CardSubtitle>
@@ -138,7 +138,7 @@ class CardView extends Component<Props, State> {
             </Row>
             <Row>
               <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
-          <Card className="card2" body outline color="secondary">
+          <Card className="card2" body outline color="#ffe4a8">
             <CardBody>
               <CardTitle>Card title</CardTitle>
               <CardSubtitle>Card subtitle</CardSubtitle>
