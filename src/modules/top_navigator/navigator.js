@@ -4,6 +4,7 @@ import {
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap'
 import './navigator.css'
+import CardWriteView from '../card_write/CardWriteViewContainer'
 
 export default class Navigator extends React.Component {
   constructor(props) {
@@ -37,9 +38,7 @@ export default class Navigator extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/cardWrite">
-                  <img width="30" height="30" src={require('../../assets/images/edit.png')} alt="Card image cap" />
-                </NavLink>
+                <CardWriteView/>
               </NavItem>
               <NavItem>
                 <NavLink href="/cardDetail/">
