@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React ,{PropTypes} from 'react';
 import { injectGlobal, ThemeProvider } from 'styled-components'
 
 import theme from './themes/default'

@@ -1,6 +1,5 @@
 
 .login1{
-  margin: 10px;
 }
 
 .card3{
@@ -9,7 +8,8 @@
 }
 
 .cont{
-  margin: 100px;
+  padding: 70px;
+  background-color: #fef9ff;
 }
 
 .ro1{
@@ -19,4 +19,16 @@
 
 .display-3{
   font-family: Times New Roman;
+}
+
+.bt1{
+  background-color:#ffe4a8;
+}
+.bt2{
+  background-color:#aaffd3;
+  color:black;
+}
+
+.mr-sm-2{
+  margin:5px;
 }
