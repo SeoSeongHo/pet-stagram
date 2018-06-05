@@ -25,7 +25,7 @@ type Props = {
     petProfileImage: string,
     petName: string,
   }
-  ],
+    ],
   userProfileName: string,
   introduceText: string,
   userProfileCardId: any,
@@ -61,10 +61,10 @@ class UserProfileView extends Component<Props, State> {
     let img
     let i = 0;
     {this.props.pets.map((listValue,index)=> {
-      table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
-        this.context.router.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
-    }
-      )}
+        table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
+          this.context.router.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
+      }
+    )}
     return table
   }
   renderUserPicture = () => {
@@ -105,9 +105,9 @@ class UserProfileView extends Component<Props, State> {
       <Column>
         <span> {this.props.introduceText}</span>
         <span> {this.props.userBirth}</span>
-      <Button onClick={() => this.toggleEdit()}> Edit </Button>
+        <Button onClick={() => this.toggleEdit()}> Edit </Button>
       </Column>
-        )
+    )
   }
   toggleEdit(){
     if(this.state.isEdit===true)
@@ -124,18 +124,18 @@ class UserProfileView extends Component<Props, State> {
                multiple="false"
                onChange={this.onDrop}/>
         <input value={this.state.userBirth} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-      <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-      <Button onClick={() => this.toggleEdit()}> Save </Button>
-</Column>
-        )
-        }
+        <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
+        <Button onClick={() => this.toggleEdit()}> Save </Button>
+      </Column>
+    )
+  }
   introduceEditForm() {
-  if (this.state.isEdit) {
-  return this.renderForm()
-} else {
-  return this.renderNormal()
-}
-}
+    if (this.state.isEdit) {
+      return this.renderForm()
+    } else {
+      return this.renderNormal()
+    }
+  }
   componentWillMount() {
     try {
       this.props.getUserProfileRequest(this.context.match.url.userEmail).then(() => {

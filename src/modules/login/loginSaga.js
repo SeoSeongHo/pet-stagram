@@ -8,18 +8,18 @@ import Constants from '../../constants/constants'
 
 const { API_ROOT } = Constants
 
-function* requestLogin({ username, password }: {username: string, password: string}) {
+function* requestLogin({ userEmail, password }: {userEmail: string, password: string}) {
   const body = {
-    username,
+    userEmail,
     password,
   }
 
   try {
-    const token = yield api.post('http://127.0.0.1:8000/api-token-auth/', body
+    const token = yield api.post(`${API_ROOT}/user/${userEmail}`, body
     )
     if (token) {
       console.log(token)
-      yield setAuthenticationToken(token,username,password);
+      yield setAuthenticationToken(token,userEmail,password);
       yield put(LoginActions.loginSuccess(token))
     }
   } catch (e) {
@@ -27,7 +27,38 @@ function* requestLogin({ username, password }: {username: string, password: stri
   }
 }
 
+function* requestSignup({ userEmail, password }: {userEmail: string, password: string}) {
+  const body = {
+    userEmail,
+    password,
+  }
+  try {
+    const token = yield api.get(`${API_ROOT}/register/`,body
+    )
+    if (token) {
+      yield setAuthenticationToken(token,username,password);
+      yield put(LoginActions.signUpSuccess(token))
+    }
+  } catch (e) {
+    yield put(LoginActions.signupFailure(e))
+  }
+}
+
+function* requestCheckDuplicate({ userEmail }: {userEmail: string}) {
+  try {
+    const token = yield api.get(`${API_ROOT}/user/${userEmail}`
+    )
+    if (token) {
+      yield put(LoginActions.checkDuplicateSuccess(token))
+    }
+  } catch (e) {
+    yield put(LoginActions.checkDuplicateFailure(e))
+  }
+}
+
 
 export const LoginSaga = [
   takeLatest(LoginTypes.LOGIN_REQUEST, requestLogin),
+  takeLatest(LoginTypes.SIGNUP_REQUEST, requestSignup),
+  takeLatest(LoginTypes.CHECK_DUPLICATE_REQUEST, requestCheckDuplicate),
 ]
