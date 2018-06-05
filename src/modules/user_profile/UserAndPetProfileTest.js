@@ -20,7 +20,7 @@ type Props ={
 
 }
 
-class SIgnUpView extends Component{
+class UserAndPetProfileTest extends Component{
   constructor(props){
     super(props);
 
@@ -204,4 +204,4 @@ class SIgnUpView extends Component{
   }
 }
 
-export default SIgnUpView;
+export default UserAndPetProfileTest;

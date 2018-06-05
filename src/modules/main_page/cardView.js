@@ -94,14 +94,18 @@ class CardView extends Component<Props, State> {
     autoBind(this)
   }
 
+  onClickWrite(){
+
+  }
+
   render() {
     return (
       <Container>
         <Row>
         <Navigator/>
         </Row>
-        <Row>
           <CardDeck className="card1">
+            <Row>
         <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
           {/*<CardImg top width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />*/}
           <Card className="card2" body outline color="secondary">
@@ -115,31 +119,39 @@ class CardView extends Component<Props, State> {
             <Button>Button</Button>
             </CardBody>
           </Card>
-          <Card className="card2" body outline color="secondary">
-            <CardBody>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
-            </CardBody>
-            <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
-            <CardBody>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>
-          <Card className="card2" body outline color="secondary">
-            <CardBody>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
-            </CardBody>
-            <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
-            <CardBody>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>
         </Col>
-          </CardDeck>
         </Row>
+            <Row>
+              <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
+          <Card className="card2" body outline color="secondary">
+            <CardBody>
+              <CardTitle>Card title</CardTitle>
+              <CardSubtitle>Card subtitle</CardSubtitle>
+            </CardBody>
+            <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
+            <CardBody>
+              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+              <Button>Button</Button>
+            </CardBody>
+          </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
+          <Card className="card2" body outline color="secondary">
+            <CardBody>
+              <CardTitle>Card title</CardTitle>
+              <CardSubtitle>Card subtitle</CardSubtitle>
+            </CardBody>
+            <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
+            <CardBody>
+              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+              <Button>Button</Button>
+            </CardBody>
+          </Card>
+              </Col>
+            </Row>
+          </CardDeck>
       </Container>
     );
   }

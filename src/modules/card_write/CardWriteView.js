@@ -7,7 +7,7 @@ import _ from 'lodash'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import ImageUploader from 'react-images-upload';
-import { Button, Form, FormGroup, Label, Input, FormText, Alert, Container, Row, Col} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
 import Select from 'react-select'
 
 
@@ -94,11 +94,16 @@ class CardWriteView extends Component<Props, State> {
     console.log(this.state.pictures,"pictures");
     console.log(this.state.picturesURL,"picturesURL");
     return (
-      <div>
+      <div style={{display: 'inline-block'}} className="card1">
         <Form>
+          <Card>
+          {this.state.picturesURL.map((listValue,index)=>{
+            return <div key={index} onClick={()=>this.deletePicture(index)}><img width="100" height="100" src={listValue} /></div>;
+          })}
+          <CardBody>
           <FormGroup>
-            <Label for="exampleSelectMulti">Select Multiple Pets</Label>
-            <Input onChange={this.selectPets} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+            <Label for="exampleSelect">Select Pets</Label>
+            <Input onChange={this.selectPets} type="select" name="select" id="exampleSelect">
               {this.props.pets.map((listValue,index)=> {
                 return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
               })}
@@ -112,17 +117,17 @@ class CardWriteView extends Component<Props, State> {
             <Label for="exampleText">Text Area</Label>
             <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
           </FormGroup>
-          <Button onClick={() => this.onSubmitPressed()}>Let's post</Button>
+          <input ref="file"
+                 type="file"
+                 name="user[image]"
+                 multiple="true"
+                 onChange={this.onDrop}/>
+          </CardBody>
+            <CardFooter>
+              <Button color="warning" onClick={() => this.onSubmitPressed()}>Let's post</Button>
+            </CardFooter>
+          </Card>
         </Form>
-        <input ref="file"
-               type="file"
-               name="user[image]"
-               multiple="true"
-               onChange={this.onDrop}/>
-        {this.state.picturesURL.map((listValue,index)=>{
-          return <div key={index} onClick={()=>this.deletePicture(index)}><img src={listValue} /></div>;
-        })}
-
     </div>
     );
   }
