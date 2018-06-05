@@ -10,8 +10,8 @@ function* requestGetUserProfile({ userEmail }: {userEmail: string}) {
     const token = yield api.get(`${API_ROOT}/user/${userEmail}`,{
       headers: {
         Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        'Content-Type': 'application/json',
+        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
       }}
     );
     if (token) {
@@ -69,7 +69,7 @@ function* requestFollow({ userEmail, followedName }: {username: string}) {
 }
 function* requestUnFollow({ userEmail,followedName }: {username: string}) {
   const body = {
-   followingName: followedName
+    followingName: followedName
   };
 
   try {
@@ -114,7 +114,7 @@ function* requestFollowCheck({ followerName, followedName }: {followerName: stri
 
 export const UserProfileSaga = [
   takeLatest(UserProfileTypes.GET_USER_PROFILE_REQUEST, requestGetUserProfile),
- // takeLatest(UserPRofileTypes.SEND_MESSAGE_REQUEST, requestSendMessage),
+  // takeLatest(UserPRofileTypes.SEND_MESSAGE_REQUEST, requestSendMessage),
   takeLatest(UserProfileTypes.FOLLOW_REQUEST, requestFollow),
   takeLatest(UserProfileTypes.UN_FOLLOW_REQUEST, requestUnFollow),
   takeLatest(UserProfileTypes.FOLLOW_CHECK_REQUEST, requestFollowCheck),

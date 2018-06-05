@@ -14,8 +14,8 @@ export function getAuthenticationToken() {
   }
 }
 
-export function setAuthenticationToken(token,username,password) {
-  AsyncStorage.set(KEYS.username, username);
+export function setAuthenticationToken(token,userEmail,password) {
+  AsyncStorage.set(KEYS.userEmail, userEmail);
   AsyncStorage.set(KEYS.password, password);
   return AsyncStorage.set(AUTHENTICATION_STORAGE_KEY, token)
 }
