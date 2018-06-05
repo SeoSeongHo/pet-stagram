@@ -10,18 +10,22 @@ import { actionsGenerator } from '../../store/reducerUtils'
 
 type LoginState = {
   loading: boolean,
+  error: string,
 }
 
 // Initial state
 const initialState = {
   loading: false,
+  error: null,
 }
 
 // Action Creators
 
 export const { Types: LoginTypes, Creators: LoginActions } = createActions(
   actionsGenerator({
-    loginRequest: ['username', 'password'],
+    loginRequest: ['userEmail', 'password'],
+    signUpRequest: ['userEmail','password'],
+    checkDuplicateRequest: ['userEmail'],
   })
 )
 
@@ -33,12 +37,44 @@ export default function LoginReducer(state: LoginState = initialState, action: O
         ...state,
         loading: true,
       }
+    case LoginTypes.SIGN_UP_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case LoginTypes.CHECK_DUPLICATE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
     case LoginTypes.LOGIN_SUCCESS:
       return {
         ...state,
         loading: false,
       }
+    case LoginTypes.SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
+    case LoginTypes.CHECK_DUPLICATE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
     case LoginTypes.LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      }
+    case LoginTypes.SIGN_UP_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      }
+    case LoginTypes.CHECK_DUPLICATE_FAILURE:
       return {
         ...state,
         loading: false,

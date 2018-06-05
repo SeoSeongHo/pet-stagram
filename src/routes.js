@@ -16,7 +16,10 @@ const routes = (
     <IndexRoute component={HomePage} />
     <Route path="/login" component={loginView}/>
     <Route path="/homePage" component={CardView}/>
-    <Route path="/userProfile" component={UserAndPetProfileTest}/>
+    <switch>
+    <Route exact path="/userProfile/:userEmail" component={UserProfileView}/>
+    <Route exact path="/userProfile/" component={UserProfileView}/>
+    </switch>
     <Route path="/cardWrite" component={CardWriteView}/>
     <Route path="/cardDetail" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>

@@ -5,6 +5,7 @@ const namespace = 'petStagramStorage'
 export const KEYS = {
   user: 'user',
   login: 'login',
+  userEmail: 'userEmail',
   username: 'username',
   accessToken: 'access_token',
   refreshToken: 'refresh_token',
