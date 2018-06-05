@@ -7,6 +7,8 @@ import loginView  from './modules/login/loginViewContainer'
 import CardWriteView  from './modules/card_write/CardWriteViewContainer'
 import CardView  from './modules/main_page/cardView'
 import UserAndPetProfileTest  from './modules/user_profile/UserAndPetProfileTest'
+import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
+import PetProfileView  from './modules/pet_profile/PetProfileViewContainer'
 import CardDetailView from './modules/card_detail/CardDetailView'
 import SignUpView from 'modules/sign_up/SignUpView'
 import SearchView from 'modules/search_page/SearchView'
@@ -19,6 +21,10 @@ const routes = (
     <switch>
     <Route exact path="/userProfile/:userEmail" component={UserProfileView}/>
     <Route exact path="/userProfile/" component={UserProfileView}/>
+    </switch>
+    <switch>
+      <Route exact path="/petProfile/:id" component={PetProfileView}/>
+      <Route exact path="/petProfile/" component={PetProfileView}/>
     </switch>
     <Route path="/cardWrite" component={CardWriteView}/>
     <Route path="/cardDetail" component={CardDetailView}/>

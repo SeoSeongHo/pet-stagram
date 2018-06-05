@@ -11,7 +11,7 @@ import { actionsGenerator } from '../../store/reducerUtils'
 type UserProfileState = {
   userProfileImage: any,
   userEmail: String,
-  userBirth: any,
+  userBirthDay: any,
   introduceText: String,
   pets: any,
   totalPost: number,
@@ -29,7 +29,7 @@ const initialState = {
   pets: [],
   totalPost: 0,
   cards: [],
-  userBirth: null,
+  userBirthDay: null,
   totalFollowing: 0,
   totalFollower: 0,
   loading: false,
@@ -45,7 +45,7 @@ export const { Types: UserProfileTypes, Creators: UserProfileActions } = createA
     unFollowRequest:['userEmail','followedName'],
     followCheckRequest:['followerName','followedName'],
     editIntroduceTextRequest:['userEmail','text'],
-    editUserProfileRequest:['text','userBirth','userProfileImage']
+    editUserProfileRequest:['text','userBirthDay','userProfileImage']
   })
 )
 
@@ -64,7 +64,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
     case UserProfileTypes.GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        userBirth: action.payload.userBirth,
+        userBirthDay: action.payload.userBirthDay,
         userProfileImage: action.payload.userProfileImage,
         userEmail: action.payload.userEmail,
         introduceText: action.payload.introduceText,
@@ -79,7 +79,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
       return {
         ...state,
         introduceText: action.payload.text,
-        userBirth: action.payload.userBirth,
+        userBirthDay: action.payload.userBirthDay,
         userProfileImage: action.payload.userProfileImage,
         loading:true,
       }
