@@ -1,0 +1,22 @@
+
+.login1{
+  margin: 10px;
+}
+
+.card3{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cont{
+  margin: 100px;
+}
+
+.ro1{
+  display: flex;
+  justify-content: center;
+}
+
+.display-3{
+  font-family: Times New Roman;
+}

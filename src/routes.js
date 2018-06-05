@@ -6,7 +6,7 @@ import { HomePage } from 'components'
 import loginView  from './modules/login/loginViewContainer'
 import CardWriteView  from './modules/card_write/CardWriteViewContainer'
 import CardView  from './modules/main_page/cardView'
-import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
+import UserAndPetProfileTest  from './modules/user_profile/UserAndPetProfileTest'
 import CardDetailView from './modules/card_detail/CardDetailView'
 import SignUpView from 'modules/sign_up/SignUpView'
 import SearchView from 'modules/search_page/SearchView'
@@ -16,7 +16,7 @@ const routes = (
     <IndexRoute component={HomePage} />
     <Route path="/login" component={loginView}/>
     <Route path="/homePage" component={CardView}/>
-    <Route path="/userProfile" component={UserProfileView}/>
+    <Route path="/userProfile" component={UserAndPetProfileTest}/>
     <Route path="/cardWrite" component={CardWriteView}/>
     <Route path="/cardDetail" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>
