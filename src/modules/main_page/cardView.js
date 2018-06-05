@@ -5,6 +5,7 @@ import autoBind from 'react-autobind'
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
 import Navigator from '../top_navigator/navigator'
+import './cardView.css'
 
 type State = {
   username: string,
@@ -101,7 +102,7 @@ class CardView extends Component<Props, State> {
         </Row>
         <Row>
           <CardDeck className="card1">
-        <Col sm={{size: 9, order: 2, offset: 4}} style={{}}>
+        <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
           {/*<CardImg top width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />*/}
           <Card className="card2" body outline color="secondary">
             <CardBody>

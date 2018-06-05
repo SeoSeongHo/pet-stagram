@@ -175,14 +175,12 @@ class LoginView extends Component<Props, State> {
           {/*<Col>*/}
             {/*<Button onClick={() => this.onLoginPressed()}>LOGIN</Button>*/}
           {/*</Col>*/}
-          <Col className="main1" xs="3" sm="4">
+          <Col className="main1" xs="6" sm="4">
           <Card body outline color="secondary">
-            <CardBody>
-              <CardTitle>Petstagram</CardTitle>
-            </CardBody>
-            <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
+            <img width="100%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+            <img width="100%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
             <CardBody className="card3">
-              <Form inline>
+              <Form>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                   <Label for="exampleEmail" className="mr-sm-2">Email</Label>
                   <Input className="login1" placeholder="USERNAME" onChange={this.onChangeUsername} />
@@ -191,8 +189,8 @@ class LoginView extends Component<Props, State> {
                   <Label for="examplePassword" className="mr-sm-2">Password</Label>
                   <Input className="login1" type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />
                 </FormGroup>
-                <Button className="login1" color ="lightgray" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
-                <Button className="singup" color ="lightgray">SIGNUP</Button>
+                <Button className="login1" color ="warning" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
+                <Button href="/signUp" className="singup" color ="info">SIGNUP</Button>
               </Form>
               {/*<Input className="login1" placeholder="USERNAME" onChange={this.onChangeUsername} />*/}
             {/*</CardBody>*/}
