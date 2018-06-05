@@ -1,26 +1,31 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, UncontrolledAlert, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Jumbotron, Col, Row,
+  TabContent, TabPane, Nav, NavItem, NavLink, Card, CardBody, CardFooter, CardText, CardTitle, Container} from 'reactstrap'
 import autoBind from "react-autobind";
+import './signUpView.css'
 
-export default class Signup extends Component {
-  constructor(props) {
-    super(props);
+export default class SignupView extends Component {
+  constructor(props ,context) {
+    super(...arguments);
     autoBind(this);
+    const images = {
+      petProfile: require('../../assets/images/dog.png'),
+      userProfile: require('../../assets/images/user.png')
+    }
     this.state = {
       isLoading: false,
       email: "",
       error: null,
       password: "",
-      confirmPassword: "",
       confirmationCode: "",
       newUser: null,
       duplicate:0,
-      userProfileImage: null,
+      userProfileImage: images.userProfile,
       userBirthDay: '',
       introduceText: '',
       username: '',
       petName: '',
-      petProfileImage: null,
+      petProfileImage: images.petProfile,
       petBirthDay: '',
       introduceTextPet: '',
       activeTab: '1'
@@ -28,9 +33,8 @@ export default class Signup extends Component {
   }
   validateForm() {
     return (
-      this.state.email.length > 0 &&
-      this.state.password.length > 0 &&
-      this.state.password === this.state.confirmPassword &&
+      this.state.email.length >7 &&
+      this.state.password.length > 7 &&
         this.state.username.length >0 &&
         this.state.petBirthDay && this.state.userBirthDay
     );
@@ -51,18 +55,31 @@ export default class Signup extends Component {
     if (this.validateForm()) {
       this.props.signUpRequest(this.state.email, this.state.password,
         this.state.username,this.state.userProfileImage,this.state.userBirthDay,this.state.petName, this.state.petProfileImage,this.state.petBirthDay).then(
-        this.context.router.push('/homePage')
-      ).catch((e) => { console.log(e);
-        this.setState({error:e});})
+        ()=>{
+        this.context.router.push('/homePage');}
+      ).catch((e) => {
+        this.setState({error:e.message});})
     }
-    else if(this.state.email.length>0){
+    else if(this.state.email.length<8){
       this.setState({error:"email is too short"});
     }
-    else if(this.state.password.length>0){
+    else if(this.state.password.length<8){
       this.setState({error:"password is too short"});
     }
-    else if(this.state.password===this.state.confirmPassword){
-      this.setState({error:"confirmPassword is not equal"});
+    else if(this.state.username.length<1){
+      this.setState({error:"please enter username"})
+    }
+    else if(this.state.petName.length<1){
+      this.setState({error:"please enter petName"})
+    }
+    else if(!this.state.userBirthDay){
+      this.setState({error:"please enter your BirthDay"})
+    }
+    else if(!this.state.petBirthDay){
+      this.setState({error:"please enter your pet's BirthDay"})
+    }
+    else{
+      this.setState({error:"check form again"});
     }
   }
 
@@ -130,14 +147,11 @@ export default class Signup extends Component {
       ).catch((e) => { console.log(e);
         this.setState({error:e});})
     }
-    else if(this.state.email.length>0){
+    else if(this.state.email.length<8){
       this.setState({error:"email is too short"});
     }
-    else if(this.state.password.length>0){
+    else if(this.state.password.length<8){
       this.setState({error:"password is too short"});
-    }
-    else if(this.state.password===this.state.confirmPassword){
-      this.setState({error:"confirmPassword is not equal"});
     }
   }
   onCancelPressed(){
@@ -146,7 +160,6 @@ export default class Signup extends Component {
       email: "",
       error: null,
       password: "",
-      confirmPassword: "",
       confirmationCode: "",
       newUser: null,
       duplicate:0,
@@ -220,6 +233,7 @@ export default class Signup extends Component {
                     </Col>
                   </FormGroup>
                 </Form>
+                <span> {this.state.error}</span>
               </CardBody>
               <CardFooter>
                 <Button color="primary" onClick={this.handleSubmit}>SignUp</Button>
@@ -240,3 +254,9 @@ export default class Signup extends Component {
     );
   }
 }
+
+SignupView.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+  location: React.PropTypes.object,
+  match: React.PropTypes.object
+};

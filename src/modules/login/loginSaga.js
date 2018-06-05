@@ -30,7 +30,7 @@ function* requestLogin({ userEmail, password }: {userEmail: string, password: st
 function* requestSignup({ email, password,
                           username,userProfileImage,userBirthDay,petName, petProfileImage,petBirthDay }
                           : {email:string, password:string,
-  username,userProfileImage:any,userBirthDay:any,petName:string, petProfileImage:any,petBirthDay:string }) {
+  username:string,userProfileImage:any,userBirthDay:any,petName:string, petProfileImage:any,petBirthDay:string }) {
   const body = {
     userEmail:email, password,
     username,userProfileImage,userBirthDay,petName, petProfileImage,petBirthDay
@@ -39,11 +39,11 @@ function* requestSignup({ email, password,
     const token = yield api.get(`${API_ROOT}/register/`,body
     )
     if (token) {
-      yield setAuthenticationToken(token,username,password);
+      yield setAuthenticationToken(token,email,password);
       yield put(LoginActions.signUpSuccess(token))
     }
   } catch (e) {
-    yield put(LoginActions.signupFailure(e))
+    yield put(LoginActions.signUpFailure(e))
   }
 }
 

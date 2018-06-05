@@ -10,7 +10,7 @@ import UserAndPetProfileTest  from './modules/user_profile/UserAndPetProfileTest
 import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
 import PetProfileView  from './modules/pet_profile/PetProfileViewContainer'
 import CardDetailView from './modules/card_detail/CardDetailView'
-import SignUpView from 'modules/sign_up/SignUpView'
+import SignUpView from 'modules/login/SignUpViewContainer'
 import SearchView from 'modules/search_page/SearchView'
 
 const routes = (
