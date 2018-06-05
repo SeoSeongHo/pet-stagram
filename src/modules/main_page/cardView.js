@@ -6,6 +6,8 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
 import Navigator from '../top_navigator/navigator'
 import './cardView.css'
+import CardDetailView from "../card_detail/CardDetailView";
+import CardWriteView from "../card_write/CardWriteViewContainer"
 
 type State = {
   username: string,
@@ -116,7 +118,7 @@ class CardView extends Component<Props, State> {
             <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
             <CardBody>
             <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            <Button>Button</Button>
+              <CardDetailView/>
             </CardBody>
           </Card>
         </Col>
@@ -131,7 +133,7 @@ class CardView extends Component<Props, State> {
             <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
             <CardBody>
               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-              <Button>Button</Button>
+              <CardDetailView/>
             </CardBody>
           </Card>
               </Col>
@@ -146,7 +148,7 @@ class CardView extends Component<Props, State> {
             <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
             <CardBody>
               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-              <Button>Button</Button>
+              <CardDetailView/>
             </CardBody>
           </Card>
               </Col>

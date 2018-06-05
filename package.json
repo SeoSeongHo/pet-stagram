@@ -105,7 +105,7 @@
     "react-icons": "^2.2.7",
     "react-images-upload": "^1.1.99",
     "react-images-uploader": "^1.2.0-rc1",
-    "react-modal": "^1.6.5",
+    "react-modal": "^1.9.7",
     "react-modal-dialog": "^4.0.7",
     "react-modal-syaku": "^2.0.1",
     "react-redux": "^5.0.1",

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Button, Modal, ModalHeader, ModalFooter, ModalBody,
-Card, CardBody, CardTitle, CardText, CardSubtitle,} from 'reactstrap';
+import { Container, Button,
+Card, CardBody, CardTitle, CardText, CardSubtitle, Col, Row,} from 'reactstrap';
 import ReactDom from 'react-dom';
-
+import Modal from 'react-modal';
+import CardWriteView from '../card_write/CardWriteViewContainer'
+import './CardDetailView.css'
 
 type State = {
   pictures: any,
@@ -22,6 +24,18 @@ type Props = {
   }
 };
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+Modal.setAppElement('#root');
 
 class CardDetailView extends Component<Props, State> {
 
@@ -33,38 +47,53 @@ class CardDetailView extends Component<Props, State> {
       text: "",
       title: "",
       picturesURL: [],
-      modal: false
+      modalIsOpen: false
     };
 
-    this.toggleModal = this.toggleModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  toggleModal(){
-    this.setState({modal: !this.state.modal});
+  openModal() {
+    this.setState({modalIsOpen: true});
   }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
 
   render() {
     return (
-      <div>
-        <Button onClick={this.toggleModal}>modal</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal} size="lg">
-          <ModalHeader toggle={this.toggleModal}>카드정보</ModalHeader>
-          <ModalBody>
-            <Card>
-              <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-              </CardBody>
-              <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-              <CardBody>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-              </CardBody>
-            </Card>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Do something</Button>
-            <Button color="primary" onClick={this.toggleModal}>Cancel</Button>
-          </ModalFooter>
+      <div className="di1">
+        <Button onClick={this.openModal}>Detail</Button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <Col sm={6}>
+          <Card>
+            <CardBody>
+              <CardTitle>Card title</CardTitle>
+              <CardSubtitle>Card subtitle</CardSubtitle>
+            </CardBody>
+            <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+            <CardBody>
+              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+            </CardBody>
+          </Card>
+          </Col>
+          <Col sm={6}>
+            <CardWriteView/>
+          </Col>
         </Modal>
       </div>
     );

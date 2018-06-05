@@ -9,6 +9,8 @@ import _ from 'lodash'
 import ImageUploader from 'react-images-upload';
 import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
 import Select from 'react-select'
+import Modal from "react-modal";
+import './CardWriteView.css'
 
 
 type State = {
@@ -29,6 +31,19 @@ type Props = {
     petProperty: string,
   }
 };
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+Modal.setAppElement('#root');
 
 class CardWriteView extends Component<Props, State> {
   constructor(props, context) {
@@ -90,45 +105,69 @@ class CardWriteView extends Component<Props, State> {
     array2.splice(index,1);
     this.setState({pictures: array,picturesURL:array2});
   }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
   render() {
     console.log(this.state.pictures,"pictures");
     console.log(this.state.picturesURL,"picturesURL");
     return (
-      <div style={{display: 'inline-block'}} className="card1">
-        <Form>
-          <Card>
-          {this.state.picturesURL.map((listValue,index)=>{
-            return <div key={index} onClick={()=>this.deletePicture(index)}><img width="100" height="100" src={listValue} /></div>;
-          })}
-          <CardBody>
-          <FormGroup>
-            <Label for="exampleSelect">Select Pets</Label>
-            <Input onChange={this.selectPets} type="select" name="select" id="exampleSelect">
-              {this.props.pets.map((listValue,index)=> {
-                return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
-              })}
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="Title">Title</Label>
-            <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleText">Text Area</Label>
-            <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
-          </FormGroup>
-          <input ref="file"
-                 type="file"
-                 name="user[image]"
-                 multiple="true"
-                 onChange={this.onDrop}/>
-          </CardBody>
-            <CardFooter>
-              <Button color="warning" onClick={() => this.onSubmitPressed()}>Let's post</Button>
-            </CardFooter>
-          </Card>
-        </Form>
-    </div>
+      <div className="di1">
+        <Button onClick={this.openModal} className="btt1" color="white"><img width="30" height="30" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <Col>
+            <Form>
+              <Card>
+                {this.state.picturesURL.map((listValue,index)=>{
+                  return <div key={index} onClick={()=>this.deletePicture(index)}><img width="100" height="100" src={listValue} /></div>;
+                })}
+                <CardBody>
+                  <FormGroup>
+                    <Label for="exampleSelect">Select Pets</Label>
+                    <Input onChange={this.selectPets} type="select" name="select" id="exampleSelect">
+                      {this.props.pets.map((listValue,index)=> {
+                        return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
+                      })}
+                    </Input>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="Title">Title</Label>
+                    <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="exampleText">Text Area</Label>
+                    <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
+                  </FormGroup>
+                  <input ref="file"
+                         type="file"
+                         name="user[image]"
+                         multiple="true"
+                         onChange={this.onDrop}/>
+                </CardBody>
+                <CardFooter>
+                  <Button className="btt2" color="#ffe4a8" onClick={() => this.onSubmitPressed()}>Let's post</Button>
+                </CardFooter>
+              </Card>
+            </Form>
+          </Col>
+        </Modal>
+      </div>
     );
   }
 }
