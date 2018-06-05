@@ -22,13 +22,17 @@ export default class Navigator extends React.Component {
   render() {
     return (
       <Container>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/homepage/">petstagram</NavbarBrand>
+        <Navbar light expand="md">
+          <NavbarBrand href="/homepage/">
+            <img width="150" height="50" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink>검색</NavLink>
+                <NavLink href="/search">
+                  <img width="25" height="25" src={require('../../assets/images/searchlogo.png')} alt="Card image cap" />
+                </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -44,10 +48,14 @@ export default class Navigator extends React.Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/cardDetail/">하트</NavLink>
+                <NavLink href="/cardDetail/">
+                  <img width="30" height="30" src={require('../../assets/images/heartlogo.png')} alt="Card image cap" />
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/userProfile/">프로필</NavLink>
+                <NavLink href="/userProfile/">
+                  <img width="30" height="30" src={require('../../assets/images/profilelogo.png')} alt="Card image cap" />
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>

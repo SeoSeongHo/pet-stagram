@@ -9,6 +9,7 @@ import CardView  from './modules/main_page/cardView'
 import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
 import CardDetailView from './modules/card_detail/CardDetailView'
 import SignUpView from 'modules/sign_up/SignUpView'
+import SearchView from 'modules/search_page/SearchView'
 
 const routes = (
   <Route path="/" component={App}>
@@ -19,6 +20,7 @@ const routes = (
     <Route path="/cardWrite" component={CardWriteView}/>
     <Route path="/cardDetail" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>
+    <Route path="/search" component={SearchView}/>
   </Route>
 )
 
