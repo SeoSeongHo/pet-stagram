@@ -23,7 +23,7 @@ export default class Navigator extends React.Component {
   render() {
     return (
       <Container>
-        <Navbar light expand="md">
+        <Navbar color="white" light expand="md">
           <NavbarBrand href="/homepage/">
             <img width="30" height="30" src={require('../../assets/images/instagram.png')} alt="Card image cap" />
             <img className="imglogo1" width="150" height="50" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
@@ -37,7 +37,7 @@ export default class Navigator extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/search">
+                <NavLink href="/cardWrite">
                   <img width="30" height="30" src={require('../../assets/images/edit.png')} alt="Card image cap" />
                 </NavLink>
               </NavItem>

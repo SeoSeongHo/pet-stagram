@@ -112,11 +112,11 @@ class SIgnUpView extends Component{
       return(
         <Container className="cnt1">
           <Row>
-            <Col className="signup1" xs="8" sm={{size: 5, offset:4}}>
-              <Card body outline color = "secondary">
+            <Col className="signup1" xs="8" sm={{size: 5, offset:3}}>
+              <Card body outline color = "#ffe4a8">
                 <img width="100%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
-                <Button className="bt1" color="success">Naver연동</Button>
-                <Button className="bt1" color="primary">Facebook연동</Button>
+                <Button className="bt1" color="#c9ffca"> <img width="30" height="30" src={require('../../assets/images/checked.png')} alt="Card image cap" />  Naver연동</Button>
+                <Button className="bt2" color="#91bbff"> <img width="30" height="30" src={require('../../assets/images/facebook.png')} alt="Card image cap" />  Facebook연동</Button>
                 <CardBody>
                   <Form>
                     <FormGroup>
@@ -170,8 +170,8 @@ class SIgnUpView extends Component{
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <Button color="primary" onClick={this.onSignUpPressed}>SignUp</Button>
-                  <Button href="/login" onClick={this.onCancelPressed}>Cancel</Button>
+                  <Button className="bt3" color="#aaffd3" onClick={this.onSignUpPressed}>SignUp</Button>
+                  <Button className="bt4" color="#ffe4a8" href="/login" onClick={this.onCancelPressed}>Cancel</Button>
                 </CardFooter>
               </Card>
             </Col>
