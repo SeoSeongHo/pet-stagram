@@ -154,6 +154,7 @@ class UserProfileView extends Component<Props, State> {
   }
   componentWillMount() {
     try {
+      /*
       this.props.getUserProfileRequest(this.context.match.url.userEmail).then(() => {
         this.setState({getUser: true})
         this.setState({introduceText: this.props.introduceText});
@@ -162,6 +163,7 @@ class UserProfileView extends Component<Props, State> {
         this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
       }).catch((e) =>
         console.log(e));
+        */
     }
     catch (e) {
       console.log(e);

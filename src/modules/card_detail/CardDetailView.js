@@ -32,7 +32,7 @@ type Props = {
     userEmail: string,
     introduceText: string,
     username: string,
-  }
+  },
   title: string,
   pictures: any,
   text: string,
@@ -44,9 +44,15 @@ type Props = {
     ownerEmail: string,
     updated: any,
     comment: string,
+    id: any,
   }],
   getCardRequest: Function,
   getCommentRequest: Function,
+  deleteCardRequest: Function,
+  deleteCommentRequest: Function,
+  deleteLikeRequest: Function,
+  postLikeRequest: Function,
+  postCommentRequest: Function,
 };
 
 const customStyles = {
@@ -83,28 +89,28 @@ class CardDetailView extends Component<Props, State> {
   }
 
   componentWillMount(){
+    /*
     this.props.getCardRequest(this.context.match.url.id).then(()=>this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e)))
       .catch(e=>{console.log(e)});
-
+  */
   }
   onClickComment(){
     this.props.postCommentRequest(this.context.match.url.id, this.state.comment).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e)))
       .catch(e=>console.log(e));
   }
-  onClickEdit(){
-
+  onClickEditCard(){
   }
   onClickLike(){
     if(this.props.like.includes(Storage.get(KEYS.userEmail))) {
-      this.props.postLikeRequest(this.context.match.url.id, Storage.get(KEYS.userEmail)).catch((e)=>console.log(e));
+      this.props.postLikeRequest(this.context.match.url.id).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e))).catch((e)=>console.log(e));
     } else
-      this.props.deleteLikeRequest(this.context.match.url.id, Storage.get(KEYS.userEmail)).catch((e)=>console.log(e));
+      this.props.deleteLikeRequest(this.context.match.url.id).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e))).catch((e)=>console.log(e));
   }
   onClickDeleteCard(){
-    this.props.deleteCardRequest(this.context.match.url.id);
+    this.props.deleteCardRequest(this.context.match.url.id).then(()=>this.setState({modalIsOpen: false})).catch(e=>console.log(e))
   }
-  onClickDeleteComment(){
-    this.props.deleteCommentRequest(this.context.match.url.id, this.state.commentId);
+  onClickDeleteComment(commentId){
+    this.props.deleteCommentRequest(commentId).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e))).catch(e=>console.log(e))
   }
   openModal() {
     this.setState({modalIsOpen: true});
@@ -125,19 +131,22 @@ class CardDetailView extends Component<Props, State> {
         <Moment format="YYYY/MM/DD">
           {this.props.created}
         </Moment>
-        { Storage.get(KEYS.userEmail)===this.props.owner.userEmail ?  (<button onClick={this.onClickDeleteCard}>delete</button>) : null}
+        { Storage.get(KEYS.userEmail)===this.props.owner.userEmail ?  (<div><button onClick={this.onClickDeleteCard}>delete</button> <button onClick={this.onClickEditCard}>edit</button></div>
+        ) : null}
         {this.props.comments.map((listValue,index)=>{
           return <div key={index}>
             <span> {listValue.updated}</span>
             <span> {listValue.ownerName}</span>
             <span> {listValue.comment}</span>
-            { listValue.ownerEmail===Storage.get(KEYS.userEmail) ? (<button onClick={this.onClickDeleteComment}>delete</button>) : null}
+            { listValue.ownerEmail===Storage.get(KEYS.userEmail) ? (<button onClick={()=>this.onClickDeleteComment(listValue.id)}>delete</button>) : null}
           </div>;
         })}
         <div onClick={()=>this.onClickLike()}>{this.props.like.includes(Storage.get(KEYS.userEmail)) ? <img width="100" height="100" src={require('../../assets/images/like.png')} /> :
           <img width="100" height="100" src={require('../../assets/images/like.png')} />}
           </div>
         <img width="100" height="100" src={require('../../assets/images/like.png')} />}
+        <Input type="textarea" onChange={(e)=>this.setState({comment:e.target.value})} value={this.state.comment} />
+        <button  onClick={()=>this.onClickComment()}>enter comment</button>
       </div>
     )
   }
