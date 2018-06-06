@@ -7,7 +7,7 @@ import { Card, CardImg, CardText, CardBody,
 import Navigator from '../top_navigator/navigator'
 import './cardView.css'
 import CardDetailView from "../card_detail/CardDetailView";
-import CardWriteView from "../card_write/CardWriteViewContainer"
+import CardWriteView from "../card_write/CardWriteViewContainer2"
 
 type State = {
   username: string,

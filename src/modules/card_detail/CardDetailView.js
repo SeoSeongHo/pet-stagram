@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Button,
-Card, CardBody, CardTitle, CardText, CardSubtitle, Col, Row,} from 'reactstrap';
+Card, CardBody, CardTitle, CardText, CardSubtitle, Col, Row, Input, Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption} from 'reactstrap';
 import ReactDom from 'react-dom';
 import Modal from 'react-modal';
 import CardWriteView from '../card_write/CardWriteViewContainer'
@@ -55,6 +59,24 @@ type Props = {
   postCommentRequest: Function,
 };
 
+const items = [
+  {
+    src: require('../../assets/images/logindog.jpg'),
+    altText: '',
+    caption: '',
+  },
+  {
+    src: require('../../assets/images/logindog2.jpg'),
+    altText: '',
+    caption: '',
+  },
+  {
+    src: require('../../assets/images/example.jpg'),
+    altText: '',
+    caption: '',
+  },
+];
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -80,7 +102,8 @@ class CardDetailView extends Component<Props, State> {
       text: "",
       title: "",
       picturesURL: [],
-      modalIsOpen: false
+      modalIsOpen: false,
+      activeIndex: 0,
     };
     autoBind(this)
     this.openModal = this.openModal.bind(this);
@@ -151,7 +174,46 @@ class CardDetailView extends Component<Props, State> {
     )
   }
 
+  onExiting() {
+    this.animating = true;
+  }
+
+  onExited() {
+    this.animating = false;
+  }
+
+  next() {
+    if (this.animating) return;
+    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+    this.setState({ activeIndex: nextIndex });
+  }
+
+  previous() {
+    if (this.animating) return;
+    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+    this.setState({ activeIndex: nextIndex });
+  }
+
+  goToIndex(newIndex) {
+    if (this.animating) return;
+    this.setState({ activeIndex: newIndex });
+  }
+
   render() {
+    const { activeIndex } = this.state;
+    const slides = items.map((item) => {
+      return (
+        <CarouselItem
+          onExiting={this.onExiting}
+          onExited={this.onExited}
+          key={item.src}
+        >
+          <img src={item.src} alt={item.altText} width="500" height="500"/>
+          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+        </CarouselItem>
+      );
+    });
+
     return (
       <div className="di1">
         <Button onClick={this.openModal}>Detail</Button>
@@ -162,23 +224,50 @@ class CardDetailView extends Component<Props, State> {
           style={customStyles}
           contentLabel="Example Modal"
         >
+          <Row>
           <Col sm={6}>
-            <span>{this.props.pet.petName}</span>
-            <img src={this.props.pet.petProfileImage}/>
-          <Card>
-            <CardBody>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
-            </CardBody>
-            <img width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-            <CardBody>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            </CardBody>
-          </Card>
+            <img width="30" height="30" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
+            <span>  Dog  </span>
+            <Carousel
+              activeIndex={activeIndex}
+              next={this.next}
+              previous={this.previous}
+              className="car1"
+            >
+              <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+              {slides}
+              <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+              <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+            </Carousel>
           </Col>
           <Col sm={6}>
+            <img width="30" height="30" src={require('../../assets/images/user.png')} alt="Card image cap" />
+            <span>  Seo  </span>
+            <Moment format="YYYY/MM/DD">
+              {this.props.created}
+            </Moment>
+            <div>
+              <span className="span1">  오늘도 멍뭉이와 함께... 산책... 또르르...  </span><br></br><br></br>
+              <span> 저번에 같이 왔을 때는 신나게 놀던데 너무 뛰어 놀았는지 오늘은 얌전하네요</span><br></br>
+              <span> 끝나고 소세지 먹으러 가야겠어요</span>
+            </div>
+            <div className="img1">
+          <img width="30" height="30" src={require('../../assets/images/like1.png') }/>
+          <img className="img2" width="30" height="30" src={require('../../assets/images/comment-white-oval-bubble.png') }/>
+            </div>
+          <Input type="textarea" onChange={(e)=>this.setState({comment:e.target.value})} value={this.state.comment} />
+            <Row className="row1">
+              <Col>
+              <Button onClick={()=>this.onClickComment()}>ENTER COMMENT</Button>
+              </Col>
+            </Row>
+              <Row className="row2">
+              <Col>
             <CardWriteView/>
+              </Col>
+            </Row>
           </Col>
+          </Row>
         </Modal>
       </div>
     );
