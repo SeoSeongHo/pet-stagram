@@ -163,6 +163,8 @@ class CardDetailView extends Component<Props, State> {
           contentLabel="Example Modal"
         >
           <Col sm={6}>
+            <span>{this.props.pet.petName}</span>
+            <img src={this.props.pet.petProfileImage}/>
           <Card>
             <CardBody>
               <CardTitle>Card title</CardTitle>
