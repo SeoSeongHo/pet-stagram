@@ -1,7 +1,8 @@
 import React ,{PropTypes} from 'react';
 import { injectGlobal, ThemeProvider } from 'styled-components'
-
+import routes from '../routes';
 import theme from './themes/default'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 injectGlobal`
   body {
@@ -12,7 +13,7 @@ injectGlobal`
 const App = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      {children}
+      {routes}
     </ThemeProvider>
   )
 }

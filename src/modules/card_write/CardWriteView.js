@@ -46,8 +46,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 class CardWriteView extends Component<Props, State> {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.state = { pictures: [], pets:[], text:"", title:"",
     picturesURL:[],
     };
@@ -55,11 +55,14 @@ class CardWriteView extends Component<Props, State> {
     autoBind(this)
   }
   componentWillMount(){
-    this.props.getPetRequest(Storage.get(KEYS.userEmail)).catch(e=>{console.log(e)});
+    //this.props.getPetRequest(Storage.get(KEYS.userEmail)).catch(e=>{console.log(e)});
   }
 
   onDrop(event) {
     console.log("on Drop");
+    if(this.state.pictures.length>2){
+      return null;
+    }
     var file = this.refs.file.files[0];
     var reader = new FileReader();
     var url = reader.readAsDataURL(file);
@@ -159,6 +162,9 @@ class CardWriteView extends Component<Props, State> {
                          name="user[image]"
                          multiple="true"
                          onChange={this.onDrop}/>
+                  <span>
+                    최대 3장
+                  </span>
                 </CardBody>
                 <CardFooter>
                   <Button className="btt2" color="#ffe4a8" onClick={() => this.onSubmitPressed()}>Let's post</Button>
@@ -172,11 +178,6 @@ class CardWriteView extends Component<Props, State> {
   }
 }
 
-CardWriteView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
 export default CardWriteView
   {/* <ImageUploader
       withIcon={true}
