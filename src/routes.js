@@ -8,7 +8,7 @@ import CardWriteView  from './modules/card_write/CardWriteViewContainer'
 import CardView  from './modules/main_page/cardView'
 import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
 import PetProfileView  from './modules/pet_profile/PetProfileViewContainer'
-import CardDetailView from './modules/card_detail/CardDetailView'
+import CardDetailView from './modules/card_detail/CardDetailViewContainer'
 import SignUpView from 'modules/login/SignUpViewContainer'
 import SearchView from 'modules/search_page/SearchView'
 
