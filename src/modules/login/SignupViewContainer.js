@@ -6,7 +6,6 @@ import SignupView from './SignupView'
 
 export default connect(
   state => ({
-    loading: _.get(state, ['login', 'loading']),
     error: _.get(state,['login','error'])
   }),
   actions,

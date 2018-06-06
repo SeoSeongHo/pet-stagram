@@ -24,14 +24,21 @@ const initialState = {
 export const { Types: LoginTypes, Creators: LoginActions } = createActions(
   actionsGenerator({
     loginRequest: ['userEmail', 'password'],
-    signUpRequest: ['userEmail','password'],
+    signUpRequest: ['email', 'password',
+      'username','userProfileImage','userBirthDay','petName', 'petProfileImage','petBirthDay'],
     checkDuplicateRequest: ['userEmail'],
+    createPetRequest: ['petName','petProfileImage','petBirthDay']
   })
 )
 
 // Reducer
 export default function LoginReducer(state: LoginState = initialState, action: Object = {}): LoginState {
   switch (action.type) {
+    case LoginTypes.CREATE_PET_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
     case LoginTypes.LOGIN_REQUEST:
       return {
         ...state,
@@ -46,6 +53,11 @@ export default function LoginReducer(state: LoginState = initialState, action: O
       return {
         ...state,
         loading: true,
+      }
+    case LoginTypes.CREATE_PET_SUCCESS:
+      return {
+        ...state,
+        loading: false,
       }
     case LoginTypes.LOGIN_SUCCESS:
       return {
@@ -67,6 +79,12 @@ export default function LoginReducer(state: LoginState = initialState, action: O
         ...state,
         loading: false,
         error: action.error,
+      }
+    case LoginTypes.CREATE_PET_FAILURE:
+      return {
+        ...state,
+        error:action.error,
+        loading: false,
       }
     case LoginTypes.SIGN_UP_FAILURE:
       return {

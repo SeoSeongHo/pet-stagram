@@ -9,82 +9,57 @@ import Storage from '../../utils/petStagramStorage'
 import moment from 'moment'
 
 type State = {
-  petProfileImage: any,
-  petUsernames: any,
-  introduceText: string,
+  userProfileImage: any,
+  userEmail: any,
+  petProperty: string,
+  petBirthDay: any,
 };
 
 type Props = {
-  userProfileImage: any,
-  isFollow: boolean,
-  pets: any,
-  cards: any,
-  userBirth: any,
-  pet:[{
-    Id: number,
-    petProfileImage: string,
-    petName: string,
+  petName: string,
+  id: any,
+  users:[{
+    userProfileImage: string,
+    userEmail: string,
   }
     ],
-  userProfileName: string,
-  introduceText: string,
-  userProfileCardId: any,
-  totalPost: number,
-  totalFollowing: number,
-  totalFollower: number,
+  petProperty: string,
   loading: boolean,
-  followCheckRequest: Function,
-  getUserProfileRequest: Function,
-  sendMessageRequest: Function,
-  followRequest: Function,
-  unFollowRequest: Function,
-  goToPetProfileRequest: Function,
-  goToCardRequest: Function,
-  editUserProfileRequest: Function,
+  getPetProfileRequest: Function,
+  editPetProfileRequest: Function,
 };
 
-class UserProfileView extends Component<Props, State> {
+class PetProfileView extends Component<Props, State> {
   constructor(props, context) {
     super(props, context);
     autoBind(this)
   }
   state = {
-    userBirth: '2018-04-07T09:09:59.496396Z',
+    isOwner: false,
+    petBirthDay: '2018-04-07T09:09:59.496396Z',
     isEdit: false,
-    getUser: false,
+    getPet: false,
     picture:"",
     pictureURL:"",
   };
 
-  renderPetProfileImage = () => {
+  renderUserProfileImage = () => {
     let table = []
     let img
     let i = 0;
-    {this.props.pets.map((listValue,index)=> {
-        table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
-          this.context.router.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
+    {this.props.users.map((listValue,index)=> {
+        table.concat(<div><img src={listValue.userProfileImage} onClick={() =>{
+          this.context.router.push(`/user/${listValue.userEmail}`)}}/>  <span>{listValue.userEmail}</span></div>)
       }
     )}
     return table
-  }
-  renderUserPicture = () => {
-    let table = []
-    let img
-    let i = 0;
-    // Outer loop to create parent
-    {this.props.cards.map((listValue,index)=> {
-        table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
-          this.context.router.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
-      }
-    )}
-    return table
-  }
+  };
   onDrop(event) {
     console.log("on Drop");
     var file = this.refs.file.files[0];
     var reader = new FileReader();
     var url = reader.readAsDataURL(file);
-    reader.onloadend = function (e) {
+    reader.onloadend = function (event) {
       this.setState({
         pictures: file,
         picturesURL: reader.result,
@@ -92,19 +67,12 @@ class UserProfileView extends Component<Props, State> {
     }.bind(this);
     console.log(url) // Would see a path
   }
-
-  followRequest() {
-    this.props.followRequest(Storage.get(KEYS.userEmail), this.props.userProfileName).then(() => this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName)).catch((e) => console.log(e));
-  }
-
-  unFollowRequest() {
-    this.props.unFollowRequest(Storage.get(KEYS.userEmail), this.props.userProfileName).then(() => this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName)).catch((e) => console.log(e));
-  }
   renderNormal(){
     return (
       <Column>
-        <span> {this.props.introduceText}</span>
-        <span> {this.props.userBirth}</span>
+        <img src={this.props.petProfileImage}/>
+        <span> {this.props.petProperty}</span>
+        <span> {this.props.petBirthDay}</span>
         <Button onClick={() => this.toggleEdit()}> Edit </Button>
       </Column>
     )
@@ -112,7 +80,7 @@ class UserProfileView extends Component<Props, State> {
   toggleEdit(){
     if(this.state.isEdit===true)
     {
-      this.props.editUserProfileRequest(this.state.introduceText,this.state.userBirth,this.state.userProfileImage).then( this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
+      this.props.editPetProfileRequest(this.props.id,this.state.petProperty,this.state.petBirthDay,this.state.petProfileImage).then( this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
     }
   }
   renderForm(){
@@ -123,8 +91,17 @@ class UserProfileView extends Component<Props, State> {
                name="user[image]"
                multiple="false"
                onChange={this.onDrop}/>
-        <input value={this.state.userBirth} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-        <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
+        <DateTime
+          placeholder="sinceWhen"
+          onChange={(m) => {
+            if (m instanceof moment) {
+              this.setState({
+                petBirthDay: m.format(),
+              })
+            }
+          }}
+        />
+        <input value={this.state.petProperty} onChange={petProperty => {this.setState({petProperty: petProperty})}}/>
         <Button onClick={() => this.toggleEdit()}> Save </Button>
       </Column>
     )
@@ -136,13 +113,18 @@ class UserProfileView extends Component<Props, State> {
       return this.renderNormal()
     }
   }
+  componentWillUpdate(){
+    this.setState({petProperty: this.props.petProperty});
+    this.setState({petProfileImage: this.props.petProfileImage});
+    this.setState({petBirthDay: this.props.petBirthDay});
+  }
   componentWillMount() {
     try {
-      this.props.getUserProfileRequest(this.context.match.url.userEmail).then(() => {
-        this.setState({getUser: true})
-        this.setState({introduceText: this.props.introduceText});
-        this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
-      }).catch((e) =>
+      this.props.getPetProfileRequest(this.context.match.url.id).then(() => {
+        this.setState({getPet: true})
+        this.setState({petProperty: this.props.petProperty});
+        this.setState({petProfileImage: this.props.petProfileImage});
+        this.setState({petBirthDay: this.props.petBirthDay});      }).catch((e) =>
         console.log(e));
     }
     catch (e) {
@@ -151,27 +133,21 @@ class UserProfileView extends Component<Props, State> {
   }
 
   render() {
-    if (!this.state.getUser) {
-      return <div> there is no User on Username {this.context.match.url.userEmail}</div>
-    } else if (this.props.userProfileName === Storage.get(KEYS.userEmail)) {
+    {this.props.users.map((listValue,index)=> {
+        if(listValue.userEmail===Storage.get(KEYS.userEmail)){
+          this.setState({isOwner:true});
+        }
+      }
+    )}
+    if (!this.state.getPet) {
+      return <div> there is no Pet on PetId: {this.context.match.url.id}</div>
+    } else if (this.state.isOwner) {
       return (
         <Container fluid>
           <Row>
             <Col>
-              <span> {this.props.totalPost}</span>
-              <span> 총 게시글</span>
-            </Col>
-            <span> {this.props.totalFollower}</span>
-            <span> 총 팔로잉</span>
-            <Col>
-              <span> {this.props.totalFollowing}</span>
-              <span> 총 팔로워</span>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span> 나의 이름</span>
-              <span> {this.props.userProfileName}</span>
+              <span> 나의 펫 이름</span>
+              <span> {this.props.petName}</span>
             </Col>
             <Col>
               <span> 소개글</span>
@@ -180,13 +156,7 @@ class UserProfileView extends Component<Props, State> {
           </Row>
           <Row>
             <Col>
-              <img src={this.props.userProfileImage}/>
-            </Col>
-            <Col>
-              {this.renderPetProfileImage()}
-            </Col>
-            <Col>
-              {this.renderUserPicture()}
+              {this.renderUserProfileImage()}
             </Col>
           </Row>
         </Container>
@@ -196,38 +166,17 @@ class UserProfileView extends Component<Props, State> {
         <Container fluid>
           <Row>
             <Col>
-              <span> {this.props.totalPost}</span>
-              <span> 총 게시글</span>
-            </Col>
-            <span> {this.props.totalFollower}</span>
-            <span> 총 팔로잉</span>
-            <Col>
-              <span> {this.props.totalFollowing}</span>
-              <span> 총 팔로워</span>
-            </Col>
-          </Row>
-          <Row>
-            {this.props.userProfileName === Storage.get(KEYS.userEmail) ? (this.props.isFollow ?
-              <Button onClick={() => this.unFollowRequest()}> 언팔로우 </Button> :
-              <Button onClick={() => this.followRequest()}> 팔로우 </Button>) :
-              null}
-            {this.props.userProfileName === Storage.get(KEYS.userEmail) ?
-              <Button onClick={() => console.log("send message")}> 메세지보내기 </Button> :
-              null}
-          </Row>
-          <Row>
-            <Col>
-              <span> 유저 네임</span>
-              <span> {this.props.userProfileName}</span>
+              <span> 펫 이름</span>
+              <span> {this.props.petName}</span>
             </Col>
             <Col>
               <span> 소개글</span>
-              <span> {this.props.introduceText}</span>
+              <span> {this.props.petProperty}</span>
             </Col>
           </Row>
           <Row>
             <Col>
-              <img src={this.props.userProfileImage}/>
+              <img src={this.props.petProfileImage}/>
             </Col>
             <Col>
               {this.renderPetProfileImage()}
@@ -242,10 +191,10 @@ class UserProfileView extends Component<Props, State> {
   }
 }
 
-UserProfileView.contextTypes = {
+PetProfileView.contextTypes = {
   router: React.PropTypes.object.isRequired,
   location: React.PropTypes.object,
   match: React.PropTypes.object
 };
 
-export default UserProfileView
+export default PetProfileView

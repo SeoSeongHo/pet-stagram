@@ -11,6 +11,7 @@ import moment from 'moment'
 type State = {
   petProfileImage: any,
   petUsernames: any,
+  userBirthDay: string,
   introduceText: string,
 };
 
@@ -19,8 +20,8 @@ type Props = {
   isFollow: boolean,
   pets: any,
   cards: any,
-  userBirth: any,
-  pet:[{
+  userBirthDay: any,
+  pets:[{
     Id: number,
     petProfileImage: string,
     petName: string,
@@ -49,7 +50,7 @@ class UserProfileView extends Component<Props, State> {
     autoBind(this)
   }
   state = {
-    userBirth: '2018-04-07T09:09:59.496396Z',
+    userBirthDay: '2018-04-07T09:09:59.496396Z',
     isEdit: false,
     getUser: false,
     picture:"",
@@ -73,10 +74,10 @@ class UserProfileView extends Component<Props, State> {
     let i = 0;
     // Outer loop to create parent
     {this.props.cards.map((listValue,index)=> {
-        table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
-          this.context.router.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
-      }
-    )}
+        listValue.map((picture,index)=>{ table.concat(<div><img src={picture} onClick={() =>{
+          this.context.router.push(`/cardDetail/${listValue.Id}`)}}/>  <span>{listValue.title}</span></div>)
+        })
+    })}
     return table
   }
   onDrop(event) {
@@ -84,7 +85,7 @@ class UserProfileView extends Component<Props, State> {
     var file = this.refs.file.files[0];
     var reader = new FileReader();
     var url = reader.readAsDataURL(file);
-    reader.onloadend = function (e) {
+    reader.onloadend = function (event) {
       this.setState({
         pictures: file,
         picturesURL: reader.result,
@@ -103,8 +104,9 @@ class UserProfileView extends Component<Props, State> {
   renderNormal(){
     return (
       <Column>
+        <img src={this.props.userProfileImage}/>
         <span> {this.props.introduceText}</span>
-        <span> {this.props.userBirth}</span>
+        <span> {this.props.userBirthDay}</span>
       <Button onClick={() => this.toggleEdit()}> Edit </Button>
       </Column>
         )
@@ -112,7 +114,7 @@ class UserProfileView extends Component<Props, State> {
   toggleEdit(){
     if(this.state.isEdit===true)
     {
-      this.props.editUserProfileRequest(this.state.introduceText,this.state.userBirth,this.state.userProfileImage).then( this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
+      this.props.editUserProfileRequest(this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then( this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
     }
   }
   renderForm(){
@@ -123,8 +125,17 @@ class UserProfileView extends Component<Props, State> {
                name="user[image]"
                multiple="false"
                onChange={this.onDrop}/>
-        <input value={this.state.userBirth} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-      <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
+        <DateTime
+          placeholder="sinceWhen"
+          onChange={(m) => {
+            if (m instanceof moment) {
+              this.setState({
+                userBirthDay: m.format(),
+              })
+            }
+          }}
+        />
+        <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
       <Button onClick={() => this.toggleEdit()}> Save </Button>
 </Column>
         )
@@ -136,11 +147,18 @@ class UserProfileView extends Component<Props, State> {
   return this.renderNormal()
 }
 }
+  componentWillUpdate(){
+    this.setState({introduceText: this.props.introduceText});
+    this.setState({userProfileImage: this.props.userProfileImage});
+    this.setState({userBirthDay: this.props.userBirthDay});
+  }
   componentWillMount() {
     try {
       this.props.getUserProfileRequest(this.context.match.url.userEmail).then(() => {
         this.setState({getUser: true})
         this.setState({introduceText: this.props.introduceText});
+        this.setState({userProfileImage: this.props.userProfileImage});
+        this.setState({userBirthDay: this.props.userBirthDay});
         this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
       }).catch((e) =>
         console.log(e));
@@ -179,9 +197,6 @@ class UserProfileView extends Component<Props, State> {
             </Col>
           </Row>
           <Row>
-            <Col>
-              <img src={this.props.userProfileImage}/>
-            </Col>
             <Col>
               {this.renderPetProfileImage()}
             </Col>

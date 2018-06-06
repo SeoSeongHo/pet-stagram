@@ -9,7 +9,7 @@ type State ={
   username: string,
   password: string,
   userProfileImage: any,
-  userBirth: Date,
+  userBirthDay: Date,
   introduceText: string,
   petName: string,
   petProfileImage: any,
@@ -111,72 +111,72 @@ class SIgnUpView extends Component{
     render(){
       return(
         <Container className="cnt1">
-          <Row>
-            <Col className="signup1" xs="8" sm={{size: 5, offset:3}}>
-              <Card body outline color = "#ffe4a8">
-                <img width="100%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
-                <Button className="bt1" color="#c9ffca"> <img width="30" height="30" src={require('../../assets/images/checked.png')} alt="Card image cap" />  Naver연동</Button>
-                <Button className="bt2" color="#91bbff"> <img width="30" height="30" src={require('../../assets/images/facebook.png')} alt="Card image cap" />  Facebook연동</Button>
-                <CardBody>
-                  <Form>
-                    <FormGroup>
-                      <Label for="exampleEmail" sm={5}>Email</Label>
-                      <Col sm={12}>
-                        <Input type="email" name="email" className="signUpEmail" placeholder="write down your email" onChange={this.onChangeEmail}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="examplePassword" sm={5}>Password</Label>
-                      <Col sm={12}>
-                        <Input type="password" name="password" className="signUpPassword" placeholder="write down your password" onChange={this.onChangePassword}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="exampleName" sm={5}>UserName</Label>
-                      <Col sm={12}>
-                        <Input type="name" name="name" className="userName" placeholder="write down your name" onChange={this.onChangeUsername}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="exampleFile" sm={5}>UserImage</Label>
-                      <Col sm={12}>
-                        <Input type="file" name="file" className="userProfileImage" onChange={this.onChangeUserProfileImage}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="exampleDate"sm={6}>UserBirthday</Label>
-                      <Col sm={12}>
-                        <Input type="date" name="date" className="signUpDate" placeholder="write down your birthday" onChange={this.onChangeUserBirthday}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="exampleEmail" sm={5}>PetName</Label>
-                      <Col sm={12}>
-                        <Input className="signUpPetName" placeholder="write down your petname" onChange={this.onChangePetName}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="exampleFile" sm={5}>PetImage</Label>
-                      <Col sm={12}>
-                        <Input type="file" name="file" className="petProfileImage" onChange={this.onChangePetProfileImage}/>
-                      </Col>
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="exampleDate"sm={5}>PetBirthday</Label>
-                      <Col sm={12}>
-                        <Input type="date" name="date" className="signUpDate" placeholder="write down your pet's birthday" onChange={this.onChangePetBirthday}/>
-                      </Col>
-                    </FormGroup>
-                  </Form>
-                </CardBody>
-                <CardFooter>
-                  <Button className="bt3" color="#aaffd3" onClick={this.onSignUpPressed}>SignUp</Button>
-                  <Button className="bt4" color="#ffe4a8" href="/login" onClick={this.onCancelPressed}>Cancel</Button>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+        <Row>
+        <Col className="signup1" xs="8" sm={{size: 5, offset:4}}>
+    <Card body outline color = "secondary">
+        <img width="100%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+        <Button className="bt1" color="success">Naver연동</Button>
+      <Button className="bt1" color="primary">Facebook연동</Button>
+      <CardBody>
+      <Form>
+      <FormGroup>
+      <Label for="exampleEmail" sm={5}>Email</Label>
+      <Col sm={12}>
+        <Input type="email" name="email" className="signUpEmail" placeholder="write down your email" onChange={this.onChangeEmail}/>
+      </Col>
+      </FormGroup>
+      <FormGroup>
+        <Label for="examplePassword" sm={5}>Password</Label>
+        <Col sm={12}>
+          <Input type="password" name="password" className="signUpPassword" placeholder="write down your password" onChange={this.onChangePassword}/>
+        </Col>
+      </FormGroup>
+      <FormGroup>
+      <Label for="exampleName" sm={5}>UserName</Label>
+      <Col sm={12}>
+        <Input type="name" name="name" className="userName" placeholder="write down your name" onChange={this.onChangeUsername}/>
+      </Col>
+      </FormGroup>
+      <FormGroup>
+        <Label for="exampleFile" sm={5}>UserImage</Label>
+        <Col sm={12}>
+          <Input type="file" name="file" className="userProfileImage" onChange={this.onChangeUserProfileImage}/>
+        </Col>
+      </FormGroup>
+      <FormGroup>
+      <Label for="exampleDate"sm={6}>UserBirthday</Label>
+      <Col sm={12}>
+        <Input type="date" name="date" className="signUpDate" placeholder="write down your birthday" onChange={this.onChangeUserBirthday}/>
+      </Col>
+      </FormGroup>
+      <FormGroup>
+        <Label for="exampleEmail" sm={5}>PetName</Label>
+        <Col sm={12}>
+          <Input className="signUpPetName" placeholder="write down your petname" onChange={this.onChangePetName}/>
+        </Col>
+      </FormGroup>
+      <FormGroup>
+      <Label for="exampleFile" sm={5}>PetImage</Label>
+      <Col sm={12}>
+        <Input type="file" name="file" className="petProfileImage" onChange={this.onChangePetProfileImage}/>
+      </Col>
+      </FormGroup>
+      <FormGroup>
+        <Label for="exampleDate"sm={5}>PetBirthday</Label>
+        <Col sm={12}>
+          <Input type="date" name="date" className="signUpDate" placeholder="write down your pet's birthday" onChange={this.onChangePetBirthday}/>
+        </Col>
+      </FormGroup>
+      </Form>
+    </CardBody>
+      <CardFooter>
+        <Button color="primary" onClick={this.onSignUpPressed}>SignUp</Button>
+        <Button href="/login" onClick={this.onCancelPressed}>Cancel</Button>
+      </CardFooter>
+    </Card>
+    </Col>
+    </Row>
+    </Container>
       );
     }
 }
