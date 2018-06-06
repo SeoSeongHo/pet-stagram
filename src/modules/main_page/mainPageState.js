@@ -8,7 +8,7 @@ import api from '../../utils/api'
 */
 import { actionsGenerator } from '../../store/reducerUtils'
 
-type LoginState = {
+type MainPageState = {
   loading: boolean,
 }
 
@@ -19,26 +19,27 @@ const initialState = {
 
 // Action Creators
 
-export const { Types: LoginTypes, Creators: LoginActions } = createActions(
+export const { Types: MainPageTypes, Creators: MainPageActions } = createActions(
   actionsGenerator({
-    loginRequest: ['username', 'password'],
+    getCardRequest:[],
   })
 )
 
 // Reducer
-export default function LoginReducer(state: LoginState = initialState, action: Object = {}): LoginState {
+export default function MainPageReducer(state: MainPageState = initialState, action: Object = {}): MainPageState {
   switch (action.type) {
-    case LoginTypes.LOGIN_REQUEST:
+    case MainPageTypes.GET_CARD_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case LoginTypes.LOGIN_SUCCESS:
+    case MainPageTypes.GET_CARD_SUCCESS:
       return {
         ...state,
+        cards: action.payload.cards,
         loading: false,
       };
-    case LoginTypes.LOGIN_FAILURE:
+    case MainPageTypes.GET_CARD_FAILURE:
       return {
         ...state,
         loading: false,

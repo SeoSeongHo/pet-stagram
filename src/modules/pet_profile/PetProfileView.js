@@ -30,8 +30,8 @@ type Props = {
 };
 
 class PetProfileView extends Component<Props, State> {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     autoBind(this)
   }
   state = {
@@ -44,12 +44,12 @@ class PetProfileView extends Component<Props, State> {
   };
 
   renderUserProfileImage = () => {
-    let table = []
+  let table = []
     let img
     let i = 0;
     {this.props.users.map((listValue,index)=> {
         table.concat(<div><img src={listValue.userProfileImage} onClick={() =>{
-          this.context.router.push(`/user/${listValue.userEmail}`)}}/>  <span>{listValue.userEmail}</span></div>)
+          this.props.history.push(`/user/${listValue.userEmail}`)}}/>  <span>{listValue.userEmail}</span></div>)
       }
     )}
     return table
@@ -120,7 +120,7 @@ class PetProfileView extends Component<Props, State> {
   }
   componentWillMount() {
     try {
-      this.props.getPetProfileRequest(this.context.match.url.id).then(() => {
+      this.props.getPetProfileRequest(this.props.match.params.id).then(() => {
         this.setState({getPet: true})
         this.setState({petProperty: this.props.petProperty});
         this.setState({petProfileImage: this.props.petProfileImage});
@@ -140,7 +140,7 @@ class PetProfileView extends Component<Props, State> {
       }
     )}
     if (!this.state.getPet) {
-      return <div> there is no Pet on PetId: {this.context.match.url.id}</div>
+      return <div> there is no Pet on PetId: {this.props.match.params.id}</div>
     } else if (this.state.isOwner) {
       return (
         <Container fluid>
@@ -190,11 +190,5 @@ class PetProfileView extends Component<Props, State> {
     }
   }
 }
-
-PetProfileView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
 
 export default PetProfileView

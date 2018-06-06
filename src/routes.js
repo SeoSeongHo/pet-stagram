@@ -1,11 +1,10 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
-
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import App from 'components/App'
 import { HomePage } from 'components'
 import loginView  from './modules/login/loginViewContainer'
 import CardWriteView  from './modules/card_write/CardWriteViewContainer'
-import CardView  from './modules/main_page/cardView'
+import CardView  from './modules/main_page/mainPageView'
 import UserProfileView  from './modules/user_profile/UserProfileViewContainer'
 import PetProfileView  from './modules/pet_profile/PetProfileViewContainer'
 import CardDetailView from './modules/card_detail/CardDetailViewContainer'
@@ -13,8 +12,8 @@ import SignUpView from 'modules/login/SignUpViewContainer'
 import SearchView from 'modules/search_page/SearchView'
 
 const routes = (
-  <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
+  <Router basename="/">
+    <switch>
     <Route path="/login" component={loginView}/>
     <Route path="/homePage" component={CardView}/>
     <switch>
@@ -29,7 +28,8 @@ const routes = (
     <Route path="/cardDetail/:id" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>
     <Route path="/search" component={SearchView}/>
-  </Route>
+    </switch>
+  </Router>
 )
 
 export default routes

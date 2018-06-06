@@ -7,7 +7,7 @@ import Storage from '../../utils/petStagramStorage'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import moment from 'moment'
-
+import PropTypes from 'prop-types'
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -45,14 +45,19 @@ type Props = {
 };
 
 class UserProfileView extends Component<Props, State> {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     autoBind(this)
+  }
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   }
   state = {
     userBirthDay: '2018-04-07T09:09:59.496396Z',
     isEdit: false,
-    getUser: false,
+    getUser: true,
     picture:"",
     pictureURL:"",
   };
@@ -63,7 +68,7 @@ class UserProfileView extends Component<Props, State> {
     let i = 0;
     {this.props.pets.map((listValue,index)=> {
       table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
-        this.context.router.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
+        this.props.history.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
     }
       )}
     return table
@@ -75,7 +80,7 @@ class UserProfileView extends Component<Props, State> {
     // Outer loop to create parent
     {this.props.cards.map((listValue,index)=> {
         listValue.map((picture,index)=>{ table.concat(<div><img src={picture} onClick={() =>{
-          this.context.router.push(`/cardDetail/${listValue.Id}`)}}/>  <span>{listValue.title}</span></div>)
+          this.props.history.push(`/cardDetail/${listValue.Id}`)}}/>  <span>{listValue.title}</span></div>)
         })
     })}
     return table
@@ -155,7 +160,7 @@ class UserProfileView extends Component<Props, State> {
   componentWillMount() {
     try {
       /*
-      this.props.getUserProfileRequest(this.context.match.url.userEmail).then(() => {
+      this.props.getUserProfileRequest(this.props.match.url.userEmail).then(() => {
         this.setState({getUser: true})
         this.setState({introduceText: this.props.introduceText});
         this.setState({userProfileImage: this.props.userProfileImage});
@@ -172,7 +177,7 @@ class UserProfileView extends Component<Props, State> {
 
   render() {
     if (!this.state.getUser) {
-      return <div> there is no User on Username {this.context.match.url.userEmail}</div>
+      return <div> there is no User on Username {this.props.match.params.userEmail}</div>
     } else if (this.props.userProfileName === Storage.get(KEYS.userEmail)) {
       return (
         <Container fluid>
@@ -259,10 +264,5 @@ class UserProfileView extends Component<Props, State> {
   }
 }
 
-UserProfileView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
 
 export default UserProfileView
