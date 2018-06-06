@@ -32,7 +32,7 @@ type Props = {
     userEmail: string,
     introduceText: string,
     username: string,
-  }
+  },
   title: string,
   pictures: any,
   text: string,
@@ -85,7 +85,6 @@ class CardDetailView extends Component<Props, State> {
   componentWillMount(){
     this.props.getCardRequest(this.context.match.url.id).then(()=>this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e)))
       .catch(e=>{console.log(e)});
-
   }
   onClickComment(){
     this.props.postCommentRequest(this.context.match.url.id, this.state.comment).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e)))
@@ -154,6 +153,8 @@ class CardDetailView extends Component<Props, State> {
           contentLabel="Example Modal"
         >
           <Col sm={6}>
+            <span>{this.props.pet.petName}</span>
+            <img src={this.props.pet.petProfileImage}/>
           <Card>
             <CardBody>
               <CardTitle>Card title</CardTitle>

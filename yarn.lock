@@ -790,7 +790,7 @@ babel-plugin-istanbul@^4.0.0:
   dependencies:
     find-up "^2.1.0"
     istanbul-lib-instrument "^1.4.2"
-    test-exclude "^4.0.0"
+    module_test-exclude "^4.0.0"
 
 babel-plugin-jest-hoist@^19.0.0:
   version "19.0.0"
@@ -6084,7 +6084,7 @@ react-addons-css-transition-group@^15.6.2:
 
 react-addons-test-utils@^15.4.1:
   version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.4.2.tgz#93bcaa718fcae7360d42e8fb1c09756cc36302a2"
+  resolved "https://registry.yarnpkg.com/react-addons-module_test-utils/-/react-addons-module_test-utils-15.4.2.tgz#93bcaa718fcae7360d42e8fb1c09756cc36302a2"
   dependencies:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
@@ -6214,7 +6214,7 @@ react-images-uploader@^1.2.0-rc1:
     isomorphic-fetch "^2.2.1"
     prop-types "^15.5.8"
     react "^15.4.1"
-    react-addons-test-utils "^15.4.1"
+    react-addons-module_test-utils "^15.4.1"
     react-css-modules "^4.0.3"
     react-dom "^15.4.1"
     react-dropzone "^3.7.3"
@@ -6407,7 +6407,7 @@ react-stubber@^1.0.0:
 
 react-test-render@^1.1.1:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-test-render/-/react-test-render-1.1.1.tgz#35946bb383f8b82564768fd9d8eaf120c3032a9a"
+  resolved "https://registry.yarnpkg.com/react-module_test-render/-/react-module_test-render-1.1.1.tgz#35946bb383f8b82564768fd9d8eaf120c3032a9a"
   dependencies:
     immutable "3.7.x"
     lodash "3.10.x"
@@ -7419,7 +7419,7 @@ temp-write@^2.1.0:
 
 test-exclude@^4.0.0:
   version "4.0.1"
-  resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-4.0.1.tgz#a8ea2f51ed15c7c458c279bd61391ca0a09b0a24"
+  resolved "https://registry.yarnpkg.com/module_test-exclude/-/module_test-exclude-4.0.1.tgz#a8ea2f51ed15c7c458c279bd61391ca0a09b0a24"
   dependencies:
     arrify "^1.0.1"
     micromatch "^2.3.11"
