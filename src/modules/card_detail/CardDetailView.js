@@ -22,6 +22,7 @@ type State = {
 };
 
 type Props = {
+  cardId: any,
   pet: any,
   pet:{
     petName: string,
@@ -92,8 +93,8 @@ Modal.setAppElement('#root');
 
 class CardDetailView extends Component<Props, State> {
 
-  constructor(props, context){
-    super(props, context);
+  constructor(props){
+    super(props);
     this.state = {
       commentId:-1,
       pictures: [],
@@ -113,27 +114,27 @@ class CardDetailView extends Component<Props, State> {
 
   componentWillMount(){
     /*
-    this.props.getCardRequest(this.context.match.url.id).then(()=>this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e)))
+    this.props.getCardRequest(this.props.cardId).then(()=>this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e)))
       .catch(e=>{console.log(e)});
   */
   }
   onClickComment(){
-    this.props.postCommentRequest(this.context.match.url.id, this.state.comment).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e)))
+    this.props.postCommentRequest(this.props.cardId, this.state.comment).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e)))
       .catch(e=>console.log(e));
   }
   onClickEditCard(){
   }
   onClickLike(){
     if(this.props.like.includes(Storage.get(KEYS.userEmail))) {
-      this.props.postLikeRequest(this.context.match.url.id).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e))).catch((e)=>console.log(e));
+      this.props.postLikeRequest(this.props.cardId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch((e)=>console.log(e));
     } else
-      this.props.deleteLikeRequest(this.context.match.url.id).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e))).catch((e)=>console.log(e));
+      this.props.deleteLikeRequest(this.props.cardId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch((e)=>console.log(e));
   }
   onClickDeleteCard(){
-    this.props.deleteCardRequest(this.context.match.url.id).then(()=>this.setState({modalIsOpen: false})).catch(e=>console.log(e))
+    this.props.deleteCardRequest(this.props.cardId).then(()=>this.setState({modalIsOpen: false})).catch(e=>console.log(e))
   }
   onClickDeleteComment(commentId){
-    this.props.deleteCommentRequest(commentId).then(this.props.getCommentRequest(this.context.match.url.id).catch(e=>console.log(e))).catch(e=>console.log(e))
+    this.props.deleteCommentRequest(commentId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch(e=>console.log(e))
   }
   openModal() {
     this.setState({modalIsOpen: true});
@@ -273,9 +274,4 @@ class CardDetailView extends Component<Props, State> {
     );
   }
 }
-CardDetailView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
 export default CardDetailView;

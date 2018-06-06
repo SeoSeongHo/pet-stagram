@@ -9,6 +9,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from 'store/configure'
 import routes from 'routes'
 import 'bootstrap/dist/css/bootstrap.css'
+import App from './components/App';
 const baseHistory = useRouterHistory(createHistory)({ basename: process.env.PUBLIC_PATH })
 const store = configureStore({}, baseHistory)
 const history = syncHistoryWithStore(baseHistory, store)
@@ -16,7 +17,7 @@ const root = document.getElementById('app')
 
 const renderApp = () => (
   <Provider store={store}>
-    <Router key={Math.random()} history={history} routes={routes} />
+    <App />
   </Provider>
 )
 

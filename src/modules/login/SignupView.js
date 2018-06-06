@@ -5,7 +5,7 @@ import autoBind from "react-autobind";
 import './signUpView.css'
 
 export default class SignupView extends Component {
-  constructor(props ,context) {
+  constructor(props) {
     super(...arguments);
     autoBind(this);
     const images = {
@@ -56,7 +56,7 @@ export default class SignupView extends Component {
       this.props.signUpRequest(this.state.email, this.state.password,
         this.state.username,this.state.userProfileImage,this.state.userBirthDay,this.state.petName, this.state.petProfileImage,this.state.petBirthDay).then(
         ()=>{
-        this.context.router.push('/homePage');}
+        this.props.history.push('/homePage');}
       ).catch((e) => {
         this.setState({error:e.message});})
     }
@@ -142,7 +142,7 @@ export default class SignupView extends Component {
     e.preventDefault();
     if (this.validateForm()) {
       this.props.signUpRequest(this.state.email, this.state.password,this.state).then(()=>{
-        this.props.createPetRequest().then(()=> this.context.router.push('/homePage')).catch((e)=>{console.log(e)})
+        this.props.createPetRequest().then(()=> this.props.history.push('/homePage')).catch((e)=>{console.log(e)})
       }
       ).catch((e) => { console.log(e);
         this.setState({error:e});})
@@ -170,7 +170,7 @@ export default class SignupView extends Component {
       petName: '',
       petProfileImage: '',
       petBirthDay: '',
-      introduceTextPet: ''}, ()=>this.context.router.push('/login'))
+      introduceTextPet: ''}, ()=>this.props.history.push('/login'))
   }
 
   renderForm() {
@@ -254,9 +254,3 @@ export default class SignupView extends Component {
     );
   }
 }
-
-SignupView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};

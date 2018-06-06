@@ -48,7 +48,7 @@ type Props = {
 };
 
 class LoginView extends Component<Props, State> {
-  constructor(props,context) {
+  constructor(props) {
     super(...arguments);
     this.state = { activeIndex: 0 };
     this.next = this.next.bind(this);
@@ -85,7 +85,7 @@ class LoginView extends Component<Props, State> {
   onLoginRequest(username, password){
     console.log(this.props,"this is loginProps");
     this.props.loginRequest(username, password).then(()=>{
-      this.context.router.push('/homePage')
+      this.props.history.push('/homePage')
     }).catch((e)=>console.log(e));
   }
 
@@ -170,11 +170,5 @@ class LoginView extends Component<Props, State> {
     )
   }
 }
-
-LoginView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
 
 export default LoginView
