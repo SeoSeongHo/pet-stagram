@@ -26,7 +26,7 @@ const routes = (
       <Route exact path="/petProfile/" component={PetProfileView}/>
     </switch>
     <Route path="/cardWrite" component={CardWriteView}/>
-    <Route path="/cardDetail" component={CardDetailView}/>
+    <Route path="/cardDetail/:id" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>
     <Route path="/search" component={SearchView}/>
   </Route>
