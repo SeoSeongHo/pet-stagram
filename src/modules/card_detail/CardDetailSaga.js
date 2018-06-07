@@ -1,18 +1,21 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import {call, put, takeLatest} from 'redux-saga/effects'
 import api from '../../utils/api'
-import { CardDetailActions, CardDetailTypes } from './CardDetailState'
+import {CardDetailActions, CardDetailTypes} from './CardDetailState'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
 import Constants from '../../constants/constants'
-const { API_ROOT } = Constants;
-function* requestGetCard({ cardId }: {cardId: string}) {
+
+const {API_ROOT} = Constants;
+
+function* requestGetCard({cardId}: { cardId: string }) {
   try {
     const token = yield api.get(`${API_ROOT}/card/${cardId}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -22,14 +25,16 @@ function* requestGetCard({ cardId }: {cardId: string}) {
     yield put(CardDetailActions.getCardFailure(e))
   }
 }
-function* requestGetComment({ cardId }: {cardId: string}) {
+
+function* requestGetComment({cardId}: { cardId: string }) {
   try {
     const token = yield api.get(`${API_ROOT}/comment/${cardId}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -39,14 +44,16 @@ function* requestGetComment({ cardId }: {cardId: string}) {
     yield put(CardDetailActions.getCommentFailure(e))
   }
 }
-function* requestDeleteComment({ commentId }: {cardId: string}) {
+
+function* requestDeleteComment({commentId}: { cardId: string }) {
   try {
     const token = yield api.delete(`${API_ROOT}/comment/${commentId}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -56,14 +63,16 @@ function* requestDeleteComment({ commentId }: {cardId: string}) {
     yield put(CardDetailActions.deleteCommentFailure(e))
   }
 }
-function* requestDeleteCard({ cardId }: {cardId: string}) {
+
+function* requestDeleteCard({cardId}: { cardId: string }) {
   try {
     const token = yield api.delete(`${API_ROOT}/card/${cardId}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -73,17 +82,19 @@ function* requestDeleteCard({ cardId }: {cardId: string}) {
     yield put(CardDetailActions.getCardFailure(e))
   }
 }
-function* requestDeleteLike({ cardId }: {cardId: string}) {
-  const body={
+
+function* requestDeleteLike({cardId}: { cardId: string }) {
+  const body = {
     Like: false,
   }
   try {
-    const token = yield api.put(`${API_ROOT}/card/${cardId}`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.put(`${API_ROOT}/card/${cardId}`, body, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -94,17 +105,18 @@ function* requestDeleteLike({ cardId }: {cardId: string}) {
   }
 }
 
-function* requestPostLike({ cardId }: {cardId: string}) {
-  const body={
+function* requestPostLike({cardId}: { cardId: string }) {
+  const body = {
     Like: true,
   }
   try {
-    const token = yield api.put(`${API_ROOT}/card/${cardId}`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.put(`${API_ROOT}/card/${cardId}`, body, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -115,17 +127,18 @@ function* requestPostLike({ cardId }: {cardId: string}) {
   }
 }
 
-function* requestPostComment({ cardId ,comment}: {cardId: string}) {
-  const body={
+function* requestPostComment({cardId, comment}: { cardId: string }) {
+  const body = {
     comment
   }
   try {
-    const token = yield api.post(`${API_ROOT}/card/${cardId}`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.post(`${API_ROOT}/card/${cardId}`, body, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
