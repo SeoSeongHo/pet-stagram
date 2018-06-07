@@ -1,25 +1,25 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { setAuthenticationToken } from '../../utils/authentication'
 import api from '../../utils/api'
-import { MainPageActions, MainPageTypes } from './MainPageState'
+import { SearchActions, SearchTypes } from './SearchState'
 import Constants from '../../constants/constants'
 // import Storage, { KEYS } from '../../utils/petStagramStorage'
 // import _ from 'lodash'
 
 const { API_ROOT } = Constants
 
-function* requestGetCard() {
+function* requestGetCard({query}) {
   try {
-    const token = yield api.get('http://127.0.0.1:8000/card/',
+    const token = yield api.get(`${API_ROOT}/card/${query}`
     )
     if (response) {
       console.log(response);
-      yield put(MainPageActions.getCardAllSuccess(token))
+      yield put(SearchActions.getCardListSuccess(token))
     }
   } catch (e) {
-    yield put(MainPageActions.getCardAllFailure(e))
+    yield put(SearchActions.getCardListFailure(e))
   }
 }
-export const MainPageSaga = [
-  takeLatest(MainPageTypes.GET_CARD_ALL_REQUEST, requestGetCard)
+export const SearchSaga = [
+  takeLatest(SearchTypes.GET_CARD_LIST_REQUEST, requestGetCard)
 ]

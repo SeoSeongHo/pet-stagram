@@ -7,9 +7,13 @@ import CardWriteReducer from '../modules/card_write/CardWriteState'
 import UserProfileReducer from '../modules/user_profile/UserProfileState'
 import PetProfileReducer from '../modules/pet_profile/PetProfileState'
 import CardDetailReducer from '../modules/card_detail/CardDetailState'
+import MainPageReducer from '../modules/main_page/MainPageState'
+import SearchReducer from '../modules/search_page/SearchState'
 const reducers = {
   routing,
   form,
+  search: SearchReducer,
+  main: MainPageReducer,
   cards: CardDetailReducer,
   pet: PetProfileReducer,
   Me: CardWriteReducer,

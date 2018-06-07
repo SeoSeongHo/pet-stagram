@@ -8,8 +8,9 @@ import api from '../../utils/api'
 */
 import { actionsGenerator } from '../../store/reducerUtils'
 
-type MainPageState = {
+type SearchState = {
   loading: boolean,
+  getCardListRequest:Function,
 }
 
 // Initial state
@@ -19,33 +20,32 @@ const initialState = {
 
 // Action Creators
 
-export const { Types: MainPageTypes, Creators: MainPageActions } = createActions(
+export const { Types: SearchTypes, Creators: SearchActions } = createActions(
   actionsGenerator({
-    getCardAllRequest:[],
+    getCardListRequest:['query']
   })
 )
 
 // Reducer
-export default function MainPageReducer(state: MainPageState = initialState, action: Object = {}): MainPageState {
+export default function SearchReducer(state: SearchState = initialState, action: Object = {}): SearchState {
   switch (action.type) {
-    case MainPageTypes.GET_CARD_ALL_REQUEST:
+    case SearchTypes.GET_CARD_LIST_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case MainPageTypes.GET_CARD_ALL_SUCCESS:
+    case SearchTypes.GET_CARD_LIST_SUCCESS:
       return {
         ...state,
         cards: action.payload.cards,
         loading: false,
       };
-    case MainPageTypes.GET_CARD_ALL_FAILURE:
+    case SearchTypes.GET_CARD_LIST_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.error,
       };
-
     default:
       return state
   }

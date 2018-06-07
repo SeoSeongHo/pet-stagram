@@ -2,6 +2,14 @@ import React, {Component} from 'react'
 import {InputGroup,InputGroupAddon, InputGroupText, Input, Container, Row,
   Col} from 'reactstrap'
 import Navigator from "../top_navigator/navigator";
+import autoBind from 'react-autobind'
+import qs from "qs";
+import { withRouter } from "react-router-dom"
+
+type Props = {
+  cards: any,
+  getCardListRequest: Function,
+};
 
 class ContactInfo extends Component{
   render(){
@@ -12,9 +20,11 @@ class ContactInfo extends Component{
   }
 }
 
-class SearchView extends Component{
+export class SearchView extends Component<Props, State>  {
   constructor(props){
     super(props);
+    console.log(this.props,"props");
+    autoBind(this);
     this.state={
       exampleData:[
         {name: "aa", phone: "010-0000-0000"},
@@ -22,6 +32,20 @@ class SearchView extends Component{
         {name: "cc", phone: "010-0000-0002"},
         {name: "dd", phone: "010-0000-0003"}
       ]
+    }
+    console.log(this.state);
+  }
+
+  componentWillMount() {
+    const search = this.props.location.search
+    console.log(this.props,"props");
+    this.props.getCardListRequest(search).catch((e)=>console.log(e));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      const search = qs.parse(nextProps.location.search.replace('?', ''));
+      this.props.getCardListRequest(search).catch((e)=>console.log(e));
     }
   }
 
@@ -42,4 +66,4 @@ class SearchView extends Component{
   }
 }
 
-export default SearchView;
+export default withRouter(SearchView);

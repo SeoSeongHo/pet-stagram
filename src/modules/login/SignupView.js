@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText, Jumbotron, Col, Row,
   TabContent, TabPane, Nav, NavItem, NavLink, Card, CardBody, CardFooter, CardText, CardTitle, Container} from 'reactstrap'
 import autoBind from "react-autobind";
-import './signUpView.css'
-
-export default class SignupView extends Component {
+import './SignUpView.css'
+import { withRouter } from 'react-router-dom';
+import LoginView from "./loginView";
+export class SignupView extends Component {
   constructor(props) {
     super(...arguments);
     autoBind(this);
@@ -142,7 +143,7 @@ export default class SignupView extends Component {
     e.preventDefault();
     if (this.validateForm()) {
       this.props.signUpRequest(this.state.email, this.state.password,this.state).then(()=>{
-        this.props.createPetRequest().then(()=> this.props.history.push('/homePage')).catch((e)=>{console.log(e)})
+        this.props.createPetRequest().then(()=> this.props.history.push('/loginPage')).catch((e)=>{console.log(e)})
       }
       ).catch((e) => { console.log(e);
         this.setState({error:e});})
@@ -254,3 +255,4 @@ export default class SignupView extends Component {
     );
   }
 }
+export default withRouter(SignupView)
