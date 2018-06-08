@@ -37,7 +37,6 @@ class MainPageView extends Component<Props, State> {
   }
  componentDidMount() {
     this.props.getCardAllRequest().catch(e=>console.log(e));
-   console.log(this.props,"props");
     window.addEventListener('scroll', this.onScroll, false);
   }
 
