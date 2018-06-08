@@ -16,9 +16,8 @@ type State = {
 };
 
 type Props = {
-  t: Function,
+  cards: any,
   loading: boolean,
-  onLoginPressed: (username: string, password: string) => void,
 };
 class MainPageView extends Component<Props, State> {
   constructor(props) {
@@ -37,7 +36,7 @@ class MainPageView extends Component<Props, State> {
     };
   }
  componentDidMount() {
-    this.props.getCardListRequest().catch(e=>console.log(e));
+    this.props.getCardAllRequest().catch(e=>console.log(e));
     window.addEventListener('scroll', this.onScroll, false);
   }
 
