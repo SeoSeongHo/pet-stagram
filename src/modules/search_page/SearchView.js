@@ -23,7 +23,6 @@ class ContactInfo extends Component{
 export class SearchView extends Component<Props, State>  {
   constructor(props){
     super(props);
-    console.log(this.props,"props");
     autoBind(this);
     this.state={
       exampleData:[
