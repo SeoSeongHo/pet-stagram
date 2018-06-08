@@ -17,7 +17,6 @@ export const checkStatus = (response) => {
 export const parseJSON = response => response.json()
 
  export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
-   console.log(data,"data");
      const token = Storage.get(KEYS.accessToken)
     if (token) {
       const headers = {
@@ -93,7 +92,6 @@ api.create = (settings = {}) => ({
   },
 
   post(endpoint, data, settings) {
-    console.log(data,"data");
     return this.request(endpoint, { method: 'post', data, ...settings })
   },
 
