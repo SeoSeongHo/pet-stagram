@@ -22,7 +22,6 @@ type Props = {
 class MainPageView extends Component<Props, State> {
   constructor(props) {
     super(props);
-    console.log(this.props,"props");
     autoBind(this)
     this.state = {
       list: [
