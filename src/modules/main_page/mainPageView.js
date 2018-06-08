@@ -32,7 +32,7 @@ class MainPageView extends Component<Props, State> {
         "https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180",
         "https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
       ],
-      nowList: [   "https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"],
+      nowList: [   "https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180",  "https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"],
       index: 0,
     };
   }
