@@ -1,17 +1,32 @@
 import React, { Component } from 'react'
 import {
-  Row, Col, Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
+  Row, Col, Input, Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap'
 import './navigator.css'
 import CardWriteView from '../card_write/CardWriteViewContainer'
-
-export default class Navigator extends React.Component {
+import qs from 'qs'
+import { withRouter } from 'react-router-dom';
+export class Navigator extends React.Component {
   constructor(props) {
     super(props)
     this.toggle = this.toggle.bind(this)
     this.state = {
       isOpen: false,
+      search: {
+        query:"",
+      }
+    }
+  }
+  componentWillMount() {
+    const search = qs.parse(this.props.location.search.replace('?', ''));
+    this.setState(search);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      const search = qs.parse(nextProps.location.search.replace('?', ''));
+      this.setState(search);
     }
   }
 
@@ -21,6 +36,11 @@ export default class Navigator extends React.Component {
     })
   }
 
+  search(query) {
+    console.log(qs.stringify(query),"    ",query);
+    console.log(query);
+    this.props.history.push({ pathname: '/search/' , search: qs.stringify(query) });
+  }
   render() {
     return (
       <Container>
@@ -33,9 +53,11 @@ export default class Navigator extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/search">
+                <Input value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
+                console.log(this.state)}} />
+                <div onClick={()=>this.search(this.state.search)}>
                   <img width="30" height="30" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" />
-                </NavLink>
+                </div>
               </NavItem>
               <NavItem>
                 <CardWriteView/>
@@ -57,3 +79,4 @@ export default class Navigator extends React.Component {
     )
   }
 }
+export default withRouter(Navigator);

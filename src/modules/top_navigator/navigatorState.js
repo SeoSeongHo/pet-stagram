@@ -21,25 +21,25 @@ const initialState = {
 
 export const { Types: MainPageTypes, Creators: MainPageActions } = createActions(
   actionsGenerator({
-    getCardAllRequest:[],
+    getCardRequest:[],
   })
 )
 
 // Reducer
 export default function MainPageReducer(state: MainPageState = initialState, action: Object = {}): MainPageState {
   switch (action.type) {
-    case MainPageTypes.GET_CARD_ALL_REQUEST:
+    case MainPageTypes.GET_CARD_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case MainPageTypes.GET_CARD_ALL_SUCCESS:
+    case MainPageTypes.GET_CARD_SUCCESS:
       return {
         ...state,
         cards: action.payload.cards,
         loading: false,
       };
-    case MainPageTypes.GET_CARD_ALL_FAILURE:
+    case MainPageTypes.GET_CARD_FAILURE:
       return {
         ...state,
         loading: false,

@@ -94,6 +94,7 @@
     "moment": "^2.22.2",
     "normalizr": "^3.0.1",
     "prop-types": "^15.6.1",
+    "qs": "^6.5.2",
     "query-string": "^4.3.2",
     "react": "^15.6.2",
     "react-addons-css-transition-group": "^15.6.2",

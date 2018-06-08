@@ -17,7 +17,6 @@ export const checkStatus = (response) => {
 export const parseJSON = response => response.json()
 
  export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
-
      const token = Storage.get(KEYS.accessToken)
     if (token) {
       const headers = {
