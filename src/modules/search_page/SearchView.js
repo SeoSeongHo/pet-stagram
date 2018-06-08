@@ -33,12 +33,10 @@ export class SearchView extends Component<Props, State>  {
         {name: "dd", phone: "010-0000-0003"}
       ]
     }
-    console.log(this.state);
   }
 
   componentWillMount() {
     const search = this.props.location.search
-    console.log(this.props,"props");
     this.props.getCardListRequest(search).catch((e)=>console.log(e));
   }
 
