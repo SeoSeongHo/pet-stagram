@@ -13,7 +13,6 @@ function* requestGetCard({query}) {
     const token = yield api.get(`${API_ROOT}/card/${query}`
     )
     if (response) {
-      console.log(response);
       yield put(SearchActions.getCardListSuccess(token))
     }
   } catch (e) {
