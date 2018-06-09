@@ -9,6 +9,7 @@ import Navigator from '../top_navigator/navigator'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import moment from 'moment'
 import PropTypes from 'prop-types'
+import './UserProfile.css'
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -216,15 +217,15 @@ class UserProfileView extends Component<Props, State> {
       )
     } else{
       return (
-        <Container>
+        <Container className="cnt11">
           <Row>
             <Navigator/>
           </Row>
-          <Row>
-            <Col>
+          <Row className="row1">
+            <Col sm={{size:3, offset:3}}>
               <img width="200" height="200" src={this.props.userProfileImage}/>
             </Col>
-            <Col>
+            <Col sm="auto">
               <Table>
                 <thead>
                 <tr>
@@ -252,19 +253,31 @@ class UserProfileView extends Component<Props, State> {
               </div>
             </Col>
           </Row>
-          <span> {this.props.userProfileName}</span>
-          <hr/>
-          <h3>소개글</h3>
-          <span>{this.props.introduceText}</span>
-          <hr/>
           <Row>
-            <img width="100" height="100" src={require('../../assets/images/logindog.jpg') }/>
-            <img width="100" height="100" src={require('../../assets/images/logindog2.jpg') }/>
+            <Col sm={{size:7, offset:3}}>
+              <span> {this.props.userProfileName}</span>
+              <hr/>
+            </Col>
           </Row>
-          <hr/>
           <Row>
-            <img width="100" height="100" src={require('../../assets/images/user.png') }/>
-            <img width="100" height="100" src={require('../../assets/images/user.png') }/>
+            <Col sm={{size:7, offset:3}}>
+              <h3>소개글</h3>
+              <span>{this.props.introduceText}</span>
+              <hr/>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={{size:7, offset:3}}>
+              <img width="100" height="100" src={require('../../assets/images/logindog.jpg') }/>
+              <img width="100" height="100" src={require('../../assets/images/logindog2.jpg') }/>
+              <hr/>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={{offset:3}}>
+              <img width="100" height="100" src={require('../../assets/images/user.png') }/>
+              <img width="100" height="100" src={require('../../assets/images/user.png') }/>
+            </Col>
           </Row>
         </Container>
         // <Container fluid>
