@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cddba2f0-06a3-4906-beb1-456af59b0e68" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/login/loginSaga.js" afterPath="$PROJECT_DIR$/src/modules/login/loginSaga.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/main_page/mainPageView.js" afterPath="$PROJECT_DIR$/src/modules/main_page/mainPageView.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/main_page/mainPageViewContainer.js" afterPath="$PROJECT_DIR$/src/modules/main_page/mainPageViewContainer.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/memo/memoSaga.js" afterPath="$PROJECT_DIR$/src/modules/memo/memoSaga.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/memo/memoState.js" afterPath="$PROJECT_DIR$/src/modules/memo/memoState.js" />
       <change beforePath="$PROJECT_DIR$/src/modules/memo/memoView.js" afterPath="$PROJECT_DIR$/src/modules/memo/memoView.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/memo/memoViewContainer.js" afterPath="$PROJECT_DIR$/src/modules/memo/memoViewContainer.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/search_page/SearchView.js" afterPath="$PROJECT_DIR$/src/modules/search_page/SearchView.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" afterPath="$PROJECT_DIR$/src/routes.js" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions.js" afterPath="$PROJECT_DIR$/src/store/actions.js" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducer.js" afterPath="$PROJECT_DIR$/src/store/reducer.js" />
-      <change beforePath="$PROJECT_DIR$/src/store/sagas.js" afterPath="$PROJECT_DIR$/src/store/sagas.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,8 +22,8 @@
       <file leaf-file-name="memoView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/modules/memo/memoView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="74" column="8" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+            <state relative-caret-position="250">
+              <caret line="36" column="50" lean-forward="false" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="50" />
               <folding>
                 <element signature="e#9#49#0" expanded="true" />
               </folding>
@@ -152,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>match</find>
       <find>react-router-dom</find>
       <find>con</find>
       <find>history</find>
@@ -182,6 +165,7 @@
       <find>GET_MEMO_REQUEST</find>
       <find>append</find>
       <find>giveContent</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -475,12 +459,12 @@
       <workItem from="1528342681748" duration="2751000" />
       <workItem from="1528364033078" duration="8532000" />
       <workItem from="1528511318482" duration="10765000" />
-      <workItem from="1528526913911" duration="7322000" />
+      <workItem from="1528526913911" duration="7656000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185732000" />
+    <option name="totallyTimeSpent" value="186066000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1618" height="868" extended-state="6" />
@@ -938,8 +922,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/memo/memoView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="74" column="8" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+        <state relative-caret-position="250">
+          <caret line="36" column="50" lean-forward="false" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="50" />
           <folding>
             <element signature="e#9#49#0" expanded="true" />
           </folding>

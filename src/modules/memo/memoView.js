@@ -54,10 +54,9 @@ class MemoView extends Component<Props, State> {
     })
     return count===0 ? null: ( <p>일정 : {count}</p>)
   }
-  showMemo(listValue){
-    console.log(listValue,"showMemo");
+  showMemo(listValue,index){
     return(
-    <div>
+    <div key={index}>
       <Moment format="YYYY/MM/DD">
         {listValue.date}
       </Moment>
@@ -81,7 +80,7 @@ class MemoView extends Component<Props, State> {
           this.state.date.getYear()===date.getYear())
       }).map((listValue,index)=>{
         return(
-         this.showMemo(listValue)
+         this.showMemo(listValue,index)
         )
     })
     }
