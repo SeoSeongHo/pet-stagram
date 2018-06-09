@@ -24,6 +24,7 @@ export class SearchView extends Component<Props, State>  {
   constructor(props){
     super(props);
     autoBind(this);
+    console.log(this.props);
     this.state={
       exampleData:[
         {name: "aa", phone: "010-0000-0000"},
@@ -36,13 +37,13 @@ export class SearchView extends Component<Props, State>  {
 
   componentWillMount() {
     const search = this.props.location.search
-    this.props.getCardListRequest(search).catch((e)=>console.log(e));
+    this.props.getCardListRequest(search).then(()=>this.props.getUserListRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e));
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.search !== this.props.location.search) {
-      const search = qs.parse(nextProps.location.search.replace('?', ''));
-      this.props.getCardListRequest(search).catch((e)=>console.log(e));
+      const search = this.props.location.search
+      this.props.getCardListRequest(search).then(()=>this.props.getUserListRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e));
     }
   }
 

@@ -6,7 +6,6 @@ import Storage from '../../utils/petStagramStorage'
 import _ from 'lodash'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-import ImageUploader from 'react-images-upload';
 import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
 import Select from 'react-select'
 import Modal from "react-modal";

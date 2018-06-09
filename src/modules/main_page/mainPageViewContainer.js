@@ -4,7 +4,6 @@ import { compose, withHandlers } from 'recompose'
 import actions from '../../store/actions';
 import MainPageView from './mainPageView'
 
-
 export default connect(
   state => ({
     cards: _.get(state, ['mainPage', 'cards']),
