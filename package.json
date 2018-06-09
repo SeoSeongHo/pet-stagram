@@ -32,7 +32,8 @@
       "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
       "^(components|containers)$": "<rootDir>/test/componentsMock.js",
       "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
-      "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
+      "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js",
+      "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
   "devDependencies": {
@@ -52,7 +53,7 @@
     "copyfiles": "^1.0.0",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.11",
-    "enzyme": "^2.7.0",
+    "enzyme": "^2.9.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-import-resolver-webpack": "^0.8.1",
@@ -90,6 +91,7 @@
     "babel-polyfill": "^6.20.0",
     "bootstrap": "^4.1.1",
     "history": "3.0.0",
+    "jest": "^23.1.0",
     "lodash": "^4.17.4",
     "moment": "^2.22.2",
     "normalizr": "^3.0.1",
@@ -119,6 +121,7 @@
     "react-scrollbar": "^0.5.4",
     "react-select": "^2.0.0-beta.6",
     "react-test-render": "^1.1.1",
+    "react-test-renderer": "^16.4.0",
     "react-touch-carousel": "^0.8.2",
     "reactstrap": "^6.0.1",
     "redux": "^3.6.0",
