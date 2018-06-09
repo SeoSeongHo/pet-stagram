@@ -20,6 +20,20 @@ function* requestGetCard({query}) {
     yield put(SearchActions.getCardListFailure(e))
   }
 }
+
+function* requestGetUser({query}) {
+  try {
+    const token = yield api.get(`${API_ROOT}/user/${query}`
+    )
+    if (response) {
+      console.log(response);
+      yield put(SearchActions.getUserListSuccess(token))
+    }
+  } catch (e) {
+    yield put(SearchActions.getUserListFailure(e))
+  }
+}
 export const SearchSaga = [
+  takeLatest(SearchTypes.GET_USER_LIST_REQUEST,requestGetUser),
   takeLatest(SearchTypes.GET_CARD_LIST_REQUEST, requestGetCard)
 ]
