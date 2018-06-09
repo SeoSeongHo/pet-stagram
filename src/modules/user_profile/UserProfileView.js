@@ -217,15 +217,16 @@ class UserProfileView extends Component<Props, State> {
       )
     } else{
       return (
-        <Container className="cnt11">
-          <Row>
+        <div>
             <Navigator/>
-          </Row>
+          <div className="cnt11">
+            <Container className="cnt12">
+              <div className="cnt12">
           <Row className="row1">
-            <Col sm={{size:3, offset:3}}>
+            <Col sm={{size:4}}>
               <img width="200" height="200" src={this.props.userProfileImage}/>
             </Col>
-            <Col sm="auto">
+            <Col sm="8">
               <Table>
                 <thead>
                 <tr>
@@ -254,32 +255,35 @@ class UserProfileView extends Component<Props, State> {
             </Col>
           </Row>
           <Row>
-            <Col sm={{size:7, offset:3}}>
+            <Col>
               <span> {this.props.userProfileName}</span>
               <hr/>
             </Col>
           </Row>
           <Row>
-            <Col sm={{size:7, offset:3}}>
+            <Col>
               <h3>소개글</h3>
               <span>{this.props.introduceText}</span>
               <hr/>
             </Col>
           </Row>
           <Row>
-            <Col sm={{size:7, offset:3}}>
+            <Col>
               <img width="100" height="100" src={require('../../assets/images/logindog.jpg') }/>
               <img width="100" height="100" src={require('../../assets/images/logindog2.jpg') }/>
               <hr/>
             </Col>
           </Row>
           <Row>
-            <Col sm={{offset:3}}>
+            <Col>
               <img width="100" height="100" src={require('../../assets/images/user.png') }/>
               <img width="100" height="100" src={require('../../assets/images/user.png') }/>
             </Col>
           </Row>
-        </Container>
+              </div>
+            </Container>
+          </div>
+        </div>
         // <Container fluid>
         //   <Row>
         //     <Col>

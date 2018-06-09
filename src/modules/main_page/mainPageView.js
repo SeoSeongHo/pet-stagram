@@ -66,10 +66,10 @@ class MainPageView extends Component<Props, State> {
 
   render() {
     return (
-      <Container className="cnt2">
-        <Row>
+      <div>
         <Navigator/>
-        </Row>
+        <div className="cnt2">
+      <Container>
           <CardDeck className="card1">
             <Row>
         <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
@@ -92,6 +92,8 @@ class MainPageView extends Component<Props, State> {
             </Row>
           </CardDeck>
       </Container>
+        </div>
+      </div>
     );
   }
 }

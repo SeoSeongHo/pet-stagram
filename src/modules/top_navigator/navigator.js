@@ -43,11 +43,11 @@ export class Navigator extends React.Component {
   }
   render() {
     return (
-      <Container>
+      <Container className="cnt12">
         <Navbar color="white" light expand="md">
           <NavbarBrand href="/homepage/">
-            <img width="30" height="30" src={require('../../assets/images/instagram.png')} alt="Card image cap" />
-            <img className="imglogo1" width="150" height="50" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+            <img width="20" height="20" src={require('../../assets/images/instagram.png')} alt="Card image cap" />
+            <img className="imglogo1" width="100" height="30" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -57,7 +57,7 @@ export class Navigator extends React.Component {
                 <Input className="inp2" type="email" name="email" placeholder="검색" value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
                 console.log(this.state)}} />
                 <InputGroupAddon addonType="append">
-                  <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="27" height="27" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
+                  <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="20" height="20" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
                 </InputGroupAddon>
                 </InputGroup>
               </NavItem>
@@ -66,12 +66,12 @@ export class Navigator extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/cardDetail/">
-                  <img width="30" height="30" src={require('../../assets/images/like.png')} alt="Card image cap" />
+                  <img width="20" height="20" src={require('../../assets/images/like.png')} alt="Card image cap" />
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/userProfile/">
-                  <img width="30" height="30" src={require('../../assets/images/man-user.png')} alt="Card image cap" />
+                  <img width="20" height="20" src={require('../../assets/images/man-user.png')} alt="Card image cap" />
                 </NavLink>
               </NavItem>
             </Nav>

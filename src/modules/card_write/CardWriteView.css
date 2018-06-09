@@ -1,6 +1,9 @@
 .btt1{
   border:none;
   background-color:white;
+  margin-top:-2px;
+  margin-left:-10px;
+  margin-right:-10px;
 }
 
 .btt2{

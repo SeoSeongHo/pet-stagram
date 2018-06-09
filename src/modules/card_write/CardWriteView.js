@@ -126,7 +126,7 @@ class CardWriteView extends Component<Props, State> {
     console.log(this.state.picturesURL,"picturesURL");
     return (
       <div className="di1">
-        <Button onClick={this.openModal} className="btt1" color="white"><img width="27" height="27" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>
+        <Button onClick={this.openModal} className="btt1" color="white"><img width="20" height="20" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
