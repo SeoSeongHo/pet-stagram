@@ -55,10 +55,8 @@ export class SignupView extends Component {
     e.preventDefault();
     if (this.validateForm()) {
       this.props.signUpRequest(this.state.email, this.state.password,
-        this.state.username,this.state.userProfileImage,this.state.userBirthDay,this.state.petName, this.state.petProfileImage,this.state.petBirthDay).then(
-        ()=>{
-        this.props.history.push('/homePage');}
-      ).catch((e) => {
+        this.state.username,this.state.userProfileImage,this.state.userBirthDay,this.state.petName, this.state.petProfileImage,this.state.petBirthDay)
+      .then(()=>this.props.history.push('/login')).catch((e) => {
         this.setState({error:e.message});})
     }
     else if(this.state.email.length<8){
