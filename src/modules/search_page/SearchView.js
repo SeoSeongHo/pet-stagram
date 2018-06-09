@@ -24,6 +24,7 @@ export class SearchView extends Component<Props, State>  {
   constructor(props){
     super(props);
     autoBind(this);
+    console.log(this.props);
     this.state={
       exampleData:[
         {name: "aa", phone: "010-0000-0000"},
