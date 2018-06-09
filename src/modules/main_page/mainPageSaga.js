@@ -13,7 +13,6 @@ function* requestGetCard() {
     const token = yield api.get('http://127.0.0.1:8000/card/',
     )
     if (response) {
-      console.log(response);
       yield put(MainPageActions.getCardAllSuccess(token))
     }
   } catch (e) {

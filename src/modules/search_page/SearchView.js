@@ -23,7 +23,6 @@ class ContactInfo extends Component{
 export class SearchView extends Component<Props, State>  {
   constructor(props){
     super(props);
-    console.log(this.props,"props");
     autoBind(this);
     this.state={
       exampleData:[
@@ -33,7 +32,6 @@ export class SearchView extends Component<Props, State>  {
         {name: "dd", phone: "010-0000-0003"}
       ]
     }
-    console.log(this.state);
   }
 
   componentWillMount() {

@@ -22,7 +22,6 @@ type Props = {
 class MainPageView extends Component<Props, State> {
   constructor(props) {
     super(props);
-    console.log(this.props,"props");
     autoBind(this)
     this.state = {
       list: [
@@ -38,7 +37,6 @@ class MainPageView extends Component<Props, State> {
   }
  componentDidMount() {
     this.props.getCardAllRequest().catch(e=>console.log(e));
-   console.log(this.props,"props");
     window.addEventListener('scroll', this.onScroll, false);
   }
 
