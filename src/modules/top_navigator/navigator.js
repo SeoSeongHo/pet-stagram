@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
   Row, Col, Input, Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
-  UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Button, InputGroupAddon
 } from 'reactstrap'
 import './navigator.css'
 import CardWriteView from '../card_write/CardWriteViewContainer'
@@ -53,11 +53,13 @@ export class Navigator extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Input value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
+                <InputGroup size="sm" className="inp1">
+                <Input className="inp2" type="email" name="email" placeholder="검색" value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
                 console.log(this.state)}} />
-                <div onClick={()=>this.search(this.state.search)}>
-                  <img width="30" height="30" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" />
-                </div>
+                <InputGroupAddon addonType="append">
+                  <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="27" height="27" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
+                </InputGroupAddon>
+                </InputGroup>
               </NavItem>
               <NavItem>
                 <CardWriteView/>
