@@ -40,7 +40,6 @@ function* requestPostCard({ pets,pictures,title,text }: {pets:Array, pictures:Ar
       }}
     );
     if (token) {
-      console.log(token)
       yield put(CardWriteActions.postCardSuccess(token))
     }
   } catch (e) {

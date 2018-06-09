@@ -22,7 +22,8 @@ const initialState = {
 
 export const { Types: SearchTypes, Creators: SearchActions } = createActions(
   actionsGenerator({
-    getCardListRequest:['query']
+    getCardListRequest:['query'],
+    getUserListRequest:['query'],
   })
 )
 
@@ -41,6 +42,23 @@ export default function SearchReducer(state: SearchState = initialState, action:
         loading: false,
       };
     case SearchTypes.GET_CARD_LIST_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    case SearchTypes.GET_USER_LIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SearchTypes.GET_USER_LIST_SUCCESS:
+      return {
+        ...state,
+        users: action.payload.users,
+        loading: false,
+      };
+    case SearchTypes.GET_USER_LIST_FAILURE:
       return {
         ...state,
         loading: false,
