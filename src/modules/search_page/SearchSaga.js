@@ -10,7 +10,7 @@ const { API_ROOT } = Constants
 
 function* requestGetCard({query}) {
   try {
-    const token = yield api.get(`${API_ROOT}/card/${query}`
+    const token = yield api.get(`${API_ROOT}/card${query}`
     )
     if (response) {
       yield put(SearchActions.getCardListSuccess(token))
@@ -22,7 +22,7 @@ function* requestGetCard({query}) {
 
 function* requestGetUser({query}) {
   try {
-    const token = yield api.get(`${API_ROOT}/user/${query}`
+    const token = yield api.get(`${API_ROOT}/userFilter${query}`
     )
     if (response) {
       console.log(response);

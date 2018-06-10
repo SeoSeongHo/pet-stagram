@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 export default withRouter(connect(
   state => ({
-
+    users: _.get(state, ['user','filterUser']),
   }),
   actions,
 )(

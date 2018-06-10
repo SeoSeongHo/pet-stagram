@@ -7,12 +7,13 @@ import Constants from '../../constants/constants'
 const { API_ROOT } = Constants;
 function* requestGetUserProfile({ userEmail }: {userEmail: string}) {
   try {
-    const token = yield api.get(`${API_ROOT}/user/${userEmail}`,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.get(`${API_ROOT}/user/${userEmail}`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }
+      }
     );
     if (token) {
       console.log(token)
@@ -23,6 +24,24 @@ function* requestGetUserProfile({ userEmail }: {userEmail: string}) {
   }
 }
 
+  function* requestGetUserFilter({ userEmail }: {userEmail: string}) {
+    try {
+      const token = yield api.get(`${API_ROOT}/userFilter?userEmail=${userEmail}`,{
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+        }}
+      );
+      if (token) {
+        console.log(token)
+        yield put(UserProfileActions.getUserFilterSuccess(token))
+      }
+    } catch (e) {
+      yield put(UserProfileActions.getUserFilterFailure(e))
+    }
+  }
+
 function* requestEditIntroduce({ text, userBirthDay, userProfileImage }: {text:string, userBirthDay: any, userProfileImage: any}) {
   const body={
     introduceText:text,
@@ -30,7 +49,7 @@ function* requestEditIntroduce({ text, userBirthDay, userProfileImage }: {text:s
     userProfileImage
   };
   try {
-    const token = yield api.put(`${API_ROOT}/user/${Storage.get(KEYS.userEmail)}`,body,{
+    const token = yield api.put(`${API_ROOT}/user`,body,{
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -52,7 +71,7 @@ function* requestFollow({ userEmail, followedName }: {username: string}) {
   };
 
   try {
-    const token = yield api.put(`${API_ROOT}/user/${userEmail}`, body,{
+    const token = yield api.put(`${API_ROOT}/user`, body,{
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -73,7 +92,7 @@ function* requestUnFollow({ userEmail,followedName }: {username: string}) {
   };
 
   try {
-    const token = yield api.put(`${API_ROOT}/user/${userEmail}`, body,{
+    const token = yield api.put(`${API_ROOT}/user`, body,{
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -96,7 +115,7 @@ function* requestFollowCheck({ followerName, followedName }: {followerName: stri
   };
 
   try {
-    const token = yield api.get(`${API_ROOT}/user/?user1=${followerName}&user2=${followedName}`, body,{
+    const token = yield api.get(`${API_ROOT}/user?user1=${followerName}&user2=${followedName}`, body,{
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -114,6 +133,7 @@ function* requestFollowCheck({ followerName, followedName }: {followerName: stri
 
 export const UserProfileSaga = [
   takeLatest(UserProfileTypes.GET_USER_PROFILE_REQUEST, requestGetUserProfile),
+  takeLatest(UserProfileTypes.GET_USER_FILTER_REQUEST, requestGetUserFilter),
   // takeLatest(UserPRofileTypes.SEND_MESSAGE_REQUEST, requestSendMessage),
   takeLatest(UserProfileTypes.FOLLOW_REQUEST, requestFollow),
   takeLatest(UserProfileTypes.UN_FOLLOW_REQUEST, requestUnFollow),

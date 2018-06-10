@@ -4,6 +4,7 @@ import {
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Button, InputGroupAddon
 } from 'reactstrap'
 import './navigator.css'
+import Select from 'react-select'
 import CardWriteView from '../card_write/CardWriteViewContainer'
 import qs from 'qs'
 import { withRouter } from 'react-router-dom';
@@ -15,19 +16,39 @@ export class Navigator extends React.Component {
       isOpen: false,
       search: {
         query:"",
-      }
+      },
+      selectedOption: '',
     }
   }
+
   componentWillMount() {
     const search = qs.parse(this.props.location.search.replace('?', ''));
-    this.setState(search);
+    this.setState({search});
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.search !== this.props.location.search) {
       const search = qs.parse(nextProps.location.search.replace('?', ''));
-      this.setState(search);
+      this.setState({search});
     }
+  }
+
+  handleChange = (selectedOption) => {
+     if(selectedOption.label!==undefined || selectedOption.value!==undefined) {
+       this.setState({selectedOption: selectedOption},console.log(this.state));
+       this.setState({search: {query: selectedOption.value}},()=> this.props.history.push({pathname: '/search/', search: qs.stringify(this.state.search)}));
+     }
+     // selectedOption can be null when the `x` (close) button is clicked
+     if (selectedOption) {
+       console.log(`Selected: ${selectedOption.label}`);
+       console.log(`Selected: ${selectedOption.value}`);
+     }
+    }
+
+  handleInputChange = (e) => {
+   this.props.getUserFilterRequest(e).then(()=> {
+    }
+  ).catch((e)=>console.log(e))
   }
 
   toggle() {
@@ -37,9 +58,10 @@ export class Navigator extends React.Component {
   }
 
   search(query) {
-    console.log(qs.stringify(query),"    ",query);
-    console.log(query);
-    this.props.history.push({ pathname: '/search/' , search: qs.stringify(query) });
+    this.props.getUserFilterRequest(query.query).then(()=> {
+      this.props.filterUser &&
+      this.props.history.push({pathname: '/search/', search: qs.stringify(query)});
+    }).catch((e)=>console.log(e))
   }
   render() {
     return (
@@ -53,8 +75,9 @@ export class Navigator extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <InputGroup size="sm" className="inp1">
-                <Input className="inp2" type="email" name="email" placeholder="검색" value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
+               <InputGroup size="sm" className="inp1">
+
+                <Input className="inp2" type="text" placeholder="검색" value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
                 console.log(this.state)}} />
                 <InputGroupAddon addonType="append">
                   <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="20" height="20" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
@@ -77,6 +100,21 @@ export class Navigator extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+        <Select
+          name="form-field-name"
+          ref={(ref) => { this.select = ref; }}
+          value={this.state.selectedOption}
+          onBlurResetsInput={false}
+          onSelectResetsInput={false}
+          onChange={this.handleChange}
+          onInputChange={this.handleInputChange}
+          options={
+            _.map(this.props.users, (users)=> {
+              return {'value': `${users.userEmail}`, 'label': `userEmail: ${users.userEmail}`}
+            })
+          }
+        />
+        <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="20" height="20" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
       </Container>
     )
   }
