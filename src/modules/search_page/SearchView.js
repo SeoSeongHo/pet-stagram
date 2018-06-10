@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {InputGroup,InputGroupAddon, InputGroupText, Input, Container, Row,
   Col} from 'reactstrap'
-import Navigator from "../top_navigator/navigator";
+import Navigator from "../top_navigator/navigatorContainer";
 import autoBind from 'react-autobind'
 import qs from "qs";
 import { withRouter } from "react-router-dom"

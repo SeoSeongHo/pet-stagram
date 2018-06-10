@@ -4,7 +4,7 @@ import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
 import autoBind from 'react-autobind'
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
-import Navigator from '../top_navigator/navigator'
+import Navigator from '../top_navigator/navigatorContainer'
 import './cardView.css'
 import CardDetailView from "../card_detail/CardDetailViewContainer";
 import CardWriteView from "../card_write/CardWriteViewContainer"

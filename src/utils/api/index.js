@@ -23,7 +23,7 @@ export const parseJSON = response => response.json()
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'Accept-Language': locale,
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+
       }
       const settings = {
         body: data ? JSON.stringify(data) : undefined,

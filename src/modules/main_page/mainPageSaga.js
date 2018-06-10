@@ -10,7 +10,7 @@ const { API_ROOT } = Constants
 
 function* requestGetCard() {
   try {
-    const token = yield api.get('http://127.0.0.1:8000/card/',
+    const token = yield api.get(`${API_ROOT}/card/`,
     )
     if (response) {
       yield put(MainPageActions.getCardAllSuccess(token))
