@@ -13,7 +13,7 @@ injectGlobal`
 const App = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      {routes}
+        {routes}
     </ThemeProvider>
   )
 }
