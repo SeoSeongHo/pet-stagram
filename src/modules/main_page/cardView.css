@@ -1,5 +1,6 @@
 .card1{
   margin: 50px;
+  margin-top:-30px;
 }
 
 .card2{
@@ -8,5 +9,11 @@
 
 .cnt2{
   background-color:#fef9ff;
-  margin-top:-50px;
+}
+
+.cnt1{
+}
+
+.col11{
+  margin-left:20px;
 }

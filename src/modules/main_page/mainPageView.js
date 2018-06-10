@@ -8,6 +8,7 @@ import Navigator from '../top_navigator/navigatorContainer'
 import './cardView.css'
 import CardDetailView from "../card_detail/CardDetailViewContainer";
 import CardWriteView from "../card_write/CardWriteViewContainer"
+import MemoView from "../memo/memoViewContainer"
 
 type State = {
   username: string,
@@ -19,6 +20,7 @@ type Props = {
   cards: any,
   loading: boolean,
 };
+
 class MainPageView extends Component<Props, State> {
   constructor(props) {
     super(props);
@@ -69,10 +71,11 @@ class MainPageView extends Component<Props, State> {
       <div>
         <Navigator/>
         <div className="cnt2">
-      <Container>
+      <Container className="cnt1">
+        <Row>
+        <Col md="7" sm="6" style={{display:"flex", justifyContent:"center"}}>
           <CardDeck className="card1">
-            <Row>
-        <Col sm={{size: 10, order: 2, offset: 1}} style={{}}>
+            <Col className="col11">
           {this.state.nowList.map((listValue,index)=> {
             return (
             <Card className="card2" body outline color="#ffe4a8" key={index}>
@@ -80,17 +83,21 @@ class MainPageView extends Component<Props, State> {
                 <CardTitle>Card title</CardTitle>
                 <CardSubtitle>Card subtitle</CardSubtitle>
               </CardBody>
-              <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
+              <img width="100%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
               <CardBody>
                 <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
                 <CardDetailView/>
               </CardBody>
             </Card>)
           })}
+            </Col>
           {/*<CardImg top width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />*/}
-              </Col>
-            </Row>
           </CardDeck>
+        </Col>
+        <Col md="5" sm="6" style={{display:"flex", justifyContent:"center"}}>
+          <MemoView/>
+        </Col>
+        </Row>
       </Container>
         </div>
       </div>

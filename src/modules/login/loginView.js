@@ -129,18 +129,10 @@ class LoginView extends Component<Props, State> {
     return (
       <Container className="cont">
         <Row className="ro1">
-          <Col className="main1" xs="3" sm="4">
-            <Jumbotron className="jbt1">
-              <Container>
-                <h1 className="display-3">Welcome to here!</h1>
-                <p className="lead">Space to share your pet's information and manage your pet's daily.</p>
-              </Container>
-            </Jumbotron>
-          </Col>
-          <Col className="main1" xs="6" sm="4">
+          <Col className="main1" xs="6" sm="5">
           <Card body outline color="#ffe4a8">
-            <img width="100%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
-            <img width="100%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
+            <img width="90%" height="90%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+            <img width="90%" height="90%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
             <CardBody className="card3">
               <Form>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
