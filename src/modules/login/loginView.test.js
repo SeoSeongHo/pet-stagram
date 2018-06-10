@@ -3,6 +3,7 @@ import { shallow, mount, render } from 'enzyme';
 //import renderer from 'react-test-renderer';
 import LoginView from './loginView'
 import { LoginActions } from './loginState'
+//import { requestLogin } from "./loginSaga";
 
 
 describe('LoginView', () => {
