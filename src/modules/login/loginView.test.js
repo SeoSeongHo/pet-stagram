@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
+//import renderer from 'react-test-renderer';
 import LoginView from './loginView'
 import { LoginActions } from './loginState'
-//import  reducer from '../../store/reducer'
+
 
 describe('LoginView', () => {
   it('renders correctly', () => {
@@ -31,55 +32,48 @@ describe('LoginView', () => {
     wrapper.find('input').at(1).simulate('change', mockedEvent);
     expect(wrapper.state().password).toBe('password123');
   });
-});
 
-  /*
+  // sign in pressed
+  describe('LoginView, sign in pressed', () => {
+    it('onLoginPressed called', () => {
+      const wrapper = mount(<LoginView />);
+      const instance = wrapper.instance();
+      jest.spyOn(instance, 'onLoginPressed');
+      wrapper.find('button').at(0).simulate('click');
 
-  describe('insert new text', () => {
-    it('has a form', () => {
-      expect(component.find('form').exists()).toBe(true);
+      expect(instance.onLoginPressed).toBeCalledWith();
     });
-    it('has an input', () => {
-      expect(component.find('input').exists()).toBe(true);
+    it('sign in without username and error', () => {
+      const wrapper = mount(<LoginView />);
+      const instance = wrapper.instance();
+      jest.spyOn(instance, 'renderLoginError');
+      wrapper.find('button').at(0).simulate('click');
+      
+      expect(instance.renderLoginError).toBeCalledWith('enter_your_login_ID');
     });
-    it('simulates input change', () => {
-      const mockedEvent = {
-        target: {
-          value: 'hello'
-        }
-      };
-      // 이벤트를 시뮬레이트 합니다. 두번째 파라미터는 이벤트 객체입니다.
-      component.find('input').simulate('change', mockedEvent); 
-      expect(component.state().name).toBe('hello');
+    it('sign in without password and error', () => {
+      const wrapper = mount(<LoginView />);
+      const instance = wrapper.instance();
+      jest.spyOn(instance, 'renderLoginError');
+      const mockedUsernameEvent = { target: { value: 'username@test.com' } };
+      wrapper.find('input').at(0).simulate('change', mockedUsernameEvent);
+      wrapper.find('button').at(0).simulate('click');
+      
+      expect(instance.renderLoginError).toBeCalledWith('enter_your_password');
     });
-    it('simulates form submit', () => {
-      const mockedEvent = {
-        preventDefault: () => null // onSubmit 에서 preventDefault 를 호출하게 되므로, 가짜 함수 추가
-      };
-      component.find('form').simulate('submit', mockedEvent);
-      expect(component.state().name).toBe(''); // 등록 하면 값이 공백으로 변하며
-      expect(changed).toBe('hello');
-    })
-  })
+    /*
+    it('onLoginRequest called', () => {
+      const wrapper = mount(<LoginView />);
+      const instance = wrapper.instance();
+      jest.spyOn(instance, 'onLoginRequest');
+      const mockedUsernameEvent = { target: { value: 'username@test.com' } };
+      const mockedPasswordEvent = { target: { value: 'password123' } };
+      wrapper.find('input').at(0).simulate('change', mockedUsernameEvent);
+      wrapper.find('input').at(1).simulate('change', mockedPasswordEvent);
+      wrapper.find('button').at(0).simulate('click');
 
+      expect(instance.onLoginRequest).toBeCalledWith('username@test.com','password123');
+    });
+    */
+  });  
 });
-
-describe('Add todo', () => {
-  it('Add todo change state', () => {
-    expect(reducer(
-      {"form": {}, "login": {"loading": false}, "routing": {"locationBeforeTransitions": null}},
-      LoginActions.loginRequest()
-    )).toEqual( {"form": {}, "login": {"loading": true}, "routing": {"locationBeforeTransitions": null}})
-  })
-});
-
-
-describe('toggle todo', () => {
-  it('toggle todo change state', () => {
-    expect(reducer(
-      [{ id:0, text:"eat dinner", completed: false}],
-      toggleTodo(0)
-    )).toEqual([{ id:0, text:"eat dinner", completed: true}])
-  })
-})
-*/
