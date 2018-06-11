@@ -60,24 +60,6 @@ type Props = {
   postCommentRequest: Function,
 };
 
-const items = [
-  {
-    src: require('../../assets/images/logindog.jpg'),
-    altText: '',
-    caption: '',
-  },
-  {
-    src: require('../../assets/images/logindog2.jpg'),
-    altText: '',
-    caption: '',
-  },
-  {
-    src: require('../../assets/images/example.jpg'),
-    altText: '',
-    caption: '',
-  },
-];
-
 const customStyles = {
   content : {
     top                   : '50%',
@@ -125,7 +107,8 @@ class CardDetailView extends Component<Props, State> {
   onClickEditCard(){
   }
   onClickLike(){
-    if(this.props.like.includes(Storage.get(KEYS.userEmail))) {
+    if(_.includes(this.props.like,Storage.get(KEYS.userEmail)))
+    {
       this.props.postLikeRequest(this.props.cardId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch((e)=>console.log(e));
     } else
       this.props.deleteLikeRequest(this.props.cardId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch((e)=>console.log(e));
@@ -202,6 +185,23 @@ class CardDetailView extends Component<Props, State> {
 
   render() {
     const { activeIndex } = this.state;
+    const items = [
+      {
+        src: require('../../assets/images/logindog.jpg'),
+        altText: '',
+        caption: '',
+      },
+      {
+        src: require('../../assets/images/logindog2.jpg'),
+        altText: '',
+        caption: '',
+      },
+      {
+        src: require('../../assets/images/example.jpg'),
+        altText: '',
+        caption: '',
+      },
+    ];
     const slides = items.map((item) => {
       return (
         <CarouselItem

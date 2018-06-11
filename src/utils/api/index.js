@@ -60,7 +60,7 @@ const api = {}
 api.request = (endpoint, { params, ...settings } = {}) =>
   fetch(parseEndpoint(endpoint, params), parseSettings(settings))
     .then(checkStatus)
-    .then(parseJSON)
+    //.then(parseJSON)
 
 ;['delete', 'get'].forEach((method) => {
   api[method] = (endpoint, settings) => api.request(endpoint, { method, ...settings })
