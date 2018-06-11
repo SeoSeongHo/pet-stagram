@@ -17,15 +17,15 @@ const initialState = {
   Memo:[
     {
       created:'2018-06-09T09:09:59.496396Z',
-      Text: " i love you"
+      Text: " 산책가기 "
     },
     {
       created:'2018-06-09T09:09:50.496397Z',
-      Text: " i lik you"
+      Text: " 밥먹이기"
     },
     {
       created:'2018-06-09T09:09:52.496397Z',
-      Text: " i miss you"
+      Text: " 미용하기"
     }
   ]
 }

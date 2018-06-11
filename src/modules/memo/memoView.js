@@ -9,7 +9,7 @@ import _ from 'lodash'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
-
+import './memoView.css'
 
 type State = {
     Memo:[{
@@ -61,16 +61,17 @@ class MemoView extends Component<Props, State> {
         {listValue.date}
       </Moment>
       <p>{listValue.Text}</p>
+    <hr/>
     </div>
     )
   }
   render() {
     return(
-    <div>
+    <div style={{display:"inline-block"}} className="memo1">
       <Calendar
         onChange={this.onChange}
         value={this.state.date}
-        tileContent={({ date, view }) => this.giveContent(date,view)}
+        // tileContent={({ date, view }) => this.giveContent(date,view)}
       />
     {
       _.filter(this.props.Memo,(listValue)=>{
@@ -86,8 +87,8 @@ class MemoView extends Component<Props, State> {
     }
       <Form  onClick={()=> this.onSubmitPressed()}>
         <FormGroup>
-          <Label for="Text">Text Area</Label>
-          <Input type="textarea" name="text" id="Text" value={this.state.Text} onChange={(e)=>this.setState({Text:e.target.value})}/>
+          <br/>
+          <Input placeholder="write memo" type="textarea" name="text" id="Text" value={this.state.Text} onChange={(e)=>this.setState({Text:e.target.value})}/>
         </FormGroup>
         <Button onClick={() => this.onSubmitPressed()}>Enter Memo</Button>
       </Form>

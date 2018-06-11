@@ -65,24 +65,40 @@ export class Navigator extends React.Component {
   }
   render() {
     return (
-      <Container className="cnt12">
+      <div className="nav1">
+      <Container>
         <Navbar color="white" light expand="md">
           <NavbarBrand href="/homepage/">
+            <Row>
+              <Col sm="3">
             <img width="20" height="20" src={require('../../assets/images/instagram.png')} alt="Card image cap" />
             <img className="imglogo1" width="100" height="30" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+              </Col>
+            </Row>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-               <InputGroup size="sm" className="inp1">
-
-                <Input className="inp2" type="text" placeholder="검색" value={this.state.search.query} onChange={(e)=>{this.setState({search: {query: e.target.value}},()=>console.log(this.state));
-                console.log(this.state)}} />
-                <InputGroupAddon addonType="append">
+              <NavItem className="Navi1">
+                  <Select
+                    className="sel1"
+                    placeholder="검색"
+                    name="form-field-name"
+                    ref={(ref) => { this.select = ref; }}
+                    value={this.state.selectedOption}
+                    onBlurResetsInput={false}
+                    onSelectResetsInput={false}
+                    onChange={this.handleChange}
+                    onInputChange={this.handleInputChange}
+                    options={
+                      _.map(this.props.users, (users)=> {
+                        return {'value': `${users.userEmail}`, 'label': `userEmail: ${users.userEmail}`}
+                      })
+                    }
+                  />
+              </NavItem>
+              <NavItem className="Navi1">
                   <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="20" height="20" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
-                </InputGroupAddon>
-                </InputGroup>
               </NavItem>
               <NavItem>
                 <CardWriteView/>
@@ -100,22 +116,8 @@ export class Navigator extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <Select
-          name="form-field-name"
-          ref={(ref) => { this.select = ref; }}
-          value={this.state.selectedOption}
-          onBlurResetsInput={false}
-          onSelectResetsInput={false}
-          onChange={this.handleChange}
-          onInputChange={this.handleInputChange}
-          options={
-            _.map(this.props.users, (users)=> {
-              return {'value': `${users.userEmail}`, 'label': `userEmail: ${users.userEmail}`}
-            })
-          }
-        />
-        <Button className="btt11" color="white" onClick={()=>this.search(this.state.search)}><img width="20" height="20" src={require('../../assets/images/magnifying-glass.png')} alt="Card image cap" /></Button>
       </Container>
+      </div>
     )
   }
 }
