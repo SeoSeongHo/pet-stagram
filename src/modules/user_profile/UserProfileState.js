@@ -79,7 +79,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
         ...state,
         userBirthDay: action.payload.userBirthDay,
         userProfileImage: action.payload.userProfileImage,
-        userEmail: action.payload.userEmail,
+        userEmail: action.payload.email,
         introduceText: action.payload.introduceText,
         pets: action.payload.pets,
         totalPost: action.payload.totalPost,

@@ -26,7 +26,7 @@ function* requestGetMemo({ }: {}) {
 
 function* requestPostMemo({ created,text }: {created:any, text:string}) {
   const body = {
-    created,
+    date: created,
     text
   };
 

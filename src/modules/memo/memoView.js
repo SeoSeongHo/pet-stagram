@@ -39,7 +39,6 @@ class MemoView extends Component<Props, State> {
   onSubmitPressed(e) {
     e.preventDefault();
     this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>{this.setState({Text: ""}
-
     )
         this.props.getMemoRequest().catch((e)=>console.log(e));
     }
@@ -51,7 +50,7 @@ class MemoView extends Component<Props, State> {
   giveContent(date, view){
     var count=0;
     this.props.Memo.map((listValue,index)=> {
-      var date2 = new Date(listValue.created);
+      var date2 = new Date(listValue.date);
       view === 'month' && date.getMonth()===date2.getMonth() && date.getDate()===date2.getDate() &&
       date.getYear()===date2.getYear() ? count++: null
     })
@@ -63,7 +62,7 @@ class MemoView extends Component<Props, State> {
       <Moment format=" h시MM분 ">
         {listValue.date}
       </Moment>
-      <p>{listValue.Text}</p>
+      <p>{listValue.text}</p>
     <hr/>
     </div>
     )
@@ -78,7 +77,7 @@ class MemoView extends Component<Props, State> {
       />
     {
       _.filter(this.props.Memo,(listValue)=>{
-        var date = new Date(listValue.created);
+        var date = new Date(listValue.date);
         return(
           this.state.date.getMonth()===date.getMonth() && this.state.date.getDate()===date.getDate() &&
           this.state.date.getYear()===date.getYear())
