@@ -247,6 +247,7 @@ class CardDetailView extends Component<Props, State> {
             <Moment format="YYYY/MM/DD">
               {this.props.created}
             </Moment>
+            <Button className="btt15" onClick={this.closeModal} color="white"><img width="15" height="15" src={require('../../assets/images/multiply.png')} alt="Card image cap" /></Button>
             <div>
               <span className="span1">  오늘도 멍뭉이와 함께... 산책... 또르르...  </span><br></br><br></br>
               <span> 저번에 같이 왔을 때는 신나게 놀던데 너무 뛰어 놀았는지 오늘은 얌전하네요</span><br></br>
