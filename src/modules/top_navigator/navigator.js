@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Storage, { KEYS } from '../../utils/petStagramStorage'
 import {
   Row, Col, Input, Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Button, InputGroupAddon
@@ -58,10 +59,8 @@ export class Navigator extends React.Component {
   }
 
   search(query) {
-    this.props.getUserFilterRequest(query.query).then(()=> {
-      this.props.filterUser &&
-      this.props.history.push({pathname: '/search/', search: qs.stringify(query)});
-    }).catch((e)=>console.log(e))
+    console.log(query.query,"query");
+      this.props.history.push({pathname: '/search', search: qs.stringify(query)});
   }
   render() {
     return (
@@ -109,9 +108,9 @@ export class Navigator extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/userProfile/">
+                  <Button className="btt11" color="white" onClick={()=>this.search({query: Storage.get(KEYS.userEmail)})}>
                   <img width="20" height="20" src={require('../../assets/images/man-user.png')} alt="Card image cap" />
-                </NavLink>
+                  </Button>
               </NavItem>
             </Nav>
           </Collapse>
