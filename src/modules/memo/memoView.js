@@ -36,12 +36,14 @@ class MemoView extends Component<Props, State> {
   componentWillMount(){
     this.props.getMemoRequest().catch((e)=>console.log(e));
   }
-  componentWillReceiveProps(nextProps){
-    this.props.getMemoRequest().catch((e)=>console.log(e));
-  }
   onSubmitPressed(e) {
     e.preventDefault();
-    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>this.setState({Text: ""})).catch((e)=>console.log(e));
+    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>{this.setState({Text: ""}
+
+    )
+        this.props.getMemoRequest().catch((e)=>console.log(e));
+    }
+    ).catch((e)=>console.log(e));
   }
   onChange(date){
     this.setState({date},()=>console.log(this.state.date))
