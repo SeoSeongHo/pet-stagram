@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react'
 import { Input, Alert, Button, Container, Row, Col, Card, CardText, Table,} from 'reactstrap'
+import { CardImg, CardBody,
+  CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
 import autoBind from 'react-autobind'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
@@ -112,11 +114,21 @@ class UserProfileView extends Component<Props, State> {
     let img
     let i = 0;
     // Outer loop to create parent
-    {this.props.cards.map((listValue,index)=> {
-        listValue.map((picture,index)=>{ table.concat(<div><img src={picture} onClick={() =>{
-          this.props.history.push(`/cardDetail/${listValue.Id}`)}}/>  <span>{listValue.title}</span></div>)
+    {this.props.pets.map((pet,index)=>{pet.cards.map((listValue,index)=> {
+        table.concat(
+            <Card className="card2" body outline color="#ffe4a8" key={index}>
+              <CardBody>
+                <CardTitle>{listValue.title}</CardTitle>
+                <CardSubtitle>Card subtitle</CardSubtitle>
+              </CardBody>
+              <img width="100%" src={listValue.pictures[0]} alt="Card image cap" />
+              <CardBody>
+                <CardText>{listValue.text}</CardText>
+                <CardDetailView card_id={listValue.id}/>
+              </CardBody>
+            </Card>)
         })
-    })}
+   })}
     return table
   }
   onDrop(event) {
@@ -142,12 +154,12 @@ class UserProfileView extends Component<Props, State> {
   }
   renderNormal(){
     return (
-      <Column>
+      <Col>
         <img src={this.props.userProfileImage}/>
         <span> {this.props.introduceText}</span>
         <span> {this.props.userBirthDay}</span>
       <Button onClick={() => this.toggleEdit()}> Edit </Button>
-      </Column>
+      </Col>
         )
   }
   toggleEdit(){
@@ -158,7 +170,7 @@ class UserProfileView extends Component<Props, State> {
   }
   renderForm(){
     return(
-      <Column>
+      <Col>
         <input ref="file"
                type="file"
                name="user[image]"
@@ -176,7 +188,7 @@ class UserProfileView extends Component<Props, State> {
         />
         <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
       <Button onClick={() => this.toggleEdit()}> Save </Button>
-</Column>
+</Col>
         )
         }
   introduceEditForm() {
