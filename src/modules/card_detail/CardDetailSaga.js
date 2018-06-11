@@ -129,10 +129,11 @@ function* requestPostLike({cardId}: { cardId: string }) {
 
 function* requestPostComment({cardId, comment}: { cardId: string }) {
   const body = {
+    cardId,
     comment
   }
   try {
-    const token = yield api.post(`${API_ROOT}/card/${cardId}`, body, {
+    const token = yield api.post(`${API_ROOT}/comment/`, body, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ const { API_ROOT } = Constants
 
 function* requestGetCard({query}) {
   try {
-    const token = yield api.get(`${API_ROOT}/card/${query}`
+    const token = yield api.get(`${API_ROOT}/card${query}`
     )
     if (response) {
       yield put(SearchActions.getCardListSuccess(token))
@@ -19,6 +19,20 @@ function* requestGetCard({query}) {
     yield put(SearchActions.getCardListFailure(e))
   }
 }
+
+function* requestGetUser({query}) {
+  try {
+    const token = yield api.get(`${API_ROOT}/userFilter${query}`
+    )
+    if (response) {
+      console.log(response);
+      yield put(SearchActions.getUserListSuccess(token))
+    }
+  } catch (e) {
+    yield put(SearchActions.getUserListFailure(e))
+  }
+}
 export const SearchSaga = [
+  takeLatest(SearchTypes.GET_USER_LIST_REQUEST,requestGetUser),
   takeLatest(SearchTypes.GET_CARD_LIST_REQUEST, requestGetCard)
 ]

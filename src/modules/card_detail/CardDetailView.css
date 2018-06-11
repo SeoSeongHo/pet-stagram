@@ -1,5 +1,5 @@
 .di1{
-  margin:5px;
+  margin:10px;
 }
 
 .img1{
@@ -11,14 +11,19 @@
 }
 
 .row1{
-  margin:10px;
 }
 
 .row2{
-  margin-top: 250px;
+  margin-top: 150px;
   text-align: right;
 }
 
 .car1{
   margin-top: 20px;
+}
+
+.btt15{
+  border:none;
+  background-color:white;
+  margin-left:300px;
 }

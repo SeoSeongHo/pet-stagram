@@ -6,7 +6,6 @@ import Storage from '../../utils/petStagramStorage'
 import _ from 'lodash'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-import ImageUploader from 'react-images-upload';
 import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
 import Select from 'react-select'
 import Modal from "react-modal";
@@ -126,7 +125,7 @@ class CardWriteView extends Component<Props, State> {
     console.log(this.state.picturesURL,"picturesURL");
     return (
       <div className="di1">
-        <Button onClick={this.openModal} className="btt1" color="white"><img width="30" height="30" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>
+        <Button onClick={this.openModal} className="btt1" color="white"><img width="20" height="20" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -154,7 +153,7 @@ class CardWriteView extends Component<Props, State> {
                     <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="exampleText">Text Area</Label>
+                    <Label for="exampleText">Content</Label>
                     <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
                   </FormGroup>
                   <input ref="file"

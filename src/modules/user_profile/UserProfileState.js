@@ -27,6 +27,12 @@ const initialState = {
   userEmail: "psi97300000",
   introduceText: "자기를 소개해주세요~",
   pets: [],
+  filterUser:[{
+    userEmail: "psi0000@naver.com",
+    userName: "psi0000"
+  },
+    {userEmail:"psi1111@naver.com",userName:"psi1111"}
+  ],
   totalPost: 0,
   cards: [],
   userBirthDay: null,
@@ -45,13 +51,15 @@ export const { Types: UserProfileTypes, Creators: UserProfileActions } = createA
     unFollowRequest:['userEmail','followedName'],
     followCheckRequest:['followerName','followedName'],
     editIntroduceTextRequest:['userEmail','text'],
-    editUserProfileRequest:['text','userBirthDay','userProfileImage']
+    editUserProfileRequest:['text','userBirthDay','userProfileImage'],
+    getUserFilterRequest: ['userEmail'],
   })
 )
 
 // Reducer
 export default function UserProfileReducer(state: UserProfileState = initialState, action: Object = {}): UserProfileState {
   switch (action.type) {
+    case UserProfileTypes.GET_USER_FILTER_REQUEST:
     case UserProfileTypes.GET_USER_PROFILE_REQUEST:
     case UserProfileTypes.FOLLOW_REQUEST:
     case UserProfileTypes.UN_FOLLOW_REQUEST:
@@ -60,6 +68,11 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
       return {
         ...state,
         loading: true,
+      }
+    case UserProfileTypes.GET_USER_FILTER_SUCCESS:
+      return {
+        ...state,
+        filterUsers: action.payload
       }
     case UserProfileTypes.GET_USER_PROFILE_SUCCESS:
       return {
@@ -113,6 +126,11 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
       return {
         ...state,
         loading: false,
+      }
+    case UserProfileTypes.GET_USER_FILTER_FAILURE:
+      return {
+        ...state,
+        error:action.error,
       }
     case UserProfileTypes.FOLLOW_FAILURE:
       return {

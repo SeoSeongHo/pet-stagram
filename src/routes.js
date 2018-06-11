@@ -10,6 +10,7 @@ import PetProfileView  from './modules/pet_profile/PetProfileViewContainer'
 import CardDetailView from './modules/card_detail/CardDetailViewContainer'
 import SignUpView from 'modules/login/SignUpViewContainer'
 import SearchViewContainer from 'modules/search_page/SearchViewContainer'
+import MemoContainer from 'modules/memo/memoViewContainer'
 
 const routes = (
   <Router basename="/">
@@ -24,6 +25,7 @@ const routes = (
     <Route path="/cardDetail/:id" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>
     <Route path="/search" component={SearchViewContainer}/>
+      <Route path="/memo" component={MemoContainer}/>
     </switch>
   </Router>
 )

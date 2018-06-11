@@ -1,13 +1,15 @@
 // @flow
 import React, { Component } from 'react'
-import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
+import { Input, Alert, Button, Container, Row, Col, Card, CardText, Table,} from 'reactstrap'
 import autoBind from 'react-autobind'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
+import Navigator from '../top_navigator/navigator'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import moment from 'moment'
 import PropTypes from 'prop-types'
+import './UserProfile.css'
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -215,50 +217,117 @@ class UserProfileView extends Component<Props, State> {
       )
     } else{
       return (
-        <Container fluid>
-          <Row>
-            <Col>
-              <span> {this.props.totalPost}</span>
-              <span> 총 게시글</span>
+        <div>
+            <Navigator/>
+          <div className="cnt11">
+            <Container className="cnt12">
+              <div className="cnt12">
+          <Row className="row1">
+            <Col sm={{size:4}}>
+              <img width="200" height="200" src={this.props.userProfileImage}/>
             </Col>
-            <span> {this.props.totalFollower}</span>
-            <span> 총 팔로잉</span>
-            <Col>
-              <span> {this.props.totalFollowing}</span>
-              <span> 총 팔로워</span>
+            <Col sm="8">
+              <Table>
+                <thead>
+                <tr>
+                  <th>총 게시글</th>
+                  <th>총 팔로잉</th>
+                  <th>총 팔로워</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>{this.props.totalPost}</td>
+                  <td>{this.props.totalFollower}</td>
+                  <td>{this.props.totalFollowing}</td>
+                </tr>
+                </tbody>
+              </Table>
+              <div>
+                {this.props.userProfileName === Storage.get(KEYS.userEmail) ? (this.props.isFollow ?
+                  <Button onClick={() => this.unFollowRequest()}> 언팔로우 </Button> :
+                  <Button onClick={() => this.followRequest()}> 팔로우 </Button>) :
+                  null}
+                {this.props.userProfileName === Storage.get(KEYS.userEmail) ?
+                  <Button onClick={() => console.log("send message")}> 메세지보내기 </Button> :
+                  null}
+              </div>
             </Col>
           </Row>
           <Row>
-            {this.props.userProfileName === Storage.get(KEYS.userEmail) ? (this.props.isFollow ?
-              <Button onClick={() => this.unFollowRequest()}> 언팔로우 </Button> :
-              <Button onClick={() => this.followRequest()}> 팔로우 </Button>) :
-              null}
-            {this.props.userProfileName === Storage.get(KEYS.userEmail) ?
-              <Button onClick={() => console.log("send message")}> 메세지보내기 </Button> :
-              null}
-          </Row>
-          <Row>
             <Col>
-              <span> 유저 네임</span>
               <span> {this.props.userProfileName}</span>
-            </Col>
-            <Col>
-              <span> 소개글</span>
-              <span> {this.props.introduceText}</span>
+              <hr/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <img src={this.props.userProfileImage}/>
-            </Col>
-            <Col>
-              {this.renderPetProfileImage()}
-            </Col>
-            <Col>
-              {this.renderUserPicture()}
+              <h3>소개글</h3>
+              <span>{this.props.introduceText}</span>
+              <hr/>
             </Col>
           </Row>
-        </Container>
+          <Row>
+            <Col>
+              <img width="100" height="100" src={require('../../assets/images/logindog.jpg') }/>
+              <img width="100" height="100" src={require('../../assets/images/logindog2.jpg') }/>
+              <hr/>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <img width="100" height="100" src={require('../../assets/images/user.png') }/>
+              <img width="100" height="100" src={require('../../assets/images/user.png') }/>
+            </Col>
+          </Row>
+              </div>
+            </Container>
+          </div>
+        </div>
+        // <Container fluid>
+        //   <Row>
+        //     <Col>
+        //       <span> {this.props.totalPost}</span>
+        //       <span> 총 게시글</span>
+        //     </Col>
+        //     <span> {this.props.totalFollower}</span>
+        //     <span> 총 팔로잉</span>
+        //     <Col>
+        //       <span> {this.props.totalFollowing}</span>
+        //       <span> 총 팔로워</span>
+        //     </Col>
+        //   </Row>
+        //   <Row>
+        //     {this.props.userProfileName === Storage.get(KEYS.userEmail) ? (this.props.isFollow ?
+        //       <Button onClick={() => this.unFollowRequest()}> 언팔로우 </Button> :
+        //       <Button onClick={() => this.followRequest()}> 팔로우 </Button>) :
+        //       null}
+        //     {this.props.userProfileName === Storage.get(KEYS.userEmail) ?
+        //       <Button onClick={() => console.log("send message")}> 메세지보내기 </Button> :
+        //       null}
+        //   </Row>
+        //   <Row>
+        //     <Col>
+        //       <span> 유저 네임</span>
+        //       <span> {this.props.userProfileName}</span>
+        //     </Col>
+        //     <Col>
+        //       <span> 소개글</span>
+        //       <span> {this.props.introduceText}</span>
+        //     </Col>
+        //   </Row>
+        //   <Row>
+        //     <Col>
+        //       <img src={this.props.userProfileImage}/>
+        //     </Col>
+        //     <Col>
+        //       {this.renderPetProfileImage()}
+        //     </Col>
+        //     <Col>
+        //       {this.renderUserPicture()}
+        //     </Col>
+        //   </Row>
+        // </Container>
       )
     }
   }
