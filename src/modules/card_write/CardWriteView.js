@@ -153,7 +153,7 @@ class CardWriteView extends Component<Props, State> {
                     <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="exampleText">Text Area</Label>
+                    <Label for="exampleText">Content</Label>
                     <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
                   </FormGroup>
                   <input ref="file"
