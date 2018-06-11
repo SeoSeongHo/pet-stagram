@@ -36,11 +36,14 @@ class MemoView extends Component<Props, State> {
   componentWillMount(){
     this.props.getMemoRequest().catch((e)=>console.log(e));
   }
-  componentWillReceiveProps(nextProps){
-    this.props.getMemoRequest().catch((e)=>console.log(e));
-  }
-  onSubmitPressed() {
-    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>this.setState({Text: ""})).catch((e)=>console.log(e));
+  onSubmitPressed(e) {
+    e.preventDefault();
+    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>{this.setState({Text: ""}
+
+    )
+        this.props.getMemoRequest().catch((e)=>console.log(e));
+    }
+    ).catch((e)=>console.log(e));
   }
   onChange(date){
     this.setState({date},()=>console.log(this.state.date))
@@ -57,7 +60,7 @@ class MemoView extends Component<Props, State> {
   showMemo(listValue,index){
     return(
     <div key={index}>
-      <Moment format="YYYY/MM/DD">
+      <Moment format=" h시MM분 ">
         {listValue.date}
       </Moment>
       <p>{listValue.Text}</p>
@@ -85,12 +88,12 @@ class MemoView extends Component<Props, State> {
         )
     })
     }
-      <Form  onClick={()=> this.onSubmitPressed()}>
+      <Form  onSubmit={(e)=>this.onSubmitPressed(e)}>
         <FormGroup>
           <br/>
           <Input placeholder="write memo" type="textarea" name="text" id="Text" value={this.state.Text} onChange={(e)=>this.setState({Text:e.target.value})}/>
         </FormGroup>
-        <Button onClick={() => this.onSubmitPressed()}>Enter Memo</Button>
+        <Button type="submit">Enter Memo</Button>
       </Form>
     </div>)
   }

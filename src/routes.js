@@ -17,14 +17,19 @@ const routes = (
     <switch>
     <Route path="/login" component={loginView}/>
     <Route path="/homePage" component={CardView}/>
+      <Route exact path="/" component={loginView}/>
+      <switch>
     <Route exact path="/userProfile/:userEmail" component={UserProfileView}/>
     <Route exact path="/userProfile/" component={UserProfileView}/>
+      </switch>
+      <switch>
       <Route exact path="/petProfile/:id" component={PetProfileView}/>
       <Route exact path="/petProfile/" component={PetProfileView}/>
+      </switch>
     <Route path="/cardWrite" component={CardWriteView}/>
     <Route path="/cardDetail/:id" component={CardDetailView}/>
     <Route path="/signUp" component={SignUpView}/>
-    <Route path="/search" component={SearchViewContainer}/>
+    <Route path="/search" component={UserProfileView}/>
       <Route path="/memo" component={MemoContainer}/>
     </switch>
   </Router>

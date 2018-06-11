@@ -4,12 +4,14 @@ import { Input, Alert, Button, Container, Row, Col, Card, CardText, Table,} from
 import autoBind from 'react-autobind'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
-import Navigator from '../top_navigator/navigator'
+import Navigator from '../top_navigator/navigatorContainer'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import './UserProfile.css'
+import qs from "qs";
+import queryString from "query-string";
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -63,7 +65,37 @@ class UserProfileView extends Component<Props, State> {
     picture:"",
     pictureURL:"",
   };
-
+  componentWillMount() {
+    const search = qs.parse(this.props.location.search.replace('?', ''));
+    try {
+      console.log(queryString.parse(search),"query");
+        this.props.getUserProfileRequest( search.query).then(()=> {
+          this.setState({getUser: true})
+          this.setState({introduceText: this.props.introduceText});
+          this.setState({userProfileImage: this.props.userProfileImage});
+          this.setState({userBirthDay: this.props.userBirthDay});
+          this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
+        }).catch
+        ((e) => console.log(e))
+    }
+    catch
+      (e) {
+      console.log(e);
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+          const search = qs.parse(this.props.location.search.replace('?', ''));
+          if(nextProps.location.search !== this.props.location.search) {
+          this.props.getUserProfileRequest(queryString.parse(search).query).then(() => {
+            this.setState({getUser: true})
+            this.setState({introduceText: this.props.introduceText});
+            this.setState({userProfileImage: this.props.userProfileImage});
+            this.setState({userBirthDay: this.props.userBirthDay});
+            this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
+          }).catch
+          ((e) => console.log(e))
+          }
+  }
   renderPetProfileImage = () => {
     let table = []
     let img
@@ -154,28 +186,7 @@ class UserProfileView extends Component<Props, State> {
   return this.renderNormal()
 }
 }
-  componentWillUpdate(){
-    this.setState({introduceText: this.props.introduceText});
-    this.setState({userProfileImage: this.props.userProfileImage});
-    this.setState({userBirthDay: this.props.userBirthDay});
-  }
-  componentWillMount() {
-    try {
-      /*
-      this.props.getUserProfileRequest(this.props.match.url.userEmail).then(() => {
-        this.setState({getUser: true})
-        this.setState({introduceText: this.props.introduceText});
-        this.setState({userProfileImage: this.props.userProfileImage});
-        this.setState({userBirthDay: this.props.userBirthDay});
-        this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
-      }).catch((e) =>
-        console.log(e));
-        */
-    }
-    catch (e) {
-      console.log(e);
-    }
-  }
+
 
   render() {
     if (!this.state.getUser) {
