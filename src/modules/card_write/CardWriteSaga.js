@@ -25,8 +25,7 @@ function* requestGetPet({ username }: {username: string}) {
 
 function* requestPostCard({ pets,pictures,title,text }: {pets:Array, pictures:Array, title:string, text:string}) {
   const body = {
-    pets,
-    pictures,
+    pet_id:pets,
     title,
     text
   };

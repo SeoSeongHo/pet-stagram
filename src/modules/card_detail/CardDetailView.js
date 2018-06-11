@@ -95,10 +95,8 @@ class CardDetailView extends Component<Props, State> {
   }
 
   componentWillMount(){
-    /*
     this.props.getCardRequest(this.props.cardId).then(()=>this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e)))
       .catch(e=>{console.log(e)});
-  */
   }
   onClickComment(){
     this.props.postCommentRequest(this.props.cardId, this.state.comment).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e)))

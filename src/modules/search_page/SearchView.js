@@ -5,7 +5,7 @@ import Navigator from "../top_navigator/navigatorContainer";
 import autoBind from 'react-autobind'
 import qs from "qs";
 import { withRouter } from "react-router-dom"
-
+import queryString from "query-string"
 type Props = {
   cards: any,
   getCardListRequest: Function,
@@ -37,8 +37,10 @@ export class SearchView extends Component<Props, State>  {
 
   componentWillMount() {
     const search = this.props.location.search
-    this.props.getCardListRequest(search).then(()=>this.props.getUserListRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e));
-  }
+    console.log(_.get(queryString.parse(this.props.location.search), ['query']));
+    console.log(_.get(queryString.parse(this.props.location.search), ['query']));
+  this.props.getCardListRequest(search).then(()=>this.props.getUserListRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e));
+}
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.search !== this.props.location.search) {
