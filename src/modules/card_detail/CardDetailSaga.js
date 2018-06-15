@@ -129,8 +129,9 @@ function* requestPostLike({cardId}: { cardId: string }) {
 
 function* requestPostComment({cardId, comment}: { cardId: string }) {
   const body = {
-    cardId,
-    comment
+    card_id:cardId,
+    comment,
+    user_email: Storage.get(KEYS.userEmail)
   }
   try {
     const token = yield api.post(`${API_ROOT}/comment/`, body, {

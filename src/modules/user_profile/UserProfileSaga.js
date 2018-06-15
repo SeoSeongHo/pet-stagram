@@ -115,7 +115,7 @@ function* requestFollowCheck({ followerName, followedName }: {followerName: stri
   };
 
   try {
-    const token = yield api.get(`${API_ROOT}/user?user1=${followerName}&user2=${followedName}`, body,{
+    const token = yield api.get(`${API_ROOT}/user?userEmail=${followerName}&userEmail2=${followedName}`, body,{
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

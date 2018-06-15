@@ -36,11 +36,13 @@ class MemoView extends Component<Props, State> {
   componentWillMount(){
     this.props.getMemoRequest().catch((e)=>console.log(e));
   }
-  componentWillReceiveProps(nextProps){
-    this.props.getMemoRequest().catch((e)=>console.log(e));
-  }
-  onSubmitPressed() {
-    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>this.setState({Text: ""})).catch((e)=>console.log(e));
+  onSubmitPressed(e) {
+    e.preventDefault();
+    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>{this.setState({Text: ""}
+    )
+        this.props.getMemoRequest().catch((e)=>console.log(e));
+    }
+    ).catch((e)=>console.log(e));
   }
   onChange(date){
     this.setState({date},()=>console.log(this.state.date))
@@ -48,7 +50,7 @@ class MemoView extends Component<Props, State> {
   giveContent(date, view){
     var count=0;
     this.props.Memo.map((listValue,index)=> {
-      var date2 = new Date(listValue.created);
+      var date2 = new Date(listValue.date);
       view === 'month' && date.getMonth()===date2.getMonth() && date.getDate()===date2.getDate() &&
       date.getYear()===date2.getYear() ? count++: null
     })
@@ -57,10 +59,7 @@ class MemoView extends Component<Props, State> {
   showMemo(listValue,index){
     return(
     <div key={index}>
-      <Moment format="YYYY/MM/DD">
-        {listValue.date}
-      </Moment>
-      <p>{listValue.Text}</p>
+      <p>{listValue.text}</p>
     <hr/>
     </div>
     )
@@ -75,7 +74,7 @@ class MemoView extends Component<Props, State> {
       />
     {
       _.filter(this.props.Memo,(listValue)=>{
-        var date = new Date(listValue.created);
+        var date = new Date(listValue.date);
         return(
           this.state.date.getMonth()===date.getMonth() && this.state.date.getDate()===date.getDate() &&
           this.state.date.getYear()===date.getYear())
@@ -85,12 +84,12 @@ class MemoView extends Component<Props, State> {
         )
     })
     }
-      <Form  onClick={()=> this.onSubmitPressed()}>
+      <Form  onSubmit={(e)=>this.onSubmitPressed(e)}>
         <FormGroup>
           <br/>
           <Input placeholder="write memo" type="textarea" name="text" id="Text" value={this.state.Text} onChange={(e)=>this.setState({Text:e.target.value})}/>
         </FormGroup>
-        <Button onClick={() => this.onSubmitPressed()}>Enter Memo</Button>
+        <Button type="submit">Enter Memo</Button>
       </Form>
     </div>)
   }

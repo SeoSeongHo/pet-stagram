@@ -72,14 +72,14 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
     case UserProfileTypes.GET_USER_FILTER_SUCCESS:
       return {
         ...state,
-        filterUsers: action.payload
+        filterUser: action.payload.result
       }
     case UserProfileTypes.GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
         userBirthDay: action.payload.userBirthDay,
         userProfileImage: action.payload.userProfileImage,
-        userEmail: action.payload.userEmail,
+        userEmail: action.payload.email,
         introduceText: action.payload.introduceText,
         pets: action.payload.pets,
         totalPost: action.payload.totalPost,

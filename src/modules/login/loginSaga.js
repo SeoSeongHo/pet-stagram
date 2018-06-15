@@ -23,6 +23,7 @@ function* requestLogin({ userEmail, password }: {userEmail: string, password: st
       console.log(token,"token")
       console.log(token.token,"token2");
       yield setAuthenticationToken(token,userEmail,password);
+      console.log(Storage.get(KEYS.accessToken),"access")
       yield put(LoginActions.loginSuccess(token));
     }
   } catch (e) {

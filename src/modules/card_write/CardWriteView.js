@@ -58,7 +58,6 @@ class CardWriteView extends Component<Props, State> {
   }
 
   onDrop(event) {
-    console.log("on Drop");
     if(this.state.pictures.length>2){
       return null;
     }
@@ -78,11 +77,9 @@ class CardWriteView extends Component<Props, State> {
       this.setState({pets: [...event.target.selectedOptions].map(o => o.value)});
   }
   onSubmitPressed(){
-    console.log("press submit");
     this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text).catch((e)=>console.log(e))
   }
   titleChange(e){
-    console.log("titleChange",e.target.value);
     this.setState({title: e.target.value})
   }
   textChange(e){
@@ -100,7 +97,6 @@ class CardWriteView extends Component<Props, State> {
   deletePicture(index){
    // let index = this.getIndex(e.target.src, this.state.picturesURL);
     // remove the todo with the ID of id, but only if we have it to begin with
-    console.log("deletePicture",index);
     var array = [...this.state.pictures]; // make a separate copy of the array
     array.splice(index, 1);
     var array2= [...this.state.picturesURL];
@@ -121,8 +117,6 @@ class CardWriteView extends Component<Props, State> {
   }
 
   render() {
-    console.log(this.state.pictures,"pictures");
-    console.log(this.state.picturesURL,"picturesURL");
     return (
       <div className="di1">
         <Button onClick={this.openModal} className="btt1" color="white"><img width="20" height="20" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>

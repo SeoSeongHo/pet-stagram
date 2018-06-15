@@ -4,6 +4,7 @@ import merge from 'lodash/merge'
 import { apiUrl } from 'config'
 import {KEYS} from "../petStagramStorage";
 import Storage from "../petStagramStorage";
+import fetchJsonp from 'fetch-jsonp';
 
 export const checkStatus = (response) => {
   if (response.ok) {

@@ -7,6 +7,7 @@ import Constants from '../../constants/constants'
 const { API_ROOT } = Constants;
 function* requestGetMemo({ }: {}) {
   try {
+    console.log(Storage.get(KEYS.accessToken),"accessMemo")
     const token = yield api.get(`${API_ROOT}/memo/`, {
       headers: {
         Accept: 'application/json',
@@ -25,11 +26,12 @@ function* requestGetMemo({ }: {}) {
 
 function* requestPostMemo({ created,text }: {created:any, text:string}) {
   const body = {
-    created,
+    date: created,
     text
   };
 
   try {
+    console.log(Storage.get(KEYS.accessToken),"access")
     const token = yield api.post(`${API_ROOT}/memo/`, body,{
       headers: {
         Accept: 'application/json',
