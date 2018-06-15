@@ -4,6 +4,7 @@ import {
   Row, Col, Input, Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Button, InputGroupAddon
 } from 'reactstrap'
+import autoBind from 'react-autobind'
 import './navigator.css'
 import Select from 'react-select'
 import CardWriteView from '../card_write/CardWriteViewContainer'
@@ -20,6 +21,8 @@ export class Navigator extends React.Component {
       },
       selectedOption: '',
     }
+
+    autoBind(this);
   }
 
   componentWillMount() {
@@ -53,6 +56,10 @@ export class Navigator extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen,
     })
+  }
+
+  onLogoutPressed(){
+    window.confirm("로그아웃 하시겠습니까?")
   }
 
   search(query) {
@@ -108,6 +115,11 @@ export class Navigator extends React.Component {
                   <Button className="btt11" color="white" onClick={()=>this.search({query: Storage.get(KEYS.userEmail)})}>
                   <img width="20" height="20" src={require('../../assets/images/man-user.png')} alt="Card image cap" />
                   </Button>
+              </NavItem>
+              <NavItem>
+                <Button className="btt12" color="white" onClick={this.onLogoutPressed}>
+                  <img width="25" height="25" src={require('../../assets/images/logout.png')} alt="Card image cap" />
+                </Button>
               </NavItem>
             </Nav>
           </Collapse>
