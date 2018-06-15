@@ -23,20 +23,17 @@ export class Navigator extends React.Component {
   }
 
   componentWillMount() {
-    const search = qs.parse(this.props.location.search.replace('?', ''));
-    this.setState({search});
+    this.props.getUserFilterRequest("").then(()=> {console.log(this.props.users,"users")
+      }
+    ).catch((e)=>console.log(e))
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location.search !== this.props.location.search) {
-      const search = qs.parse(nextProps.location.search.replace('?', ''));
-      this.setState({search});
-    }
   }
 
   handleChange = (selectedOption) => {
      if(selectedOption.label!==undefined || selectedOption.value!==undefined) {
-       this.setState({selectedOption: selectedOption},console.log(this.state));
+       this.setState({selectedOption: selectedOption},console.log(this.state),"thisState");
        this.setState({search: {query: selectedOption.value}},()=> this.props.history.push({pathname: '/search/', search: qs.stringify(this.state.search)}));
      }
      // selectedOption can be null when the `x` (close) button is clicked
@@ -91,7 +88,7 @@ export class Navigator extends React.Component {
                     onInputChange={this.handleInputChange}
                     options={
                       _.map(this.props.users, (users)=> {
-                        return {'value': `${users.userEmail}`, 'label': `userEmail: ${users.userEmail}`}
+                        return {'value': `${users}`, 'label': `userEmail: ${users}`}
                       })
                     }
                   />

@@ -72,7 +72,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
     case UserProfileTypes.GET_USER_FILTER_SUCCESS:
       return {
         ...state,
-        filterUsers: action.payload
+        filterUser: action.payload.result
       }
     case UserProfileTypes.GET_USER_PROFILE_SUCCESS:
       return {
