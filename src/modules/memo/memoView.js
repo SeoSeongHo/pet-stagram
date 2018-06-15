@@ -59,11 +59,19 @@ class MemoView extends Component<Props, State> {
   showMemo(listValue,index){
     return(
     <div key={index}>
-      <p>{listValue.text}</p>
+      <Row>
+      <p className="p1">{listValue.text}</p>
+      <Button className="btt14" color="white" onClick={this.onDeletePressed}><img width="7" height="7" src={require('../../assets/images/letter-x.png')} alt="Card image cap" /></Button>
+      </Row>
     <hr/>
     </div>
     )
   }
+
+  onDeletePressed(){
+
+  }
+
   render() {
     return(
     <div style={{display:"inline-block"}} className="memo1">

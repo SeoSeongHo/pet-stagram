@@ -16,3 +16,8 @@
   width:80%;
   margin:auto;
 }
+
+.btt13{
+  display:flex;
+  justify-content:flex-end;
+}

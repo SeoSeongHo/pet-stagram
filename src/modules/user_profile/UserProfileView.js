@@ -199,44 +199,107 @@ class UserProfileView extends Component<Props, State> {
 }
 }
 
+onEditPressed(){
+
+}
+
 
   render() {
     if (!this.state.getUser) {
       return <div> there is no User on Username {this.props.match.params.userEmail}</div>
     } else if (this.props.userProfileName === Storage.get(KEYS.userEmail)) {
       return (
-        <Container fluid>
-          <Row>
-            <Col>
-              <span> {this.props.totalPost}</span>
-              <span> 총 게시글</span>
-            </Col>
-            <span> {this.props.totalFollower}</span>
-            <span> 총 팔로잉</span>
-            <Col>
-              <span> {this.props.totalFollowing}</span>
-              <span> 총 팔로워</span>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span> 나의 이름</span>
-              <span> {this.props.userProfileName}</span>
-            </Col>
-            <Col>
-              <span> 소개글</span>
-              {this.introduceEditForm()}
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              {this.renderPetProfileImage()}
-            </Col>
-            <Col>
-              {this.renderUserPicture()}
-            </Col>
-          </Row>
-        </Container>
+        <div>
+          <Navigator/>
+          <div className="cnt11">
+            <Container className="cnt12">
+              <div className="cnt12">
+                <Row className="row1">
+                  <Col sm={{size:4}}>
+                    <img width="200" height="200" src={this.props.userProfileImage}/>
+                  </Col>
+                  <Col sm="8">
+                    <Table>
+                      <thead>
+                      <tr>
+                        <th>총 게시글</th>
+                        <th>총 팔로잉</th>
+                        <th>총 팔로워</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td>{this.props.totalPost}</td>
+                        <td>{this.props.totalFollower}</td>
+                        <td>{this.props.totalFollowing}</td>
+                      </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <span> {this.props.userProfileName}</span>
+                    <hr/>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <h3>소개글</h3>
+                    <span>{this.introduceEditForm}</span>
+                    <hr/>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    {this.renderPetProfileImage}
+                    <hr/>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    {this.renderUserPicture}
+                  </Col>
+                </Row>
+                <Row className="btt13">
+                  <Button onClick={this.onEditPressed}>수정</Button>
+                </Row>
+              </div>
+            </Container>
+          </div>
+        </div>
+        // <Container fluid>
+        //   <Row>
+        //     <Col>
+        //       <span> {this.props.totalPost}</span>
+        //       <span> 총 게시글</span>
+        //     </Col>
+        //     <span> {this.props.totalFollower}</span>
+        //     <span> 총 팔로잉</span>
+        //     <Col>
+        //       <span> {this.props.totalFollowing}</span>
+        //       <span> 총 팔로워</span>
+        //     </Col>
+        //   </Row>
+        //   <Row>
+        //     <Col>
+        //       <span> 나의 이름</span>
+        //       <span> {this.props.userProfileName}</span>
+        //     </Col>
+        //     <Col>
+        //       <span> 소개글</span>
+        //       {this.introduceEditForm()}
+        //     </Col>
+        //   </Row>
+        //   <Row>
+        //     <Col>
+        //       {this.renderPetProfileImage()}
+        //     </Col>
+        //     <Col>
+        //       {this.renderUserPicture()}
+        //     </Col>
+        //   </Row>
+        // </Container>
       )
     } else{
       return (
