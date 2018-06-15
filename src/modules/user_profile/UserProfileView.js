@@ -76,7 +76,7 @@ class UserProfileView extends Component<Props, State> {
           this.setState({introduceText: this.props.introduceText});
           this.setState({userProfileImage: this.props.userProfileImage});
           this.setState({userBirthDay: this.props.userBirthDay});
-          this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
+          this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName).catch((e)=>console.log(e))
         }).catch
         ((e) => console.log(e))
     }
@@ -93,7 +93,7 @@ class UserProfileView extends Component<Props, State> {
             this.setState({introduceText: this.props.introduceText});
             this.setState({userProfileImage: this.props.userProfileImage});
             this.setState({userBirthDay: this.props.userBirthDay});
-            this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName);
+            this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName).catch((e)=>console.log(e))
           }).catch
           ((e) => console.log(e))
           }

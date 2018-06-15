@@ -59,9 +59,6 @@ class MemoView extends Component<Props, State> {
   showMemo(listValue,index){
     return(
     <div key={index}>
-      <Moment format=" h시MM분 ">
-        {listValue.date}
-      </Moment>
       <p>{listValue.text}</p>
     <hr/>
     </div>

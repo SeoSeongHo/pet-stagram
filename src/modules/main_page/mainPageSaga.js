@@ -12,7 +12,7 @@ function* requestGetCard() {
   try {
     const token = yield api.get(`${API_ROOT}/card/`,
     )
-    if (response) {
+    if (token) {
       yield put(MainPageActions.getCardAllSuccess(token))
     }
   } catch (e) {
