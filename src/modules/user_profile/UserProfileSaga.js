@@ -43,22 +43,21 @@ function* requestGetUserProfile({ userEmail }: {userEmail: string}) {
   }
 
 function* requestEditIntroduce({ text, userBirthDay, userProfileImage }: {text:string, userBirthDay: any, userProfileImage: any}) {
-  const body={
+  const formData = new FormData();
+  const data = {
     introduceText:text,
     userBirthDay,
     userProfileImage
   };
+  for(const key in data){
+    formData.append(key,data[key])
+  }
   try {
-    const token = yield api.put(`${API_ROOT}/user`,body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.put(`${API_ROOT}/user`,formData, { isFormData: true }
     );
     if (token) {
       console.log(token)
-      yield put(UserProfileActions.editUserProfileSuccess(body))
+      yield put(UserProfileActions.editUserProfileSuccess(token))
     }
   } catch (e) {
     yield put(UserProfileActions.editUserProfileFailure(e))

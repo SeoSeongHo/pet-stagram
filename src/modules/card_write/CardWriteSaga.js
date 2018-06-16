@@ -24,19 +24,18 @@ function* requestGetPet({ username }: {username: string}) {
 }
 
 function* requestPostCard({ pets,pictures,title,text }: {pets:Array, pictures:Array, title:string, text:string}) {
-  const body = {
+  const formData = new FormData();
+  const data = {
     pet_id:pets,
     title,
-    text
+    text,
+    pictures
   };
-
+  for(const key in data){
+    formData.append(key,data[key])
+  }
   try {
-    const token = yield api.post(`${API_ROOT}/card/`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.post(`${API_ROOT}/card/`, formData, { isFormData: true }
     );
     if (token) {
       yield put(CardWriteActions.postCardSuccess(token))

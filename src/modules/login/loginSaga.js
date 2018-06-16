@@ -35,16 +35,16 @@ function* requestSignup({ email, password,
                           username,userProfileImage,userBirthDay,petName, petProfileImage,petBirthDay }
                           : {email:string, password:string,
   username:string,userProfileImage:any,userBirthDay:any,petName:string, petProfileImage:any,petBirthDay:string }) {
-  const body = {
+  const formData = new FormData();
+  const data = {
     email:email, password,
-    username,userBirthDay,petName, petBirthDay
+    username,userBirthDay,petName, petBirthDay,userProfileImage,petProfileImage
+  };
+  for(const key in data){
+    formData.append(key,data[key])
   }
   try {
-    yield api.post(`${API_ROOT}/register/`,body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }}
+    yield api.post(`${API_ROOT}/register/`,formData, { isFormData: true }
     );
     yield put(LoginActions.signUpSuccess());
     /*
