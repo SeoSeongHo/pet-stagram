@@ -105,7 +105,7 @@ class CardWriteView extends Component<Props, State> {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({modalIcsOpen: true});
   }
 
   afterOpenModal() {
