@@ -46,7 +46,7 @@ export const { Types: UserProfileTypes, Creators: UserProfileActions } = createA
     unFollowRequest:['userEmail','followedName'],
     followCheckRequest:['followerName','followedName'],
     editIntroduceTextRequest:['userEmail','text'],
-    editUserProfileRequest:['text','userBirthDay','userProfileImage'],
+    editUserProfileRequest:['username','text','userBirthDay','userProfileImage'],
     getUserFilterRequest: ['userEmail'],
   })
 )
@@ -81,6 +81,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
         cards: action.payload.cards,
         totalFollowing: action.payload.totalFollowing,
         totalFollower: action.payload.totalFollowed,
+        username: action.payload.username,
         loading: false,
       };
     case UserProfileTypes.EDIT_USER_PROFILE_SUCCESS:

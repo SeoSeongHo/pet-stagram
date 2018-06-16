@@ -15,6 +15,7 @@ export default connect(
     pets: _.get(state,['user', 'pets']),
     cards:_.get(state,['user','cards']),
     totalPost: _.get(state,['user','totalPost']),
+    username: _.get(state,['user','username']),
     totalFollowing: _.get(state,['user','totalFollowing']),
     totalFollower: _.get(state,['user','totalFollower']),
     loading: _.get(state, ['user', 'loading']),

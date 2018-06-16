@@ -42,18 +42,22 @@ function* requestGetUserProfile({ userEmail }: {userEmail: string}) {
     }
   }
 
-function* requestEditIntroduce({ text, userBirthDay, userProfileImage }: {text:string, userBirthDay: any, userProfileImage: any}) {
+function* requestEditIntroduce({ username,text, userBirthDay, userProfileImage }: {username:string, text:string, userBirthDay: any, userProfileImage: any}) {
   const formData = new FormData();
   const data = {
+    username,
     introduceText:text,
     userBirthDay,
     userProfileImage
   };
   for(const key in data){
+    console.log(key,'key');
+    console.log(data[key],'data[key]');
     formData.append(key,data[key])
   }
+  console.log(formData,"formData");
   try {
-    const token = yield api.put(`${API_ROOT}/user`,formData, { isFormData: true }
+    const token = yield api.put(`${API_ROOT}/user/${Storage.get(KEYS.userEmail)}`,formData, { isFormData: true }
     );
     if (token) {
       console.log(token)

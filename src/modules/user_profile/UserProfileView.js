@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { Input, Alert, Button, Container, Row, Col, Card, CardText, Table,} from 'reactstrap'
-import { CardImg, CardBody,
+import { CardImg, CardBody,FormGroup,Label, Form,
   CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
 import autoBind from 'react-autobind'
 import DateTime from 'react-datetime'
@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import './UserProfile.css'
 import qs from "qs";
 import queryString from "query-string";
-import ImageUpdateModal from "./ImageUpdateModal";
+import ImageUpdateModal from "./ImageUpdateModalContainer";
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -76,6 +76,7 @@ class UserProfileView extends Component<Props, State> {
       console.log(queryString.parse(search),"query");
         this.props.getUserProfileRequest( search.query).then(()=> {
           this.setState({getUser: true})
+          this.setState({username: this.props.username});
           this.setState({introduceText: this.props.introduceText});
           this.setState({userProfileImage: this.props.userProfileImage});
           this.setState({userBirthDay: this.props.userBirthDay});
@@ -91,16 +92,31 @@ class UserProfileView extends Component<Props, State> {
   componentWillReceiveProps(nextProps) {
           const search = qs.parse(this.props.location.search.replace('?', ''));
           if(nextProps.location.search !== this.props.location.search) {
-          this.props.getUserProfileRequest(queryString.parse(search).query).then(() => {
+          this.props.getUserProfileRequest(search.query).then(() => {
             this.setState({getUser: true})
+            this.setState({username: this.props.username});
             this.setState({introduceText: this.props.introduceText});
             this.setState({userProfileImage: this.props.userProfileImage});
             this.setState({userBirthDay: this.props.userBirthDay});
             this.props.followCheckRequest(Storage.get(KEYS.userEmail), this.props.userProfileName).catch((e)=>console.log(e))
           }).catch
-          ((e) => console.log(e))
+          ((e) => this.setState({getUser:false}))
           }
   }
+  onChangeIntroduceText(e){
+    this.setState({introduceText: e.target.value})
+  }
+
+  onChangeUsername(e){
+    this.setState({username: e.target.value})
+  }
+  onChangeUserBirthday(e){
+    this.setState({userBirthDay: e.target.value})
+  }
+
+  onChangeUserProfileImage=(event) => {
+      this.setState({userProfileImage: event.target.files[0]})
+    }
   renderPetProfileImage = () => {
     let table = []
     let img
@@ -159,8 +175,9 @@ class UserProfileView extends Component<Props, State> {
     return (
       <Col>
         <img src={this.props.userProfileImage}/>
-        <span> {this.props.introduceText}</span>
-        <span> {this.props.userBirthDay}</span>
+        <span> introduceText: {this.props.introduceText} </span>
+        <span> username: {this.props.username}</span>
+        <span> userBirthDay: {this.props.userBirthDay}</span>
       </Col>
         )
   }
@@ -168,7 +185,7 @@ class UserProfileView extends Component<Props, State> {
     console.log(this.state.isEdit,"edit");
     if(this.state.isEdit===true)
     {
-      this.props.editUserProfileRequest(this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then( ()=>this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
+      this.props.editUserProfileRequest(this.props.username,this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then( ()=>this.props.getUserProfileRequest(Storage.get(KEYS.userEmail)).then(()=>this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))).catch((e)=>console.log(e))
     }
     else {
       this.setState({isEdit: !this.state.isEdit})
@@ -177,23 +194,33 @@ class UserProfileView extends Component<Props, State> {
   renderForm(){
     return(
       <Col>
-        <input ref="file"
-               type="file"
-               name="user[image]"
-               multiple="false"
-               onChange={this.onDrop}/>
-        <DateTime
-          placeholder="when is your birthDay"
-          onChange={(m) => {
-            if (m instanceof moment) {
-              this.setState({
-                userBirthDay: m.format(),
-              })
-            }
-          }}
-        />
-        <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-</Col>
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup>
+          <Label for="exampleName" sm={5}>UserName</Label>
+          <Col sm={12}>
+            <Input type="name" name="name" value={this.state.username} className="userName" placeholder="write down your name" onChange={this.onChangeUsername}/>
+          </Col>
+        </FormGroup>
+          <FormGroup>
+            <Label for="exampleName" sm={5}>Introduce Self</Label>
+            <Col sm={12}>
+              <Input type="name" name="name" value={this.state.introduceText} className="userName" onChange={this.onChangeIntroduceText}/>
+            </Col>
+          </FormGroup>
+          <FormGroup>
+            <Label for="exampleFile" sm={5}>UserImage</Label>
+            <Col sm={12}>
+              <Input type="file" name="file" id="exampleFile2"  ref="user" className="userProfileImage" onChange={this.onChangeUserProfileImage}/>
+            </Col>
+          </FormGroup>
+          <FormGroup>
+            <Label for="exampleDate"sm={6}>UserBirthday</Label>
+            <Col sm={12}>
+              <Input type="date" name="date" className="signUpDate" placeholder="write down your birthday" onChange={this.onChangeUserBirthday}/>
+            </Col>
+          </FormGroup>
+        </Form>
+      </Col>
         )
         }
 

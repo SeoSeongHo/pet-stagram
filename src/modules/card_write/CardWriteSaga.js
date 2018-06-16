@@ -32,6 +32,8 @@ function* requestPostCard({ pets,pictures,title,text }: {pets:Array, pictures:Ar
     pictures
   };
   for(const key in data){
+    console.log(key,'key');
+    console.log(data[key],'data[key]');
     formData.append(key,data[key])
   }
   try {
