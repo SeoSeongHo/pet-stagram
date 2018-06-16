@@ -16,6 +16,7 @@ import PropTypes from 'prop-types'
 import './UserProfile.css'
 import qs from "qs";
 import queryString from "query-string";
+import ImageUpdateModal from "./ImageUpdateModal";
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -196,8 +197,13 @@ class UserProfileView extends Component<Props, State> {
         )
         }
 
+onUpdateImage(){
+
+}
 
   render() {
+    console.log(this.props.userProfileName,'name');
+    console.log(Storage.get(KEYS.userEmail),'email');
     if (!this.state.getUser) {
       return <div> there is no User on Username {this.props.match.params.userEmail}</div>
     } else if (this.props.userProfileName === Storage.get(KEYS.userEmail)) {
@@ -211,7 +217,7 @@ class UserProfileView extends Component<Props, State> {
                   <Col sm={{size:4}}>
                     <img width="200" height="200" src={this.props.userProfileImage}/>
                   </Col>
-                  <Col sm="8">
+                  <Col sm="6">
                     <Table>
                       <thead>
                       <tr>
@@ -246,6 +252,7 @@ class UserProfileView extends Component<Props, State> {
                 <Row>
                   <Col>
                     {this.renderPetProfileImage}
+                    <ImageUpdateModal/>
                     <hr/>
                   </Col>
                 </Row>
