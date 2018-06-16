@@ -7,7 +7,7 @@ import Constants from '../../constants/constants'
 const { API_ROOT } = Constants;
 function* requestGetPet({ username }: {username: string}) {
   try {
-    const token = yield api.get(`${API_ROOT}/user/${username}/pet`, {
+    const token = yield api.get(`${API_ROOT}/userPet/${username}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -23,24 +23,31 @@ function* requestGetPet({ username }: {username: string}) {
   }
 }
 
-function* requestPostCard({ pets,pictures,title,text }: {pets:Array, pictures:Array, title:string, text:string}) {
-  const body = {
-    pets,
-    pictures,
+function* requestPostCard({ pets,pictures,title,text }: {pets:number, pictures:Array, title:string, text:string}) {
+  const formData = new FormData();
+  const data = {
+    pet_id:pets,
     title,
-    text
+    text,
+    pictures
   };
-
+  for(const key in data){
+    console.log(key,'key');
+    console.log(data[key],'data[key]');
+    if(key==='pictures'){
+      _.each(pictures, function(i, file) {
+        formData.append('file', i);
+      });
+    }
+    else formData.append(key,data[key])
+  }
+  for(var pair of formData.entries()) {
+    console.log(pair[0]+ ', '+ pair[1]);
+  }
   try {
-    const token = yield api.post(`${API_ROOT}/card/`, body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.post(`${API_ROOT}/card/`, formData, { isFormData: true }
     );
     if (token) {
-      console.log(token)
       yield put(CardWriteActions.postCardSuccess(token))
     }
   } catch (e) {

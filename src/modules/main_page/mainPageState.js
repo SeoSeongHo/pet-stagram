@@ -8,37 +8,40 @@ import api from '../../utils/api'
 */
 import { actionsGenerator } from '../../store/reducerUtils'
 
-type LoginState = {
+type MainPageState = {
   loading: boolean,
 }
 
 // Initial state
 const initialState = {
   loading: false,
+  cards:[],
 }
 
 // Action Creators
 
-export const { Types: LoginTypes, Creators: LoginActions } = createActions(
+export const { Types: MainPageTypes, Creators: MainPageActions } = createActions(
   actionsGenerator({
-    loginRequest: ['username', 'password'],
+    getCardAllRequest:[],
   })
 )
 
 // Reducer
-export default function LoginReducer(state: LoginState = initialState, action: Object = {}): LoginState {
+export default function MainPageReducer(state: MainPageState = initialState, action: Object = {}): MainPageState {
   switch (action.type) {
-    case LoginTypes.LOGIN_REQUEST:
+    case MainPageTypes.GET_CARD_ALL_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case LoginTypes.LOGIN_SUCCESS:
+    case MainPageTypes.GET_CARD_ALL_SUCCESS:
+      console.log(action.payload,"payload");
       return {
         ...state,
+        cards: action.payload,
         loading: false,
       };
-    case LoginTypes.LOGIN_FAILURE:
+    case MainPageTypes.GET_CARD_ALL_FAILURE:
       return {
         ...state,
         loading: false,

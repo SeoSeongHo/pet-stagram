@@ -14,14 +14,16 @@ export function getAuthenticationToken() {
   }
 }
 
-export function setAuthenticationToken(token,username,password) {
-  AsyncStorage.set(KEYS.username, username);
+export function setAuthenticationToken(token,userEmail,password) {
+  AsyncStorage.set(KEYS.userEmail, userEmail);
   AsyncStorage.set(KEYS.password, password);
-  return AsyncStorage.set(AUTHENTICATION_STORAGE_KEY, token)
+  return AsyncStorage.set(KEYS.accessToken, token.token)
 }
 
 export function clearAuthenticationToken() {
-  return AsyncStorage.remove(AUTHENTICATION_STORAGE_KEY)
+  AsyncStorage.remove(KEYS.userEmail);
+  AsyncStorage.remove(KEYS.password);
+  return AsyncStorage.remove(KEYS.accessToken);
 }
 
 export function getUserId() {

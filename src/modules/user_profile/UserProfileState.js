@@ -10,80 +10,88 @@ import { actionsGenerator } from '../../store/reducerUtils'
 
 type UserProfileState = {
   userProfileImage: any,
-  userProfileName: string,
-  introduceText: string,
-  petProfileImage: any,
-  petId: any,
+  userEmail: String,
+  userBirthDay: any,
+  introduceText: String,
+  pets: any,
   totalPost: number,
-  userPicture: any,
-  cardId: any,
-  isFollow: boolean,
+  cards: any,
   totalFollowing: number,
   totalFollower: number,
-  loading: boolean,
+  loading: false,
 }
 
 // Initial state
 const initialState = {
-  userProfileImage: null,
-  userProfileName: "",
-  introduceText: "",
-  petProfileImage: null,
-  petId: [],
+  userProfileImage: "https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180",
+  userEmail: "psi97300000",
+  introduceText: "자기를 소개해주세요~",
+  pets: [],
+  filterUser:[],
   totalPost: 0,
-  userPicture: null,
-  cardId: [],
+  cards: [],
+  userBirthDay: null,
   totalFollowing: 0,
   totalFollower: 0,
   loading: false,
-  isFollow: false,
 }
 
 // Action Creators
 
 export const { Types: UserProfileTypes, Creators: UserProfileActions } = createActions(
   actionsGenerator({
-    getUserProfileRequest: ['username'],
+    getUserProfileRequest: ['userEmail'],
     sendMessageRequest: ['text'],
-    followRequest: ['username'],
-    unFollowRequest:['username'],
+    followRequest: ['userEmail','followedName'],
+    unFollowRequest:['userEmail','followedName'],
     followCheckRequest:['followerName','followedName'],
-    editIntroduceText:['text']
+    editIntroduceTextRequest:['userEmail','text'],
+    editUserProfileRequest:['username','text','userBirthDay','userProfileImage'],
+    getUserFilterRequest: ['userEmail'],
   })
 )
 
 // Reducer
 export default function UserProfileReducer(state: UserProfileState = initialState, action: Object = {}): UserProfileState {
   switch (action.type) {
+    case UserProfileTypes.GET_USER_FILTER_REQUEST:
     case UserProfileTypes.GET_USER_PROFILE_REQUEST:
     case UserProfileTypes.FOLLOW_REQUEST:
     case UserProfileTypes.UN_FOLLOW_REQUEST:
     case UserProfileTypes.SEND_MESSAGE_REQUEST:
+    case UserProfileTypes.EDIT_USER_PROFILE_REQUEST:
       return {
         ...state,
         loading: true,
       }
+    case UserProfileTypes.GET_USER_FILTER_SUCCESS:
+      return {
+        ...state,
+        filterUser: action.payload.result
+      }
     case UserProfileTypes.GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
+        userBirthDay: action.payload.userBirthDay,
         userProfileImage: action.payload.userProfileImage,
-        userProfileName: action.payload.userProfileName,
+        userEmail: action.payload.email,
         introduceText: action.payload.introduceText,
-        petProfileImage: action.payload.petProfileImage,
-        petId: action.payload.petId,
+        pets: action.payload.pets,
         totalPost: action.payload.totalPost,
-        userPicture: action.payload.userPicture,
-        cardId: action.payload.cardId,
+        cards: action.payload.cards,
         totalFollowing: action.payload.totalFollowing,
-        totalFollower: action.payload.totalFollower,
+        totalFollower: action.payload.totalFollowed,
+        username: action.payload.username,
         loading: false,
       };
-    case UserProfileTypes.EDIT_INTRODUCE_TEXT:
+    case UserProfileTypes.EDIT_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        introduceText: action.text,
+        introduceText: action.payload.text,
+        userBirthDay: action.payload.userBirthDay,
+        userProfileImage: action.payload.userProfileImage,
+        loading:true,
       }
-
     case UserProfileTypes.FOLLOW_CHECK_SUCCESS:
       return {
         ...state,
@@ -115,6 +123,11 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
         ...state,
         loading: false,
       }
+    case UserProfileTypes.GET_USER_FILTER_FAILURE:
+      return {
+        ...state,
+        error:action.error,
+      }
     case UserProfileTypes.FOLLOW_FAILURE:
       return {
         ...state,
@@ -122,6 +135,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
         loading:false,
       }
     case UserProfileTypes.FOLLOW_CHECK_FAILURE:
+    case UserProfileTypes.EDIT_USER_PROFILE_FAILURE:
     case UserProfileTypes.UN_FOLLOW_FAILURE:
       return {
         ...state,

@@ -48,7 +48,7 @@ type Props = {
 };
 
 class LoginView extends Component<Props, State> {
-  constructor(props,context) {
+  constructor(props) {
     super(...arguments);
     this.state = { activeIndex: 0 };
     this.next = this.next.bind(this);
@@ -60,6 +60,7 @@ class LoginView extends Component<Props, State> {
   }
 
   state = {
+    error: null,
     username: '',
     password: '',
     secure: false,
@@ -85,8 +86,13 @@ class LoginView extends Component<Props, State> {
   onLoginRequest(username, password){
     console.log(this.props,"this is loginProps");
     this.props.loginRequest(username, password).then(()=>{
-      this.context.router.push('/homePage')
-    }).catch((e)=>console.log(e));
+      this.props.history.push('/homePage')
+    }).catch((e)=>{
+      console.log(e);
+      this.setState({
+        error:'there is no user on given info'
+      })
+    });
   }
 
   renderLoginError(text) {
@@ -129,60 +135,12 @@ class LoginView extends Component<Props, State> {
     return (
       <Container className="cont">
         <Row className="ro1">
-          <Col className="main1" xs="3" sm="4">
-            <Jumbotron>
-              <Container>
-                <h1 className="display-3">Welcome to here!</h1>
-                <p className="lead">Space to share your pet's information and manage your pet's daily.</p>
-              </Container>
-            </Jumbotron>
-            {/*<style>*/}
-              {/*{*/}
-                {/*`.custom-tag {*/}
-                {/*max-width: 100%;*/}
-                {/*height: 500px;*/}
-                {/*background: black;*/}
-              {/*}`*/}
-              {/*}*/}
-            {/*</style>*/}
-            {/*<Carousel*/}
-              {/*activeIndex={activeIndex}*/}
-              {/*next={this.next}*/}
-              {/*previous={this.previous}*/}
-            {/*>*/}
-              {/*<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />*/}
-              {/*{slides}*/}
-              {/*<CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />*/}
-              {/*<CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />*/}
-            {/*</Carousel>*/}
-          {/*<Carousel*/}
-            {/*activeIndex={activeIndex}*/}
-            {/*next={this.next}*/}
-            {/*previous={this.previous}*/}
-          {/*>*/}
-            {/*<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />*/}
-            {/*{slides}*/}
-            {/*<CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />*/}
-            {/*<CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />*/}
-          {/*</Carousel>*/}
-          </Col>
-          {/*<Col>*/}
-            {/*<Input placeholder="USERNAME" onChange={this.onChangeUsername} />*/}
-          {/*</Col>*/}
-          {/*<Col>*/}
-            {/*<Input type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />*/}
-          {/*</Col>*/}
-          {/*<Col>*/}
-            {/*<Button onClick={() => this.onLoginPressed()}>LOGIN</Button>*/}
-          {/*</Col>*/}
-          <Col className="main1" xs="3" sm="4">
-          <Card body outline color="secondary">
-            <CardBody>
-              <CardTitle>Petstagram</CardTitle>
-            </CardBody>
-            <img width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />
+          <Col className="main1" xs="6" sm="5">
+          <Card body outline color="#ffe4a8">
+            <img width="90%" height="90%" src={require('../../assets/images/mainlogo.png')} alt="Card image cap" />
+            <img width="90%" height="90%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
             <CardBody className="card3">
-              <Form inline>
+              <Form>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                   <Label for="exampleEmail" className="mr-sm-2">Email</Label>
                   <Input className="login1" placeholder="USERNAME" onChange={this.onChangeUsername} />
@@ -191,8 +149,13 @@ class LoginView extends Component<Props, State> {
                   <Label for="examplePassword" className="mr-sm-2">Password</Label>
                   <Input className="login1" type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />
                 </FormGroup>
-                <Button className="login1" color ="lightgray" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
-                <Button className="singup" color ="lightgray">SIGNUP</Button>
+                <Row>
+                <Button className="bt1" color ="#ffe4a8" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
+                <Button href="/signUp" className="bt2" color ="#aaffd3">SIGNUP</Button>
+                </Row>
+                <Row>
+                  {this.state.error ? <span style={{color: 'red'}}>this is error message: {this.state.error} </span> : null}
+                </Row>
               </Form>
               {/*<Input className="login1" placeholder="USERNAME" onChange={this.onChangeUsername} />*/}
             {/*</CardBody>*/}
@@ -210,11 +173,5 @@ class LoginView extends Component<Props, State> {
     )
   }
 }
-
-LoginView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
 
 export default LoginView

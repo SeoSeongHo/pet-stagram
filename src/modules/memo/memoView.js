@@ -1,93 +1,106 @@
-// // @flow
-// /*
-// import React, { Component } from 'react'
-// import { Input, Alert, Button, Container, Row, Col } from 'reactstrap'
-// import autoBind from 'react-autobind'
-//
-// // import easi6Theme from '../../utils/petStagramTheme'
-// // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-//
-// type State = {
-//   title: string,
-//   date: any,
-//   content: string,
-//
-// };
-//
-// type Props = {
-//   memo: any,
-//   dogs: any,
-//   postMemoRequest: Function,
-//   getMemoRequest: Function,
-// };
-//
-// class memoView extends Component<Props, State> {
-//   constructor(props,context) {
-//     super(...arguments);
-//     autoBind(this)
-//   }
-//
-//   state = {
-//     username: '',
-//     password: '',
-//     secure: false,
-//   };
-//   componentDidMount() {
-//   }
-//   onChangeUsername(e) {
-//     this.setState({ username: e.target.value })
-//   }
-//   onChangePassword(e) {
-//     this.setState({ password: e.target.value })
-//   }
-//
-//   onLoginPressed() {
-//     if (!this.state.username) {
-//       this.renderLoginError('enter_your_login_ID')
-//     } else if (!this.state.password) {
-//       this.renderLoginError('enter_your_password')
-//     } else {
-//       this.onLoginRequest(this.state.username, this.state.password)
-//     }
-//   }
-//   onLoginRequest(username, password){
-//     console.log(this.props,"this is loginProps");
-//     this.props.loginRequest(username, password).then(()=>{
-//       this.context.router.push('/homePage')
-//     }).catch((e)=>console.log(e));
-//   }
-//
-//   renderLoginError(text) {
-//     if (text) {
-//       return (
-//         <Alert> {text}</Alert>
-//       )
-//     }
-//     return (
-//       null
-//     )
-//   }
-//   render() {
-//     return (
-//       <Container fluid>
-//         <Row>
-//           <Col>
-//             <Input placeholder="USERNAME" onChange={this.onChangeUsername} />
-//           </Col>
-//           <Col>
-//             <Input type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />
-//           </Col>
-//           <Col>
-//             <Button onClick={() => this.onLoginPressed()}>LOGIN</Button>
-//           </Col>
-//         </Row>
-//       </Container>
-//     )
-//   }
-// }
-//
-// memoView.contextTypes = {
-//   router: React.PropTypes.object.isRequired
-// };
-//
-// export default memoView
+// @flow
+import React, { Component } from 'react'
+import autoBind from 'react-autobind'
+import Calendar from 'react-calendar';
+import Moment from 'react-moment';
+import {KEYS} from '../../utils/petStagramStorage'
+import Storage from '../../utils/petStagramStorage'
+import _ from 'lodash'
+// import easi6Theme from '../../utils/petStagramTheme'
+// import petStagramLogo from '../../../assets/images/petStagramLogo.png';
+import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
+import './memoView.css'
+
+type State = {
+    Memo:[{
+      created: Date,
+      text: string,
+    }]
+};
+
+type Props = {
+
+};
+
+
+
+class MemoView extends Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date(),
+      Text:"",
+      Memo:[]
+    };
+    autoBind(this)
+  }
+  componentWillMount(){
+    this.props.getMemoRequest().catch((e)=>console.log(e));
+  }
+  onSubmitPressed(e) {
+    e.preventDefault();
+    this.props.postMemoRequest(this.state.date,this.state.Text).then(()=>{this.setState({Text: ""}
+    )
+        this.props.getMemoRequest().catch((e)=>console.log(e));
+    }
+    ).catch((e)=>console.log(e));
+  }
+  onChange(date){
+    this.setState({date},()=>console.log(this.state.date))
+  }
+  giveContent(date, view){
+    var count=0;
+    this.props.Memo.map((listValue,index)=> {
+      var date2 = new Date(listValue.date);
+      view === 'month' && date.getMonth()===date2.getMonth() && date.getDate()===date2.getDate() &&
+      date.getYear()===date2.getYear() ? count++: null
+    })
+    return count===0 ? null: ( <p>일정 : {count}</p>)
+  }
+  showMemo(listValue,index){
+    return(
+    <div key={index}>
+      <Row>
+      <p className="p1">{listValue.text}</p>
+      <Button className="btt14" color="white" onClick={()=>this.onDeletePressed(listValue.id)}><img width="7" height="7" src={require('../../assets/images/letter-x.png')} alt="Card image cap" /></Button>
+      </Row>
+    <hr/>
+    </div>
+    )
+  }
+
+  onDeletePressed(id){
+      this.props.deleteMemoRequest(id).then(()=>this.props.getMemoRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e))
+  }
+
+  render() {
+    return(
+    <div style={{display:"inline-block"}} className="memo1">
+      <Calendar
+        onChange={this.onChange}
+        value={this.state.date}
+        // tileContent={({ date, view }) => this.giveContent(date,view)}
+      />
+    {
+      _.filter(this.props.Memo,(listValue)=>{
+        var date = new Date(listValue.date);
+        return(
+          this.state.date.getMonth()===date.getMonth() && this.state.date.getDate()===date.getDate() &&
+          this.state.date.getYear()===date.getYear())
+      }).map((listValue,index)=>{
+        return(
+         this.showMemo(listValue,index)
+        )
+    })
+    }
+      <Form  onSubmit={(e)=>this.onSubmitPressed(e)}>
+        <FormGroup>
+          <br/>
+          <Input placeholder="write memo" type="textarea" name="text" id="Text" value={this.state.Text} onChange={(e)=>this.setState({Text:e.target.value})}/>
+        </FormGroup>
+        <Button type="submit">Enter Memo</Button>
+      </Form>
+    </div>)
+  }
+}
+
+export default MemoView

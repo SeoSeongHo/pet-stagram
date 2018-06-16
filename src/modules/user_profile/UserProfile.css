@@ -1,0 +1,33 @@
+.next1{
+  margin: 30px;
+}
+
+.cnt11{
+  background-color:#fef9ff;
+  margin-top:-50px;
+}
+
+.row1{
+  margin-top:50px;
+  padding-top:50px;
+}
+
+.cnt12{
+  width:80%;
+  margin:auto;
+}
+
+.btt13{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.btt15{
+  border:none;
+  background-color:#fef9ff;
+  margin-left:860px;
+}
+
+.btt20{
+  margin-left: 10px;
+}

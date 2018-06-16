@@ -9,7 +9,7 @@ test('email', () => {
 test('url', () => {
   expect(v.url('invalid')).toBeTruthy()
   expect(v.url('valid.com')).toBeFalsy()
-  expect(v.url('valid.com/test')).toBeFalsy()
+  expect(v.url('valid.com/module_test')).toBeFalsy()
   expect(v.url('http://valid.com')).toBeFalsy()
 })
 
@@ -75,19 +75,19 @@ test('createValidator', () => {
   }))).toEqual(['email', 'password', 'passwordRepeat'])
 
   expect(Object.keys(validator({
-    email: 'test@example.com',
+    email: 'module_test@example.com',
     password: '12345',
     passwordRepeat: '',
   }))).toEqual(['password', 'passwordRepeat'])
 
   expect(Object.keys(validator({
-    email: 'test@example.com',
+    email: 'module_test@example.com',
     password: '123456',
     passwordRepeat: '654321',
   }))).toEqual(['passwordRepeat'])
 
   expect(validator({
-    email: 'test@example.com',
+    email: 'module_test@example.com',
     password: '123456',
     passwordRepeat: '123456',
   })).toEqual({})

@@ -4,6 +4,7 @@ import merge from 'lodash/merge'
 import { apiUrl } from 'config'
 import {KEYS} from "../petStagramStorage";
 import Storage from "../petStagramStorage";
+import fetchJsonp from 'fetch-jsonp';
 
 export const checkStatus = (response) => {
   if (response.ok) {
@@ -17,37 +18,24 @@ export const checkStatus = (response) => {
 export const parseJSON = response => response.json()
 
  export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
-
-     const token = Storage.get(KEYS.accessToken)
-    if (token) {
-      const headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Accept-Language': locale,
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }
-      const settings = {
-        body: data ? JSON.stringify(data) : undefined,
-        method,
-        headers,
-        ...otherSettings,
-      };
-      return settings
-    }
-    else {
-      const headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Accept-Language': locale,
-      };
-      const settings = {
-        body: data ? JSON.stringify(data) : undefined,
-        method,
-        headers,
-        ...otherSettings,
-      };
-      return settings
-    }
+   const headers = {
+     Accept: 'application/json',
+     'Accept-Language': locale,
+   };
+   const authToken = Storage.get(KEYS.accessToken)
+   if (authToken) {
+     headers.Authorization = `Token ${authToken}`;
+   }
+   if (!otherSettings.isFormData) {
+     headers['Content-Type'] = 'application/json';
+   }
+   const settings = {
+     body: data ? (otherSettings.isFormData ? data : JSON.stringify(data)) : undefined,
+     method,
+     headers,
+     ...otherSettings,
+   };
+   return settings;
  }
 
 export const parseEndpoint = (endpoint, params) => {

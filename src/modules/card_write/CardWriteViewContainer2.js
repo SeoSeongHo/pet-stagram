@@ -2,22 +2,19 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { compose, withHandlers } from 'recompose'
 import actions from '../../store/actions';
-import LoginView from './loginView'
-
+import CardWriteView2 from './CardWriteView2'
 
 export default connect(
   state => ({
-    loading: _.get(state, ['registerUser', 'loading']),
+    pets: _.get(state,["Me","pets"]),
+    loading: _.get(state, ['Me', 'loading']),
   }),
   actions,
 )(
   compose(
     withHandlers({
-      onLoginPressed: (props) => (username, password) => {
-        props.loginRequest(username, password)
-      },
     }),
   )(
-    LoginView
+    CardWriteView2
   )
 )

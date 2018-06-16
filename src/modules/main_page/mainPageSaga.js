@@ -1,33 +1,24 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { setAuthenticationToken } from '../../utils/authentication'
 import api from '../../utils/api'
-import { LoginActions, LoginTypes } from './loginState'
+import { MainPageActions, MainPageTypes } from './MainPageState'
 import Constants from '../../constants/constants'
 // import Storage, { KEYS } from '../../utils/petStagramStorage'
 // import _ from 'lodash'
 
 const { API_ROOT } = Constants
 
-function* requestLogin({ username, password }: {username: string, password: string}) {
-  const body = {
-    username,
-    password,
-  }
-
+function* requestGetCard() {
   try {
-    const token = yield api.post('http://127.0.0.1:8000/api-auth/', body
+    const token = yield api.get(`${API_ROOT}/card/`,
     )
-    if (response) {
-      console.log(response)
-      yield setAuthenticationToken(token)
-      yield put(LoginActions.loginSuccess(token))
+    if (token) {
+      yield put(MainPageActions.getCardAllSuccess(token))
     }
   } catch (e) {
-    yield put(LoginActions.loginFailure(e))
+    yield put(MainPageActions.getCardAllFailure(e))
   }
 }
-
-
-export const LoginSaga = [
-  takeLatest(LoginTypes.LOGIN_REQUEST, requestLogin),
+export const MainPageSaga = [
+  takeLatest(MainPageTypes.GET_CARD_ALL_REQUEST, requestGetCard)
 ]

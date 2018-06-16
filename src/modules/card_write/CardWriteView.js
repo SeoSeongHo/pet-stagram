@@ -6,17 +6,22 @@ import Storage from '../../utils/petStagramStorage'
 import _ from 'lodash'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
-import ImageUploader from 'react-images-upload';
-import { Button, Form, FormGroup, Label, Input, FormText, Alert, Container, Row, Col} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Card, CardBody, CardFooter, CardText, FormText, Alert, Container, Row, Col} from 'reactstrap';
+import Select from 'react-select'
+import Modal from "react-modal";
+import './CardWriteView.css'
+
+
 type State = {
-  pictures: any,
-  pets:Array,
+  pictures: Array,
+  pets:number,
+  picturesURL: Array,
   text:string,
   title:string,
 };
 
 type Props = {
-  pets: Array,
+  pets: number,
   pets:{
     petName: string,
     petId: number,
@@ -26,27 +31,53 @@ type Props = {
   }
 };
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+Modal.setAppElement('#root');
+
 class CardWriteView extends Component<Props, State> {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {pictures: [], pets:[], text:"", title:"",
+  constructor(props) {
+    super(props);
+    this.state = { pictures: [], pets:0, text:"", title:"",
     picturesURL:[],
     };
+   // this.onDrop=this.onDrop.bind(this);
     autoBind(this)
   }
-
-  onDrop(picture, pictureDataURL) {
-    console.log("on Drop");
-    this.setState({
-      pictures: this.state.pictures.concat(picture),
-      picturesURL: this.state.picturesURL.concat(pictureDataURL)
-    });
+  componentWillMount(){
+    this.props.getPetRequest(Storage.get(KEYS.userEmail)).catch(e=>{console.log(e)});
   }
+
+  onDrop(event) {
+    if(this.state.pictures.length>2){
+      return null;
+    }
+    var file = this.refs.file.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+    reader.onloadend = function (e) {
+      this.setState({
+        pictures: this.state.pictures.concat(file),
+        picturesURL: this.state.picturesURL.concat(reader.result),
+      });
+    }.bind(this);
+    console.log(url) // Would see a path
+  }
+
   selectPets(event){
       this.setState({pets: [...event.target.selectedOptions].map(o => o.value)});
   }
   onSubmitPressed(){
-    this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text)
+    this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text).then(()=>this.setState({modalIsOpen:false})).then(()=>this.props.getCardAllRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e))
   }
   titleChange(e){
     this.setState({title: e.target.value})
@@ -62,56 +93,91 @@ class CardWriteView extends Component<Props, State> {
     }
     return -1; //to handle the case where the value doesn't exist
   }
-  deletePicture(e){
-    let index = this.getIndex(e.target.src, this.state.picturesURL);
+
+  deletePicture(index){
+   // let index = this.getIndex(e.target.src, this.state.picturesURL);
     // remove the todo with the ID of id, but only if we have it to begin with
-    this.state.picturesURL = index > -1 ?
-      this.state.picturesURL.remove(index) :
-      this.state.picturesURL;
+    var array = [...this.state.pictures]; // make a separate copy of the array
+    array.splice(index, 1);
+    var array2= [...this.state.picturesURL];
+    array2.splice(index,1);
+    this.setState({pictures: array,picturesURL:array2});
   }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
   render() {
     return (
-      <div>
-      <Form>
-        <FormGroup>
-          <Label for="exampleSelectMulti">Select Multiple Pets</Label>
-          <Input onChange={this.selectPets} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-              {this.props.pets.map(function(listValue,index){
-                return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
-              })}
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="Title">Title</Label>
-          <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleText">Text Area</Label>
-          <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
-        </FormGroup>
-        <Button onClick={() => this.onSubmitPressed()}>Let's post</Button>
-      </Form>
-    <ImageUploader
+      <div className="di1">
+        <Button onClick={this.openModal} className="btt1" color="white"><img width="20" height="20" src={require('../../assets/images/edit.png')} alt="Card image cap" /></Button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <Col>
+            <Form>
+              <Card>
+                {this.state.picturesURL.map((listValue,index)=>{
+                  return <div key={index} onClick={()=>this.deletePicture(index)}><img width="100" height="100" src={listValue} /></div>;
+                })}
+                <CardBody>
+                  <FormGroup>
+                    <Label for="exampleSelect">Select Pets</Label>
+                    <Input onChange={this.selectPets} type="select" name="select" id="exampleSelect">
+                      {_.map(this.props.pets,(listValue,index)=> {
+                        return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
+                      })}
+                    </Input>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="Title">Title</Label>
+                    <Input type="title" name="title" id="Title" onChange={this.titleChange} placeholder="with a placeholder" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="exampleText">Content</Label>
+                    <Input type="textarea" onChange={this.textChange} name="text" id="exampleText" />
+                  </FormGroup>
+                  <input ref="file"
+                         type="file"
+                         name="user[image]"
+                         multiple="true"
+                         onChange={this.onDrop}/>
+                  <span>
+                    최대 3장
+                  </span>
+                </CardBody>
+                <CardFooter>
+                  <Button className="btt2" color="#ffe4a8" onClick={() => this.onSubmitPressed()}>Let's post</Button>
+                </CardFooter>
+              </Card>
+            </Form>
+          </Col>
+        </Modal>
+      </div>
+    );
+  }
+}
+
+export default CardWriteView
+  {/* <ImageUploader
       withIcon={true}
       buttonText='Choose images'
       onChange={this.onDrop}
       imgExtension={['.jpg', '.gif', '.png', '.gif']}
       maxFileSize={5242880}
-      id="fileUploader"
-    />
-    {this.state.picturesURL.map(function(listValue,index){
-      return <div key={index}>
-        <Img src={listValue} onClick={(e)=>this.deletePicture(e)}/>
-      </div>
-    })}
-    </div>
-    );
-  }
-}
-
-CardWriteView.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object,
-  match: React.PropTypes.object
-};
-export default CardWriteView
+      style={{ maxWidth: '500px', margin: "20px auto" }}
+      withPreview={true}
+      />*/}
