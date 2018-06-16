@@ -76,20 +76,20 @@ class MainPageView extends Component<Props, State> {
         <Col md="7" sm="6" style={{display:"flex", justifyContent:"center"}}>
           <CardDeck className="card1">
             <Col className="col11">
-          {this.state.nowList.map((listValue,index)=> {
+          {_.map(this.props.cards,((listValue,index)=> {
             return (
             <Card className="card2" body outline color="#ffe4a8" key={index}>
               <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
+                <CardTitle>{listValue.title}</CardTitle>
+                <CardSubtitle>{listValue.date}</CardSubtitle>
               </CardBody>
-              <img width="100%" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
+              <img width="100%" src={ _.head(listValue.pictures)} alt="Card image cap" />
               <CardBody>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                <CardText>{listValue.text}</CardText>
                 <CardDetailView/>
               </CardBody>
             </Card>)
-          })}
+          }))}
             </Col>
           {/*<CardImg top width="100%" src={require('../../assets/images/example1.png')} alt="Card image cap" />*/}
           </CardDeck>

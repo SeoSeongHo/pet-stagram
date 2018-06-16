@@ -60,6 +60,7 @@ class LoginView extends Component<Props, State> {
   }
 
   state = {
+    error: null,
     username: '',
     password: '',
     secure: false,
@@ -86,7 +87,12 @@ class LoginView extends Component<Props, State> {
     console.log(this.props,"this is loginProps");
     this.props.loginRequest(username, password).then(()=>{
       this.props.history.push('/homePage')
-    }).catch((e)=>console.log(e));
+    }).catch((e)=>{
+      console.log(e);
+      this.setState({
+        error:'there is no user on given info'
+      })
+    });
   }
 
   renderLoginError(text) {
@@ -143,8 +149,13 @@ class LoginView extends Component<Props, State> {
                   <Label for="examplePassword" className="mr-sm-2">Password</Label>
                   <Input className="login1" type="password" placeholder="PASSWORD" onChange={this.onChangePassword} />
                 </FormGroup>
+                <Row>
                 <Button className="bt1" color ="#ffe4a8" onClick={() => this.onLoginPressed()}>SIGNIN</Button>
                 <Button href="/signUp" className="bt2" color ="#aaffd3">SIGNUP</Button>
+                </Row>
+                <Row>
+                  {this.state.error ? <span style={{color: 'red'}}>this is error message: {this.state.error} </span> : null}
+                </Row>
               </Form>
               {/*<Input className="login1" placeholder="USERNAME" onChange={this.onChangeUsername} />*/}
             {/*</CardBody>*/}

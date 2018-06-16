@@ -15,6 +15,7 @@ type MainPageState = {
 // Initial state
 const initialState = {
   loading: false,
+  cards:[],
 }
 
 // Action Creators

@@ -100,7 +100,18 @@ export class SignupView extends Component {
       });
     }
   }
-
+  onDrop(event) {
+    var file = this.refs.file.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+    reader.onloadend = function (event) {
+      this.setState({
+        pictures: file,
+        picturesURL: reader.result,
+      });
+    }.bind(this);
+    console.log(url) // Would see a path
+  }
   onChangeEmail(e){
     this.setState({email: e.target.value})
   }
@@ -110,11 +121,33 @@ export class SignupView extends Component {
   }
 
   onChangeUserProfileImage(e){
-    this.setState({userProfileImage: e.target.value})
+    if(this.state.pictures.length>4){
+      return null;
+    }
+    var file = this.refs.user.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+    reader.onloadend = function (event) {
+      this.setState({
+        userProfileImage: file,
+      });
+    }.bind(this);
+    console.log(url) // Would see a path
   }
 
   onChangePetProfileImage(e){
-    this.setState({petProfileImage: e.target.value})
+    if(this.state.pictures.length>4){
+      return null;
+    }
+    var file = this.refs.pet.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+    reader.onloadend = function (event) {
+      this.setState({
+        petProfileImage: file,
+      });
+    }.bind(this);
+    console.log(url) // Would see a path
   }
 
   onChangeUserBirthday(e){
@@ -182,7 +215,7 @@ export class SignupView extends Component {
               <Button className="bt1" color="#c9ffca"> <img width="30" height="30" src={require('../../assets/images/checked.png')} alt="Card image cap" />  Naver연동</Button>
               <Button className="bt2" color="#91bbff"> <img width="30" height="30" src={require('../../assets/images/facebook.png')} alt="Card image cap" />  Facebook연동</Button>
               <CardBody>
-                <Form onClick={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit}>
                   <FormGroup>
                     <Label for="exampleEmail" sm={5}>Email</Label>
                     <Col sm={12}>
@@ -204,13 +237,13 @@ export class SignupView extends Component {
                   <FormGroup>
                     <Label for="exampleFile" sm={5}>UserImage</Label>
                     <Col sm={12}>
-                      <Input type="file" name="file" className="userProfileImage" onChange={this.onChangeUserProfileImage}/>
+                      <Input type="file" name="file" id="exampleFile2"  ref="user" className="userProfileImage" onChange={this.onChangeUserProfileImage}/>
                     </Col>
                   </FormGroup>
                   <FormGroup>
                     <Label for="exampleDate"sm={6}>UserBirthday</Label>
                     <Col sm={12}>
-                      <Input type="date" name="date" className="signUpDate" placeholder="write down your birthday" onChange={this.onChangeUserBirthday}/>
+                      <Input type="date" name="date"  className="signUpDate" placeholder="write down your birthday" onChange={this.onChangeUserBirthday}/>
                     </Col>
                   </FormGroup>
                   <FormGroup>
@@ -222,7 +255,7 @@ export class SignupView extends Component {
                   <FormGroup>
                     <Label for="exampleFile" sm={5}>PetImage</Label>
                     <Col sm={12}>
-                      <Input type="file" name="file" className="petProfileImage" onChange={this.onChangePetProfileImage}/>
+                      <Input type="file" name="file"ref="pet" id="exampleFile" className="petProfileImage" onChange={this.onChangePetProfileImage}/>
                     </Col>
                   </FormGroup>
                   <FormGroup>
@@ -232,11 +265,17 @@ export class SignupView extends Component {
                     </Col>
                   </FormGroup>
                 </Form>
-                <span>this is error message: {this.state.error} </span>
               </CardBody>
               <CardFooter>
+                <Row>
                 <Button className="bt3" color="#aaffd3" onClick={this.handleSubmit}>SignUp</Button>
                 <Button className="bt4" color="#ffe4a8" href="/login" onClick={this.onCancelPressed}>Cancel</Button>
+                </Row>
+                <Row>
+                  <p color="red">
+                    {this.state.error ? this.state.error: null}
+                  </p>
+                </Row>
               </CardFooter>
             </Card>
           </Col>

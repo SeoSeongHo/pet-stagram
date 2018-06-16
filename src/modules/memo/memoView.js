@@ -69,7 +69,7 @@ class MemoView extends Component<Props, State> {
   }
 
   onDeletePressed(id){
-      this.props.deleteMemoRequest(id);
+      this.props.deleteMemoRequest(id).then(()=>this.props.getMemoRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e))
   }
 
   render() {

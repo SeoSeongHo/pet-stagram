@@ -4,9 +4,11 @@ import { Input, Alert, Button, Container, Row, Col, Card, CardText, Table,} from
 import { CardImg, CardBody,
   CardTitle, CardSubtitle, CardDeck} from 'reactstrap';
 import autoBind from 'react-autobind'
+import DateTime from 'react-datetime'
 import {KEYS} from '../../utils/petStagramStorage'
 import Storage from '../../utils/petStagramStorage'
 import Navigator from '../top_navigator/navigatorContainer'
+import CardDetailView from '../card_detail/CardDetailViewContainer'
 // import easi6Theme from '../../utils/petStagramTheme'
 // import petStagramLogo from '../../../assets/images/petStagramLogo.png';
 import moment from 'moment'
@@ -158,16 +160,19 @@ class UserProfileView extends Component<Props, State> {
         <img src={this.props.userProfileImage}/>
         <span> {this.props.introduceText}</span>
         <span> {this.props.userBirthDay}</span>
-      <Button onClick={() => this.toggleEdit()}> Edit </Button>
       </Col>
         )
   }
   toggleEdit(){
+    console.log(this.state.isEdit,"edit");
     if(this.state.isEdit===true)
     {
-      this.props.editUserProfileRequest(this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then( this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
+      this.props.editUserProfileRequest(this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then( ()=>this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))
     }
-  }
+    else {
+      this.setState({isEdit: !this.state.isEdit})
+    }
+}
   renderForm(){
     return(
       <Col>
@@ -177,7 +182,7 @@ class UserProfileView extends Component<Props, State> {
                multiple="false"
                onChange={this.onDrop}/>
         <DateTime
-          placeholder="sinceWhen"
+          placeholder="when is your birthDay"
           onChange={(m) => {
             if (m instanceof moment) {
               this.setState({
@@ -187,21 +192,9 @@ class UserProfileView extends Component<Props, State> {
           }}
         />
         <input value={this.state.introduceText} onChange={introduceText => {this.setState({introduceText: introduceText})}}/>
-      <Button onClick={() => this.toggleEdit()}> Save </Button>
 </Col>
         )
         }
-  introduceEditForm() {
-  if (this.state.isEdit) {
-  return this.renderForm()
-} else {
-  return this.renderNormal()
-}
-}
-
-onEditPressed(){
-
-}
 
 
   render() {
@@ -230,8 +223,8 @@ onEditPressed(){
                       <tbody>
                       <tr>
                         <td>{this.props.totalPost}</td>
-                        <td>{this.props.totalFollower}</td>
                         <td>{this.props.totalFollowing}</td>
+                        <td>{this.props.totalFollower}</td>
                       </tr>
                       </tbody>
                     </Table>
@@ -246,7 +239,7 @@ onEditPressed(){
                 <Row>
                   <Col>
                     <h3>소개글</h3>
-                    <span>{this.introduceEditForm}</span>
+                    {!this.state.isEdit ?  this.renderNormal():this.renderForm()}
                     <hr/>
                   </Col>
                 </Row>
@@ -262,44 +255,12 @@ onEditPressed(){
                   </Col>
                 </Row>
                 <Row className="btt13">
-                  <Button onClick={this.onEditPressed}>수정</Button>
+                  <Button onClick={()=>this.toggleEdit()}>{!this.state.isEdit? '수정' : '수정완료'}</Button>
                 </Row>
               </div>
             </Container>
           </div>
         </div>
-        // <Container fluid>
-        //   <Row>
-        //     <Col>
-        //       <span> {this.props.totalPost}</span>
-        //       <span> 총 게시글</span>
-        //     </Col>
-        //     <span> {this.props.totalFollower}</span>
-        //     <span> 총 팔로잉</span>
-        //     <Col>
-        //       <span> {this.props.totalFollowing}</span>
-        //       <span> 총 팔로워</span>
-        //     </Col>
-        //   </Row>
-        //   <Row>
-        //     <Col>
-        //       <span> 나의 이름</span>
-        //       <span> {this.props.userProfileName}</span>
-        //     </Col>
-        //     <Col>
-        //       <span> 소개글</span>
-        //       {this.introduceEditForm()}
-        //     </Col>
-        //   </Row>
-        //   <Row>
-        //     <Col>
-        //       {this.renderPetProfileImage()}
-        //     </Col>
-        //     <Col>
-        //       {this.renderUserPicture()}
-        //     </Col>
-        //   </Row>
-        // </Container>
       )
     } else{
       return (
@@ -324,8 +285,8 @@ onEditPressed(){
                 <tbody>
                 <tr>
                   <td>{this.props.totalPost}</td>
-                  <td>{this.props.totalFollower}</td>
                   <td>{this.props.totalFollowing}</td>
+                  <td>{this.props.totalFollower}</td>
                 </tr>
                 </tbody>
               </Table>
@@ -353,19 +314,17 @@ onEditPressed(){
               <hr/>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <img width="100" height="100" src={require('../../assets/images/logindog.jpg') }/>
-              <img width="100" height="100" src={require('../../assets/images/logindog2.jpg') }/>
-              <hr/>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <img width="100" height="100" src={require('../../assets/images/user.png') }/>
-              <img width="100" height="100" src={require('../../assets/images/user.png') }/>
-            </Col>
-          </Row>
+                <Row>
+                  <Col>
+                    {this.renderPetProfileImage}
+                    <hr/>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    {this.renderUserPicture}
+                  </Col>
+                </Row>
               </div>
             </Container>
           </div>

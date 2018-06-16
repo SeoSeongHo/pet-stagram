@@ -43,6 +43,7 @@ function* requestSignup({ email, password,
   for(const key in data){
     formData.append(key,data[key])
   }
+  console.log(formData,"formData");
   try {
     yield api.post(`${API_ROOT}/register/`,formData, { isFormData: true }
     );

@@ -80,7 +80,7 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
         totalPost: action.payload.totalPost,
         cards: action.payload.cards,
         totalFollowing: action.payload.totalFollowing,
-        totalFollower: action.payload.totalFollower,
+        totalFollower: action.payload.totalFollowed,
         loading: false,
       };
     case UserProfileTypes.EDIT_USER_PROFILE_SUCCESS:

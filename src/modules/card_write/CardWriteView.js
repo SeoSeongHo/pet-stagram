@@ -54,7 +54,7 @@ class CardWriteView extends Component<Props, State> {
     autoBind(this)
   }
   componentWillMount(){
-    //this.props.getPetRequest(Storage.get(KEYS.userEmail)).catch(e=>{console.log(e)});
+    this.props.getPetRequest(Storage.get(KEYS.userEmail)).catch(e=>{console.log(e)});
   }
 
   onDrop(event) {
