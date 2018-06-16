@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Storage, { KEYS } from '../../utils/petStagramStorage'
+import {clearAuthenticationToken} from '../../utils/authentication'
 import {
   Row, Col, Input, Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Button, InputGroupAddon
@@ -59,7 +60,10 @@ export class Navigator extends React.Component {
   }
 
   onLogoutPressed(){
-    window.confirm("로그아웃 하시겠습니까?")
+    if(window.confirm("로그아웃 하시겠습니까?")){
+      clearAuthenticationToken();
+      this.props.history.push('/login');
+    }
   }
 
   search(query) {

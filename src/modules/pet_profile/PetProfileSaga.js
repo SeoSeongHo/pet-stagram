@@ -24,18 +24,17 @@ function* requestGetPetProfile({ Id }: {Id: any}) {
 }
 
 function* requestEditPetProfile({ id, text, petBirth, petProfileImage }: {id: any, text:string, petBirth: any, petProfileImage: any}) {
-  const body={
+  const formData = new FormData();
+  const data = {
     petProperty:text,
     petBirth,
     petProfileImage
   };
+  for(const key in data){
+    formData.append(key,data[key])
+  }
   try {
-    const token = yield api.put(`${API_ROOT}/pet/${id}`,body,{
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
-      }}
+    const token = yield api.put(`${API_ROOT}/pet/${id}`,formData,{isFormData: true}
     );
     if (token) {
       console.log(token)

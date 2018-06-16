@@ -61,15 +61,15 @@ class MemoView extends Component<Props, State> {
     <div key={index}>
       <Row>
       <p className="p1">{listValue.text}</p>
-      <Button className="btt14" color="white" onClick={this.onDeletePressed}><img width="7" height="7" src={require('../../assets/images/letter-x.png')} alt="Card image cap" /></Button>
+      <Button className="btt14" color="white" onClick={()=>this.onDeletePressed(listValue.id)}><img width="7" height="7" src={require('../../assets/images/letter-x.png')} alt="Card image cap" /></Button>
       </Row>
     <hr/>
     </div>
     )
   }
 
-  onDeletePressed(){
-
+  onDeletePressed(id){
+      this.props.deleteMemoRequest(id);
   }
 
   render() {

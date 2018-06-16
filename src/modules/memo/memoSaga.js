@@ -23,6 +23,23 @@ function* requestGetMemo({ }: {}) {
     yield put(MemoActions.getMemoFailure(e))
   }
 }
+function* requestDeleteMemo({ memo_id }: { memo_id: number }) {
+
+  try {
+    const token = yield api.delete(`${API_ROOT}/memo/${memo_id}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Token ${Storage.get(KEYS.accessToken)}`,
+      }}
+    );
+    if (token) {
+      yield put(MemoActions.deleteMemoSuccess(token))
+    }
+  } catch (e) {
+    yield put(MemoActions.deleteMemoFailure(e))
+  }
+}
 
 function* requestPostMemo({ created,text }: {created:any, text:string}) {
   const body = {
@@ -50,4 +67,5 @@ function* requestPostMemo({ created,text }: {created:any, text:string}) {
 export const MemoSaga = [
   takeLatest(MemoTypes.GET_MEMO_REQUEST, requestGetMemo),
   takeLatest(MemoTypes.POST_MEMO_REQUEST, requestPostMemo),
+  takeLatest(MemoTypes.DELETE_MEMO_REQUEST, requestDeleteMemo),
 ];

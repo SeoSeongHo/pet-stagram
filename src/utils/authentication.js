@@ -21,7 +21,9 @@ export function setAuthenticationToken(token,userEmail,password) {
 }
 
 export function clearAuthenticationToken() {
-  return AsyncStorage.remove(AUTHENTICATION_STORAGE_KEY)
+  AsyncStorage.remove(KEYS.userEmail);
+  AsyncStorage.remove(KEYS.password);
+  return AsyncStorage.remove(KEYS.accessToken);
 }
 
 export function getUserId() {

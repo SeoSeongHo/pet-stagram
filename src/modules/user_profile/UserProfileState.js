@@ -27,12 +27,7 @@ const initialState = {
   userEmail: "psi97300000",
   introduceText: "자기를 소개해주세요~",
   pets: [],
-  filterUser:[{
-    userEmail: "psi0000@naver.com",
-    userName: "psi0000"
-  },
-    {userEmail:"psi1111@naver.com",userName:"psi1111"}
-  ],
+  filterUser:[],
   totalPost: 0,
   cards: [],
   userBirthDay: null,
