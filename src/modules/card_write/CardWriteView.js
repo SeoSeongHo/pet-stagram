@@ -14,14 +14,14 @@ import './CardWriteView.css'
 
 type State = {
   pictures: Array,
-  pets:Array,
+  pets:number,
   picturesURL: Array,
   text:string,
   title:string,
 };
 
 type Props = {
-  pets: Array,
+  pets: number,
   pets:{
     petName: string,
     petId: number,
@@ -47,7 +47,7 @@ Modal.setAppElement('#root');
 class CardWriteView extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = { pictures: [], pets:[], text:"", title:"",
+    this.state = { pictures: [], pets:0, text:"", title:"",
     picturesURL:[],
     };
    // this.onDrop=this.onDrop.bind(this);
@@ -77,7 +77,7 @@ class CardWriteView extends Component<Props, State> {
       this.setState({pets: [...event.target.selectedOptions].map(o => o.value)});
   }
   onSubmitPressed(){
-    this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text).catch((e)=>console.log(e))
+    this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text).then(()=>this.setState({modalIsOpen:false})).then(()=>this.props.getCardAllRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e))
   }
   titleChange(e){
     this.setState({title: e.target.value})
@@ -137,7 +137,7 @@ class CardWriteView extends Component<Props, State> {
                   <FormGroup>
                     <Label for="exampleSelect">Select Pets</Label>
                     <Input onChange={this.selectPets} type="select" name="select" id="exampleSelect">
-                      {this.props.pets.map((listValue,index)=> {
+                      {_.map(this.props.pets,(listValue,index)=> {
                         return <option value={listValue.petId} key={index}>{listValue.petName}</option>;
                       })}
                     </Input>

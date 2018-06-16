@@ -35,9 +35,10 @@ export default function MainPageReducer(state: MainPageState = initialState, act
         loading: true,
       };
     case MainPageTypes.GET_CARD_ALL_SUCCESS:
+      console.log(action.payload,"payload");
       return {
         ...state,
-        cards: action.payload.cards,
+        cards: action.payload,
         loading: false,
       };
     case MainPageTypes.GET_CARD_ALL_FAILURE:

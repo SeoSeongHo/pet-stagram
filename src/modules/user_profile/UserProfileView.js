@@ -69,6 +69,7 @@ class UserProfileView extends Component<Props, State> {
     getUser: true,
     picture:"",
     pictureURL:"",
+    userProfileImageUrl: require('../../assets/images/user.png')
   };
   componentWillMount() {
     const search = qs.parse(this.props.location.search.replace('?', ''));
@@ -150,18 +151,18 @@ class UserProfileView extends Component<Props, State> {
    })}
     return table
   }
-  onDrop(event) {
-    console.log("on Drop");
-    var file = this.refs.file.files[0];
-    var reader = new FileReader();
-    var url = reader.readAsDataURL(file);
-    reader.onloadend = function (event) {
+  onDrop(e) {
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    reader.onloadend = () => {
       this.setState({
-        pictures: file,
-        picturesURL: reader.result,
+       userProfileImage: file,
+      userProfileImageUrl: reader.result,
       });
-    }.bind(this);
-    console.log(url) // Would see a path
+    };
+    reader.readAsDataURL(file);
   }
 
   followRequest() {
@@ -195,6 +196,7 @@ class UserProfileView extends Component<Props, State> {
     return(
       <Col>
         <Form onSubmit={this.handleSubmit}>
+          <img src={this.state.userProfileImageUrl} alt="book" width="20%" />
           <FormGroup>
           <Label for="exampleName" sm={5}>UserName</Label>
           <Col sm={12}>
@@ -210,7 +212,7 @@ class UserProfileView extends Component<Props, State> {
           <FormGroup>
             <Label for="exampleFile" sm={5}>UserImage</Label>
             <Col sm={12}>
-              <Input type="file" name="file" id="exampleFile2"  ref="user" className="userProfileImage" onChange={this.onChangeUserProfileImage}/>
+              <Input type="file" name="file" id="exampleFile2"  ref="user" className="userProfileImage" onChange={(e)=>this.onDrop(e)}/>
             </Col>
           </FormGroup>
           <FormGroup>

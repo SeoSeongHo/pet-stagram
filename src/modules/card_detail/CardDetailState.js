@@ -78,13 +78,13 @@ export default function CardDetailReducer(state: CardDetailState = initialState,
     case CardDetailTypes.GET_CARD_SUCCESS:
       return {
         ...state,
-        pet: action.payload.pet,
-        owner: action.payload.owner,
+        pet: action.payload.pet_id,
+        owner: action.payload.writer,
         title: action.payload.title,
         pictures: action.payload.pictures,
         text: action.payload.text,
         like: action.payload.like,
-        created: action.payload.created,
+        created: action.payload.date,
         comments: action.payload.comments,
         loading:false,
       };

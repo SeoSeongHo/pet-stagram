@@ -84,11 +84,8 @@ function* requestDeleteCard({cardId}: { cardId: string }) {
 }
 
 function* requestDeleteLike({cardId}: { cardId: string }) {
-  const body = {
-    Like: false,
-  }
   try {
-    const token = yield api.put(`${API_ROOT}/card/${cardId}`, body, {
+    const token = yield api.delete(`${API_ROOT}/like/${cardId}`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -107,10 +104,10 @@ function* requestDeleteLike({cardId}: { cardId: string }) {
 
 function* requestPostLike({cardId}: { cardId: string }) {
   const body = {
-    Like: true,
+    cardId
   }
   try {
-    const token = yield api.put(`${API_ROOT}/card/${cardId}`, body, {
+    const token = yield api.put(`${API_ROOT}/like`, body, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',

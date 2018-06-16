@@ -6,7 +6,7 @@ import MainPageView from './mainPageView'
 
 export default connect(
   state => ({
-    cards: _.get(state, ['mainPage', 'cards']),
+    cards: _.get(state, ['main', 'cards']),
   }),
   actions,
 )(

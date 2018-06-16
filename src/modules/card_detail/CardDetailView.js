@@ -95,11 +95,11 @@ class CardDetailView extends Component<Props, State> {
   }
 
   componentWillMount(){
-    this.props.getCardRequest(this.props.cardId).then(()=>this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e)))
+    this.props.getCardRequest(this.props.card_id)
       .catch(e=>{console.log(e)});
   }
   onClickComment(){
-    this.props.postCommentRequest(this.props.cardId, this.state.comment).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e)))
+    this.props.postCommentRequest(this.props.card_id, this.state.comment).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e)))
       .catch(e=>console.log(e));
   }
   onClickEditCard(){
@@ -107,15 +107,15 @@ class CardDetailView extends Component<Props, State> {
   onClickLike(){
     if(_.includes(this.props.like,Storage.get(KEYS.userEmail)))
     {
-      this.props.postLikeRequest(this.props.cardId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch((e)=>console.log(e));
+      this.props.postLikeRequest(this.props.card_id).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch((e)=>console.log(e));
     } else
-      this.props.deleteLikeRequest(this.props.cardId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch((e)=>console.log(e));
+      this.props.deleteLikeRequest(this.props.card_id).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch((e)=>console.log(e));
   }
   onClickDeleteCard(){
-    this.props.deleteCardRequest(this.props.cardId).then(()=>this.setState({modalIsOpen: false})).catch(e=>console.log(e))
+    this.props.deleteCardRequest(this.props.card_id).then(()=>this.setState({modalIsOpen: false})).catch(e=>console.log(e))
   }
   onClickDeleteComment(commentId){
-    this.props.deleteCommentRequest(commentId).then(this.props.getCommentRequest(this.props.cardId).catch(e=>console.log(e))).catch(e=>console.log(e))
+    this.props.deleteCommentRequest(commentId).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch(e=>console.log(e))
   }
   openModal() {
     this.setState({modalIsOpen: true});
@@ -200,15 +200,15 @@ class CardDetailView extends Component<Props, State> {
         caption: '',
       },
     ];
-    const slides = items.map((item) => {
+    const slides = _.map(this.props.pictures,(item) => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
+          key={item}
         >
-          <img src={item.src} alt={item.altText} width="500" height="500"/>
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <img src={item} alt={item} width="500" height="500"/>
+          <CarouselCaption captionText={item} captionHeader={item} />
         </CarouselItem>
       );
     });
@@ -226,28 +226,30 @@ class CardDetailView extends Component<Props, State> {
           <Row>
           <Col sm={6}>
             <img width="30" height="30" src={require('../../assets/images/logindog2.jpg')} alt="Card image cap" />
-            <span>  Dog  </span>
+            <span>  {_.get(this.props.pet,["pet_name"])} </span>
             <Carousel
               activeIndex={activeIndex}
               next={this.next}
               previous={this.previous}
               className="car1"
             >
-              <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+                <CarouselIndicators items={this.props.pictures} activeIndex={activeIndex}
+                                    onClickHandler={this.goToIndex}/>
               {slides}
-              <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-              <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+                <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+                <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+
             </Carousel>
           </Col>
           <Col sm={6}>
             <img width="30" height="30" src={require('../../assets/images/user.png')} alt="Card image cap" />
-            <span>  Seo  </span>
+            <span>  {this.props.owner}  </span>
             <Moment format="YYYY/MM/DD">
               {this.props.created}
             </Moment>
             <Button className="btt15" onClick={this.closeModal} color="white"><img width="15" height="15" src={require('../../assets/images/multiply.png')} alt="Card image cap" /></Button>
             <div>
-              <span className="span1">  오늘도 멍뭉이와 함께... 산책... 또르르...  </span><br></br><br></br>
+              <span className="span1">  {this.props.text}  </span><br></br><br></br>
               <span> 저번에 같이 왔을 때는 신나게 놀던데 너무 뛰어 놀았는지 오늘은 얌전하네요</span><br></br>
               <span> 끝나고 소세지 먹으러 가야겠어요</span>
             </div>

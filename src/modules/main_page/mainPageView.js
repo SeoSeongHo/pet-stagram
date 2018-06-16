@@ -38,7 +38,7 @@ class MainPageView extends Component<Props, State> {
     };
   }
  componentDidMount() {
-    this.props.getCardAllRequest().catch(e=>console.log(e));
+    this.props.getCardAllRequest().then(()=>console.log(this.props.cards,"CARD")).catch(e=>console.log(e));
     window.addEventListener('scroll', this.onScroll, false);
   }
 
@@ -67,6 +67,7 @@ class MainPageView extends Component<Props, State> {
   }
 
   render() {
+    console.log(this.props.cards,"CARD!!!");
     return (
       <div>
         <Navigator/>
@@ -86,7 +87,7 @@ class MainPageView extends Component<Props, State> {
               <img width="100%" src={ _.head(listValue.pictures)} alt="Card image cap" />
               <CardBody>
                 <CardText>{listValue.text}</CardText>
-                <CardDetailView/>
+                <CardDetailView card_id={listValue.id}/>
               </CardBody>
             </Card>)
           }))}
