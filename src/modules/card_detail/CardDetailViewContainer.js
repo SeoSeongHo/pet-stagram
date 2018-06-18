@@ -9,7 +9,7 @@ export default connect(
     pet: _.get(state,["cards","pet"]),
     owner: _.get(state,["cards","owner"]),
     title: _.get(state,["cards","title"]),
-    picture: _.get(state,["cards","picture"]),
+    pictures: _.get(state,["cards","pictures"]),
     text: _.get(state,["cards","text"]),
     like: _.get(state,["cards","like"]),
     created: _.get(state,["cards","created"]),

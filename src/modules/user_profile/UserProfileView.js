@@ -91,9 +91,9 @@ class UserProfileView extends Component<Props, State> {
     }
   }
   componentWillReceiveProps(nextProps) {
-          const search = qs.parse(this.props.location.search.replace('?', ''));
+          const search = qs.parse(nextProps.location.search.replace('?', ''));
           if(nextProps.location.search !== this.props.location.search) {
-            console.log("diffrent",nextProps.location.search);
+            console.log("diffrent",nextProps.location.search,this.props.location.search);
           this.props.getUserProfileRequest(search.query).then(() => {
             this.setState({getUser: true})
             this.setState({username: this.props.username});
@@ -234,9 +234,10 @@ onUpdateImage(){
   render() {
     console.log(this.props.userProfileName,'name');
     console.log(Storage.get(KEYS.userEmail),'email');
+    console.log(qs.parse(this.props.location.search.replace('?', '').query,"query"));
     if (!this.state.getUser) {
       return <div> there is no User on Username {this.props.match.params.userEmail}</div>
-    } else if (qs.parse(this.props.location.search.replace('?', '').query === Storage.get(KEYS.userEmail))) {
+    } else if (this.props.userProfileName === Storage.get(KEYS.userEmail)) {
       return (
         <div>
           <Navigator/>

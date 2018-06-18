@@ -133,8 +133,36 @@ function* requestFollowCheck({ followerName, followedName }: {followerName: stri
     yield put(UserProfileActions.followCheckFailure(e))
   }
 }
+function* requestPostPet({ petName, petProfileImage,petBirthDay,introduceText,owner}) {
+  const formData = new FormData();
+  const data = {
+    petName,
+    petProfileImage,
+    petBirthDay,
+    introduceText,
+    owner
+  };
+  for(const key in data){
+    console.log(key,'key');
+    console.log(data[key],'data[key]');
+    formData.append(key,data[key])
+  }
+  console.log(formData,"formData");
+  try {
+    const token = yield api.post(`${API_ROOT}/pet/`,formData, { isFormData: true }
+    );
+    if (token) {
+      console.log(token)
+      yield put(UserProfileActions.postPetSuccess(token))
+    }
+  } catch (e) {
+    yield put(UserProfileActions.postPetFailure(e))
+  }
+}
+
 
 export const UserProfileSaga = [
+  takeLatest(UserProfileTypes.POST_PET_REQUEST, requestPostPet),
   takeLatest(UserProfileTypes.GET_USER_PROFILE_REQUEST, requestGetUserProfile),
   takeLatest(UserProfileTypes.GET_USER_FILTER_REQUEST, requestGetUserFilter),
   // takeLatest(UserPRofileTypes.SEND_MESSAGE_REQUEST, requestSendMessage),

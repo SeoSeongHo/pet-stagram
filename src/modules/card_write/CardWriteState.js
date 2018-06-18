@@ -32,7 +32,7 @@ const initialState = {
 export const { Types: CardWriteTypes, Creators: CardWriteActions } = createActions(
   actionsGenerator({
     getPetRequest: ['username'],
-    postCardRequest: ['pets','pictures','title','text'],
+    postCardRequest: ['pets','pictures','title','text','date'],
   })
 )
 

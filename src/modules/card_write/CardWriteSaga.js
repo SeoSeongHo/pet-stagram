@@ -23,13 +23,14 @@ function* requestGetPet({ username }: {username: string}) {
   }
 }
 
-function* requestPostCard({ pets,pictures,title,text }: {pets:number, pictures:Array, title:string, text:string}) {
+function* requestPostCard({ pets,pictures,title,text,date }: {pets:number, pictures:Array, title:string, text:string,date:any}) {
   const formData = new FormData();
   const data = {
     pet_id:pets,
     title,
     text,
-    pictures
+    pictures,
+    date
   };
   for(const key in data){
     console.log(key,'key');

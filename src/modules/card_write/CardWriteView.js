@@ -54,7 +54,7 @@ class CardWriteView extends Component<Props, State> {
     autoBind(this)
   }
   componentWillMount(){
-    this.props.getPetRequest(Storage.get(KEYS.userEmail)).catch(e=>{console.log(e)});
+    this.props.getUserProfileRequest(Storage.get(KEYS.userEmail));
   }
 
   onDrop(event) {
@@ -74,10 +74,13 @@ class CardWriteView extends Component<Props, State> {
   }
 
   selectPets(event){
-      this.setState({pets: [...event.target.selectedOptions].map(o => o.value)});
+      this.setState({pets: event.target.selectedOptions});
   }
-  onSubmitPressed(){
-    this.props.postCardRequest(this.state.pets,this.state.pictures,this.state.title,this.state.text).then(()=>this.setState({modalIsOpen:false})).then(()=>this.props.getCardAllRequest().catch((e)=>console.log(e))).catch((e)=>console.log(e))
+  onSubmitPressed() {
+    this.setState({
+        date: new Date()
+      }, () => this.props.postCardRequest(this.state.pets, this.state.pictures, this.state.title, this.state.text, this.state.date).then(() => this.setState({modalIsOpen: false})).then(() => this.props.getCardAllRequest().catch((e) => console.log(e))).catch((e) => console.log(e))
+    )
   }
   titleChange(e){
     this.setState({title: e.target.value})
