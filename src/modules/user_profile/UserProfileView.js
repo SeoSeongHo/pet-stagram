@@ -243,10 +243,10 @@ onUpdateImage(){
             <Container className="cnt12">
               <div className="cnt12">
                 <Row className="row1">
-                  <Col sm={{size:4}}>
+                  <Col sm="4">
                     <img width="200" height="200" src={this.props.userProfileImage}/>
                   </Col>
-                  <Col sm="6">
+                  <Col sm="8">
                     <Table>
                       <thead>
                       <tr>
@@ -281,7 +281,6 @@ onUpdateImage(){
                 <Row>
                   <Col>
                     {this.renderPetProfileImage}
-                    <ImageUpdateModal/>
                     <hr/>
                   </Col>
                 </Row>
@@ -291,7 +290,8 @@ onUpdateImage(){
                   </Col>
                 </Row>
                 <Row className="btt13">
-                  <Button onClick={()=>this.toggleEdit()}>{!this.state.isEdit? '수정' : '수정완료'}</Button>
+                  <ImageUpdateModal/>
+                  <Button className="btt32" onClick={()=>this.toggleEdit()}>{!this.state.isEdit? '수정' : '수정완료'}</Button>
                 </Row>
               </div>
             </Container>
