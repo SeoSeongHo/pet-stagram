@@ -14,6 +14,10 @@ import Storage, {KEYS} from "../../utils/petStagramStorage";
 import moment from 'moment';
 import ScrollArea from 'react-scrollbar';
 import Moment from 'react-moment';
+import Constants from '../../constants/constants'
+import axios from 'axios';
+
+const {API_ROOT,API_SERVER} = Constants;
 type State = {
   pictures: any,
   pets: Array,
@@ -82,6 +86,7 @@ class CardDetailView extends Component<Props, State> {
       picturesURL: [],
       modalIsOpen: false,
       activeIndex: 0,
+      source:[],
     };
     autoBind(this)
     this.openModal = this.openModal.bind(this);
@@ -90,8 +95,9 @@ class CardDetailView extends Component<Props, State> {
   }
 
   componentWillMount(){
-    this.props.getCardRequest(this.props.card_id)
-      .catch(e=>{console.log(e)});
+    }
+  componentWillReceiveProps(){
+
   }
   onClickComment(){
     this.props.postCommentRequest(this.props.card_id, this.state.comment).then(()=>this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).then(()=>this.setState({comment:""}))
@@ -197,15 +203,18 @@ class CardDetailView extends Component<Props, State> {
         caption: '',
       },
     ];
-    const slides = _.map(this.props.pictures,(item) => {
+    const slides = _.map(this.props.pictures,(item,index) => {
+      var picture_url=`${API_SERVER}/${item.picture_url}`;
+      console.log(item.picture_url,item.card_id,"item");
+      console.log("picture_url",picture_url);
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
           key={item}
         >
-          <img src={item.path} alt={item} width="500" height="500"/>
-          <CarouselCaption captionText={item} captionHeader={item} />
+          <img src={picture_url} alt={item.picture_url} width="500" height="500"/>
+          <CarouselCaption captionText="" captionHeader="" />
         </CarouselItem>
       );
     });
@@ -247,8 +256,6 @@ class CardDetailView extends Component<Props, State> {
             <Button className="btt15" onClick={this.closeModal} color="white"><img width="15" height="15" src={require('../../assets/images/multiply.png')} alt="Card image cap" /></Button>
             <div>
               <span className="span1">  {this.props.text}  </span><br></br><br></br>
-              <span> 저번에 같이 왔을 때는 신나게 놀던데 너무 뛰어 놀았는지 오늘은 얌전하네요</span><br></br>
-              <span> 끝나고 소세지 먹으러 가야겠어요</span>
             </div>
             <div className="img1">
               <div onClick={()=>this.onClickLike()}>
