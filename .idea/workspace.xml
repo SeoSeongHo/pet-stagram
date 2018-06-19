@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cddba2f0-06a3-4906-beb1-456af59b0e68" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js" afterPath="$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js" afterPath="$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
       <change beforePath="$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js" afterPath="$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js" afterPath="$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteState.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteState.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteViewContainer.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteViewContainer.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/main_page/mainPageView.js" afterPath="$PROJECT_DIR$/src/modules/main_page/mainPageView.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/top_navigator/navigator.js" afterPath="$PROJECT_DIR$/src/modules/top_navigator/navigator.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModal.js" afterPath="$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModal.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js" afterPath="$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user_profile/UserProfileState.js" afterPath="$PROJECT_DIR$/src/modules/user_profile/UserProfileState.js" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js" afterPath="$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,28 +20,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="mainPageView.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
-              <folding>
-                <element signature="e#9#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainPageState.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageState.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CardWriteView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/card_write/CardWriteView.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -90,8 +55,8 @@
       <file leaf-file-name="CardDetailView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="105" column="64" lean-forward="false" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+            <state relative-caret-position="251">
+              <caret line="206" column="40" lean-forward="false" selection-start-line="206" selection-start-column="40" selection-end-line="206" selection-end-column="40" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -109,8 +74,8 @@
       <file leaf-file-name="CardDetailViewContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            <state relative-caret-position="253">
+              <caret line="15" column="48" lean-forward="false" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -120,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="703">
-              <caret line="107" column="3" lean-forward="true" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
+              <caret line="107" column="3" lean-forward="false" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -129,8 +94,28 @@
       <file leaf-file-name="CardDetailState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="85" column="36" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+            <state relative-caret-position="36">
+              <caret line="77" column="42" lean-forward="false" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CardDetailView.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -140,8 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>birthday</find>
-      <find>form</find>
       <find>petrequest</find>
       <find>modalis</find>
       <find>fetch</find>
@@ -159,8 +142,6 @@
       <find>like</find>
       <find>comment</find>
       <find>getComment</find>
-      <find>slides</find>
-      <find>map</find>
       <find>search</find>
       <find>getPEt</find>
       <find>text</find>
@@ -170,6 +151,10 @@
       <find>date</find>
       <find>imi</find>
       <find>items</find>
+      <find>comments</find>
+      <find>renderDetail</find>
+      <find>map</find>
+      <find>slides</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -256,8 +241,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
-    <option name="y" value="41" />
+    <option name="x" value="61" />
+    <option name="y" value="46" />
     <option name="width" value="1611" />
     <option name="height" value="858" />
   </component>
@@ -475,15 +460,15 @@
       <workItem from="1528713569790" duration="15019000" />
       <workItem from="1529042408482" duration="7935000" />
       <workItem from="1529149996419" duration="27265000" />
-      <workItem from="1529337904595" duration="11116000" />
+      <workItem from="1529337904595" duration="14789000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285055000" />
+    <option name="totallyTimeSpent" value="288728000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="41" width="1611" height="858" extended-state="0" />
+    <frame x="61" y="46" width="1611" height="858" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26553673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -519,14 +504,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/modules/top_navigator/navigatorState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/memo/memoView.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -755,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileViewContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -852,7 +821,7 @@
         <state relative-caret-position="271">
           <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
           <folding>
-            <element signature="e#9#49#0" expanded="true" />
+            <element signature="e#9#49#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -875,26 +844,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
-          <caret line="107" column="3" lean-forward="true" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="85" column="36" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+          <caret line="107" column="3" lean-forward="false" selection-start-line="107" selection-start-column="3" selection-end-line="107" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -912,10 +865,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="15" column="48" lean-forward="false" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="77" column="42" lean-forward="false" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="105" column="64" lean-forward="false" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+        <state relative-caret-position="251">
+          <caret line="206" column="40" lean-forward="false" selection-start-line="206" selection-start-column="40" selection-end-line="206" selection-end-column="40" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
