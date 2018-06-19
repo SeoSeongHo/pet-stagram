@@ -10,6 +10,10 @@ import CardDetailView from "../card_detail/CardDetailViewContainer";
 import CardWriteView from "../card_write/CardWriteViewContainer"
 import Moment from 'react-moment';
 import MemoView from "../memo/memoViewContainer"
+import Constants from '../../constants/constants'
+import axios from 'axios';
+
+const {API_ROOT,API_SERVER} = Constants;
 
 type State = {
   username: string,
@@ -88,7 +92,7 @@ class MainPageView extends Component<Props, State> {
                 </Moment>
                 </CardSubtitle>
               </CardBody>
-              <img width="100%" src={ _.head(listValue.pictures)} alt="Card image cap" />
+              <img width="100%" src={  `${API_SERVER}/${listValue.pictures[0].picture_url}`} alt="Card image cap" />
               <CardBody>
                 <CardText>{listValue.text}</CardText>
                 <CardDetailView card_id={listValue.id}/>

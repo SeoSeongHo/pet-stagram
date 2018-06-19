@@ -177,9 +177,9 @@ class UserProfileView extends Component<Props, State> {
     return (
       <Col>
         <img src={this.props.userProfileImage}/>
-        <span> introduceText: {this.props.introduceText} </span>
-        <span> username: {this.props.username}</span>
-        <span> userBirthDay: {this.props.userBirthDay}</span>
+        <th>introduceText: {this.props.introduceText}</th>
+        <th>username: {this.props.username}</th>
+        <th>userBirthDay: {this.props.userBirthDay}</th>
       </Col>
         )
   }
@@ -234,10 +234,10 @@ onUpdateImage(){
   render() {
     console.log(this.props.userProfileName,'name');
     console.log(Storage.get(KEYS.userEmail),'email');
-    console.log(qs.parse(this.props.location.search.replace('?', '').query,"query"));
+    console.log(qs.parse(this.props.location.search.replace('?', '').query));
     if (!this.state.getUser) {
       return <div> there is no User on Username {this.props.match.params.userEmail}</div>
-    } else if (this.props.userProfileName === Storage.get(KEYS.userEmail)) {
+    } else if (qs.parse(this.props.location.search.replace('?', '').query === Storage.get(KEYS.userEmail))) {
       return (
         <div>
           <Navigator/>
@@ -246,7 +246,7 @@ onUpdateImage(){
               <div className="cnt12">
                 <Row className="row1">
                   <Col sm="4">
-                    <img width="200" height="200" src={this.props.userProfileImage}/>
+                    <img width="200" height="200" src={require('../../assets/images/user.png')}/>
                   </Col>
                   <Col sm="8">
                     <Table>

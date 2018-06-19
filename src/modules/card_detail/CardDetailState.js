@@ -21,14 +21,11 @@ const initialState = {
     petBirthDay: "2018-04-07T09:09:59.496396Z",
     petProperty: "smile",
   },
-  owner:{
-    userProfileImage: null,
-    userEmail: "psi112233",
-    introduceText: "welcome to petstagram",
-    username: "psi112233",
-  },
+  owner:"",
   title: "here is",
-  pictures: ["https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"],
+  pictures: [{
+    picture_url: "cardPicture/0.png",card_id:-1
+  }],
   text: "welcometo petstagram",
   like : [],     //list of userEmail who like this card
   created: "2018-04-07T09:09:59.496396Z",
