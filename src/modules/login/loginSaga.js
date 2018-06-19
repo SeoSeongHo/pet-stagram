@@ -41,7 +41,14 @@ function* requestSignup({ email, password,
     username,userBirthDay,petName, petBirthDay,userProfileImage,petProfileImage
   };
   for(const key in data){
-    formData.append(key,data[key])
+    if(key==='userProfileImage' || key ==="petProfileImage"){
+        formData.append('file', data[key]);
+    }
+    else formData.append(key,data[key])
+  }
+
+  for(var pair of formData.entries()) {
+    console.log(pair[0]+ ', '+ pair[1]);
   }
   console.log(formData,"formData");
   try {

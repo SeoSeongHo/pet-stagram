@@ -6,7 +6,7 @@ import CardWriteView from './CardWriteView'
 
 export default connect(
   state => ({
-    pets: _.get(state,["Me","pets"]),
+    pets: _.get(state,["user","pets"]),
     loading: _.get(state, ['Me', 'loading']),
   }),
   actions,

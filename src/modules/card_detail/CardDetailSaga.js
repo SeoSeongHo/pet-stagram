@@ -104,10 +104,10 @@ function* requestDeleteLike({cardId}: { cardId: string }) {
 
 function* requestPostLike({cardId}: { cardId: string }) {
   const body = {
-    cardId
+    card_id:cardId
   }
   try {
-    const token = yield api.put(`${API_ROOT}/like`, body, {
+    const token = yield api.post(`${API_ROOT}/like`, body, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -126,8 +126,8 @@ function* requestPostLike({cardId}: { cardId: string }) {
 
 function* requestPostComment({cardId, comment}: { cardId: string }) {
   const body = {
-    card_id:cardId,
-    comment,
+    cardId:cardId,
+    text:comment,
     user_email: Storage.get(KEYS.userEmail)
   }
   try {

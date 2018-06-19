@@ -12,6 +12,7 @@ import './CardDetailView.css'
 import autoBind from 'react-autobind'
 import Storage, {KEYS} from "../../utils/petStagramStorage";
 import moment from 'moment';
+import ScrollArea from 'react-scrollbar';
 import Moment from 'react-moment';
 type State = {
   pictures: any,
@@ -32,12 +33,6 @@ type Props = {
     petProperty: string,
   },
   owner: any,
-  owner:{
-    userProfileImage: string,
-    userEmail: string,
-    introduceText: string,
-    username: string,
-  },
   title: string,
   pictures: any,
   text: string,
@@ -99,23 +94,23 @@ class CardDetailView extends Component<Props, State> {
       .catch(e=>{console.log(e)});
   }
   onClickComment(){
-    this.props.postCommentRequest(this.props.card_id, this.state.comment).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e)))
+    this.props.postCommentRequest(this.props.card_id, this.state.comment).then(()=>this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).then(()=>this.setState({comment:""}))
       .catch(e=>console.log(e));
   }
   onClickEditCard(){
   }
   onClickLike(){
-    if(_.includes(this.props.like,Storage.get(KEYS.userEmail)))
+    if(!_.includes(this.props.like,Storage.get(KEYS.userEmail)))
     {
-      this.props.postLikeRequest(this.props.card_id).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch((e)=>console.log(e));
+      this.props.postLikeRequest(this.props.card_id).then(()=>this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch((e)=>console.log(e));
     } else
-      this.props.deleteLikeRequest(this.props.card_id).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch((e)=>console.log(e));
+      this.props.deleteLikeRequest(this.props.card_id).then(()=>this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch((e)=>console.log(e));
   }
   onClickDeleteCard(){
     this.props.deleteCardRequest(this.props.card_id).then(()=>this.setState({modalIsOpen: false})).catch(e=>console.log(e))
   }
   onClickDeleteComment(commentId){
-    this.props.deleteCommentRequest(commentId).then(this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch(e=>console.log(e))
+    this.props.deleteCommentRequest(commentId).then(()=>this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).catch(e=>console.log(e))
   }
   openModal() {
     this.setState({modalIsOpen: true});
@@ -138,11 +133,13 @@ class CardDetailView extends Component<Props, State> {
         </Moment>
         { Storage.get(KEYS.userEmail)===this.props.owner.userEmail ?  (<div><button onClick={this.onClickDeleteCard}>delete</button> <button onClick={this.onClickEditCard}>edit</button></div>
         ) : null}
-        {this.props.comments.map((listValue,index)=>{
+        {_.map(this.props.comments,(listValue,index)=>{
           return <div key={index}>
-            <span> {listValue.updated}</span>
-            <span> {listValue.ownerName}</span>
-            <span> {listValue.comment}</span>
+            <Moment format="YYYY/MM/DD">
+              {listValue.date}
+            </Moment>
+            <span> {listValue.userEmail}</span>
+            <span> {listValue.text}</span>
             { listValue.ownerEmail===Storage.get(KEYS.userEmail) ? (<button onClick={()=>this.onClickDeleteComment(listValue.id)}>delete</button>) : null}
           </div>;
         })}
@@ -166,13 +163,13 @@ class CardDetailView extends Component<Props, State> {
 
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex = this.state.activeIndex === _.size(this.props.pictures) - 1 ? 0 : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+    const nextIndex = this.state.activeIndex === 0 ? _.size(this.props.pictures) - 1 : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -207,7 +204,7 @@ class CardDetailView extends Component<Props, State> {
           onExited={this.onExited}
           key={item}
         >
-          <img src={item} alt={item} width="500" height="500"/>
+          <img src={item.path} alt={item} width="500" height="500"/>
           <CarouselCaption captionText={item} captionHeader={item} />
         </CarouselItem>
       );
@@ -254,9 +251,23 @@ class CardDetailView extends Component<Props, State> {
               <span> 끝나고 소세지 먹으러 가야겠어요</span>
             </div>
             <div className="img1">
-          <img width="30" height="30" src={require('../../assets/images/like1.png') }/>
+              <div onClick={()=>this.onClickLike()}>
+                {!_.includes(this.props.like,Storage.get(KEYS.userEmail)) ? <img width="30" height="30" src={require('../../assets/images/like1.png') }/>
+                :  <img width="30" height="30" src={require('../../assets/images/like.png') }/>
+                }<span> {_.size(this.props.like)}명의 사람이 이글을 좋아합니다</span>
+              </div>
           <img className="img2" width="30" height="30" src={require('../../assets/images/comment-white-oval-bubble.png') }/>
             </div>
+            {_.map(this.props.comments,(listValue,index)=>{
+              return <div key={index}>
+                <Moment format="YYYY/MM/DD">
+                  {listValue.date}
+                </Moment>
+                <span> {listValue.userEmail}</span>
+                <span> {listValue.text}</span>
+                { listValue.userEmail===Storage.get(KEYS.userEmail) ? (<button onClick={()=>this.onClickDeleteComment(listValue.id)}>delete</button>) : null}
+              </div>;
+            })}
           <Input type="textarea" onChange={(e)=>this.setState({comment:e.target.value})} value={this.state.comment} />
             <Row className="row1">
               <Col>

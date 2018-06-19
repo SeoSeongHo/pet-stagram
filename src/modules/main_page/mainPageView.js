@@ -8,6 +8,7 @@ import Navigator from '../top_navigator/navigatorContainer'
 import './cardView.css'
 import CardDetailView from "../card_detail/CardDetailViewContainer";
 import CardWriteView from "../card_write/CardWriteViewContainer"
+import Moment from 'react-moment';
 import MemoView from "../memo/memoViewContainer"
 
 type State = {
@@ -82,7 +83,10 @@ class MainPageView extends Component<Props, State> {
             <Card className="card2" body outline color="#ffe4a8" key={index}>
               <CardBody>
                 <CardTitle>{listValue.title}</CardTitle>
-                <CardSubtitle>{listValue.date}</CardSubtitle>
+                <CardSubtitle><Moment format="YYYY/MM/DD">
+                  {listValue.date}
+                </Moment>
+                </CardSubtitle>
               </CardBody>
               <img width="100%" src={ _.head(listValue.pictures)} alt="Card image cap" />
               <CardBody>

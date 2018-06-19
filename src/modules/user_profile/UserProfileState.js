@@ -41,6 +41,7 @@ const initialState = {
 export const { Types: UserProfileTypes, Creators: UserProfileActions } = createActions(
   actionsGenerator({
     getUserProfileRequest: ['userEmail'],
+    postPetRequest: ['petName','petProfileImage','petBirthDay','introduceText','owner'],
     sendMessageRequest: ['text'],
     followRequest: ['userEmail','followedName'],
     unFollowRequest:['userEmail','followedName'],
@@ -54,6 +55,7 @@ export const { Types: UserProfileTypes, Creators: UserProfileActions } = createA
 // Reducer
 export default function UserProfileReducer(state: UserProfileState = initialState, action: Object = {}): UserProfileState {
   switch (action.type) {
+    case UserProfileTypes.POST_PET_REQUEST:
     case UserProfileTypes.GET_USER_FILTER_REQUEST:
     case UserProfileTypes.GET_USER_PROFILE_REQUEST:
     case UserProfileTypes.FOLLOW_REQUEST:
@@ -63,6 +65,17 @@ export default function UserProfileReducer(state: UserProfileState = initialStat
       return {
         ...state,
         loading: true,
+      }
+    case UserProfileTypes.POST_PET_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
+    case UserProfileTypes.POST_PET_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
       }
     case UserProfileTypes.GET_USER_FILTER_SUCCESS:
       return {

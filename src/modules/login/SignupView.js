@@ -121,33 +121,31 @@ export class SignupView extends Component {
   }
 
   onChangeUserProfileImage(e){
-    if(this.state.pictures.length>4){
-      return null;
-    }
-    var file = this.refs.user.files[0];
-    var reader = new FileReader();
-    var url = reader.readAsDataURL(file);
-    reader.onloadend = function (event) {
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    reader.onloadend = () => {
       this.setState({
         userProfileImage: file,
+        userProfileImageUrl: reader.result,
       });
-    }.bind(this);
-    console.log(url) // Would see a path
+    };
+    reader.readAsDataURL(file);
   }
 
   onChangePetProfileImage(e){
-    if(this.state.pictures.length>4){
-      return null;
-    }
-    var file = this.refs.pet.files[0];
-    var reader = new FileReader();
-    var url = reader.readAsDataURL(file);
-    reader.onloadend = function (event) {
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    reader.onloadend = () => {
       this.setState({
         petProfileImage: file,
+        petProfileImageUrl: reader.result,
       });
-    }.bind(this);
-    console.log(url) // Would see a path
+    };
+    reader.readAsDataURL(file);
   }
 
   onChangeUserBirthday(e){

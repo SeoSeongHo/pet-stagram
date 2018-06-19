@@ -68,7 +68,7 @@ export class Navigator extends React.Component {
 
   search(query) {
     console.log(query.query,"query");
-      this.props.history.push({pathname: '/search', search: qs.stringify(query)});
+      this.props.history.push({pathname: '/search', search: qs.stringify(query)})
   }
   render() {
     return (
