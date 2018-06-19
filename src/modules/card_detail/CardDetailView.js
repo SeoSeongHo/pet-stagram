@@ -95,7 +95,9 @@ class CardDetailView extends Component<Props, State> {
   }
 
   componentWillMount(){
-    }
+    this.props.getCardRequest(this.props.card_id)
+      .catch(e=>{console.log(e)});
+  }
   componentWillReceiveProps(){
 
   }
@@ -270,8 +272,8 @@ class CardDetailView extends Component<Props, State> {
                 <Moment format="YYYY/MM/DD">
                   {listValue.date}
                 </Moment>
-                <span> {listValue.userEmail}</span>
-                <span> {listValue.text}</span>
+                <div> {listValue.userEmail}</div>
+                <div> {listValue.text}</div>
                 { listValue.userEmail===Storage.get(KEYS.userEmail) ? (<button onClick={()=>this.onClickDeleteComment(listValue.id)}>delete</button>) : null}
               </div>;
             })}
