@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cddba2f0-06a3-4906-beb1-456af59b0e68" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js" afterPath="$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js" />
+      <change beforePath="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" afterPath="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,42 +24,22 @@
       <file leaf-file-name="UserProfileState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="96" />
+            <state relative-caret-position="-690">
+              <caret line="84" column="51" lean-forward="false" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserProfileView.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserProfileView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-736">
-              <caret line="202" column="23" lean-forward="true" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
-              <folding>
-                <marker date="1529393750571" expanded="true" signature="8842:8850" ph="&lt;Col/&gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserProfileViewContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileViewContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainPageView.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="8" />
+            <state relative-caret-position="227">
+              <caret line="169" column="11" lean-forward="false" selection-start-line="169" selection-start-column="11" selection-end-line="169" selection-end-column="11" />
               <folding>
                 <element signature="e#9#49#0" expanded="true" />
+                <element signature="e#688#715#0" expanded="true" />
+                <marker date="1529734078307" expanded="true" signature="8851:8859" ph="&lt;Col/&gt;" />
               </folding>
             </state>
           </provider>
@@ -66,20 +48,64 @@
       <file leaf-file-name="CardWriteView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/card_write/CardWriteView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="136" column="82" lean-forward="false" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="82" />
+            <state relative-caret-position="250">
+              <caret line="83" column="130" lean-forward="false" selection-start-line="83" selection-start-column="126" selection-end-line="83" selection-end-column="130" />
               <folding>
-                <marker date="1529357522233" expanded="true" signature="5591:5601" ph="&lt;div/&gt;" />
+                <element signature="e#9#49#0" expanded="true" />
+                <element signature="e#345#487#0" expanded="true" />
+                <marker date="1529727507738" expanded="true" signature="5639:5649" ph="&lt;div/&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CardDetailView.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js">
+      <file leaf-file-name="mainPageView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1707">
+              <caret line="94" column="91" lean-forward="false" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="91" />
+              <folding>
+                <element signature="e#9#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loginSaga.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/login/loginSaga.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="43" column="27" lean-forward="false" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserProfileSaga.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserProfileViewContainer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileViewContainer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="275" column="43" lean-forward="false" selection-start-line="275" selection-start-column="43" selection-end-line="275" selection-end-column="43" />
+              <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CardDetailView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="621">
+              <caret line="216" column="46" lean-forward="false" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -87,21 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CardDetailViewContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js">
+      <file leaf-file-name="CardWriteSaga.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CardDetailSaga.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="506">
+              <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -110,18 +126,8 @@
       <file leaf-file-name="CardDetailState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2024">
-              <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CardDetailView.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-1265">
+              <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -131,17 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setstate</find>
-      <find>require</find>
-      <find>userProfileImageUrl</find>
-      <find>request</find>
-      <find>userPet</find>
-      <find>pets</find>
-      <find>getCard</find>
-      <find>getUserFilterRequest</find>
-      <find>CardDetailView</find>
-      <find>cardID</find>
-      <find>like</find>
       <find>comment</find>
       <find>getComment</find>
       <find>search</find>
@@ -150,7 +145,6 @@
       <find>edit</find>
       <find>getPet</find>
       <find>moment</find>
-      <find>date</find>
       <find>imi</find>
       <find>items</find>
       <find>comments</find>
@@ -161,6 +155,18 @@
       <find>captionText</find>
       <find>userProfileImage</find>
       <find>tr</find>
+      <find>afterOpen</find>
+      <find>postComment</find>
+      <find>key</find>
+      <find>indicators</find>
+      <find>_.map</find>
+      <find>pets</find>
+      <find>src=</find>
+      <find>API_SERVER</find>
+      <find>date</find>
+      <find>userBirthDay</find>
+      <find>renderPetProfileImage</find>
+      <find>itemss</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -204,19 +210,15 @@
         <option value="$PROJECT_DIR$/src/modules/pet_profile/PetProfileSaga.js" />
         <option value="$PROJECT_DIR$/src/modules/login/loginView.js" />
         <option value="$PROJECT_DIR$/src/modules/memo/memoView.js" />
-        <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileViewContainer.js" />
         <option value="$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModalContainer.js" />
         <option value="$PROJECT_DIR$/src/utils/api/index.js" />
         <option value="$PROJECT_DIR$/src/modules/main_page/mainPageState.js" />
         <option value="$PROJECT_DIR$/src/modules/main_page/mainPageViewContainer.js" />
         <option value="$PROJECT_DIR$/src/modules/login/SignupView.js" />
         <option value="$PROJECT_DIR$/src/modules/login/loginSaga.js" />
-        <option value="$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModal.js" />
         <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileState.js" />
-        <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js" />
         <option value="$PROJECT_DIR$/src/modules/top_navigator/navigator.js" />
         <option value="$PROJECT_DIR$/src/modules/card_write/CardWriteViewContainer.js" />
-        <option value="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" />
         <option value="$PROJECT_DIR$/src/modules/card_write/CardWriteState.js" />
         <option value="$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js" />
         <option value="$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js" />
@@ -224,8 +226,12 @@
         <option value="$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js" />
         <option value="$PROJECT_DIR$/src/modules/main_page/mainPageView.js" />
         <option value="$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js" />
-        <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js" />
         <option value="$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js" />
+        <option value="$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModal.js" />
+        <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileViewContainer.js" />
+        <option value="$PROJECT_DIR$/src/modules/card_write/CardWriteView.js" />
+        <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js" />
+        <option value="$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js" />
       </list>
     </option>
   </component>
@@ -246,11 +252,11 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="678" />
-    <option name="y" value="115" />
-    <option name="width" value="1611" />
-    <option name="height" value="858" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-53" />
+    <option name="y" value="17" />
+    <option name="width" value="1610" />
+    <option name="height" value="845" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -459,15 +465,15 @@
       <workItem from="1528713569790" duration="15019000" />
       <workItem from="1529042408482" duration="7935000" />
       <workItem from="1529149996419" duration="27265000" />
-      <workItem from="1529337904595" duration="21161000" />
+      <workItem from="1529337904595" duration="35374000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295100000" />
+    <option name="totallyTimeSpent" value="309313000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1618" height="868" extended-state="7" />
+    <frame x="-9" y="-9" width="1618" height="868" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.264375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -503,13 +509,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/modules/memo/memoSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-598">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/sagas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -552,6 +551,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
           <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#58#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -674,37 +676,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/login/loginSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="43" column="27" lean-forward="false" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserAndPetProfileTest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModalContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="58" column="3" lean-forward="true" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -716,26 +692,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="55" column="34" lean-forward="true" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/api/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="66" column="31" lean-forward="true" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -772,26 +732,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/login/SignupView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="232" column="26" lean-forward="false" selection-start-line="232" selection-start-column="26" selection-end-line="232" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -817,6 +761,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageSaga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-184">
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModalContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/ImageUpdateModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1174">
+          <caret line="84" column="60" lean-forward="false" selection-start-line="84" selection-start-column="60" selection-end-line="84" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -825,82 +819,102 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailState.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2024">
-          <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+        <state relative-caret-position="-1265">
+          <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/card_write/CardWriteSaga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileViewContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        <state relative-caret-position="253">
+          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileState.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="96" />
+        <state relative-caret-position="-690">
+          <caret line="84" column="51" lean-forward="false" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js">
+    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-736">
-          <caret line="202" column="23" lean-forward="true" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
+        <state relative-caret-position="621">
+          <caret line="216" column="46" lean-forward="false" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
           <folding>
-            <marker date="1529393750571" expanded="true" signature="8842:8850" ph="&lt;Col/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailViewContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="8" />
-          <folding>
-            <element signature="e#9#49#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modules/card_write/CardWriteView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="136" column="82" lean-forward="false" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="82" />
+        <state relative-caret-position="250">
+          <caret line="83" column="130" lean-forward="false" selection-start-line="83" selection-start-column="126" selection-end-line="83" selection-end-column="130" />
           <folding>
-            <marker date="1529357522233" expanded="true" signature="5591:5601" ph="&lt;div/&gt;" />
+            <element signature="e#9#49#0" expanded="true" />
+            <element signature="e#345#487#0" expanded="true" />
+            <marker date="1529727507738" expanded="true" signature="5639:5649" ph="&lt;div/&gt;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modules/card_detail/CardDetailView.js">
+    <entry file="file://$PROJECT_DIR$/src/modules/main_page/mainPageView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="275" column="43" lean-forward="false" selection-start-line="275" selection-start-column="43" selection-end-line="275" selection-end-column="43" />
+        <state relative-caret-position="1707">
+          <caret line="94" column="91" lean-forward="false" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="91" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#9#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/login/loginSaga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="43" column="27" lean-forward="false" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileSaga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/user_profile/UserProfileView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="169" column="11" lean-forward="false" selection-start-line="169" selection-start-column="11" selection-end-line="169" selection-end-column="11" />
+          <folding>
+            <element signature="e#9#49#0" expanded="true" />
+            <element signature="e#688#715#0" expanded="true" />
+            <marker date="1529734078307" expanded="true" signature="8851:8859" ph="&lt;Col/&gt;" />
           </folding>
         </state>
       </provider>

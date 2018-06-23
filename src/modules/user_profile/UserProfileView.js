@@ -17,6 +17,8 @@ import './UserProfile.css'
 import qs from "qs";
 import queryString from "query-string";
 import ImageUpdateModal from "./ImageUpdateModalContainer";
+import Constants from "../../constants/constants";
+const {API_ROOT,API_SERVER} = Constants;
 type State = {
   petProfileImage: any,
   petUsernames: any,
@@ -90,6 +92,7 @@ class UserProfileView extends Component<Props, State> {
       console.log(e);
     }
   }
+
   componentWillReceiveProps(nextProps) {
           const search = qs.parse(nextProps.location.search.replace('?', ''));
           if(nextProps.location.search !== this.props.location.search) {
@@ -118,18 +121,7 @@ class UserProfileView extends Component<Props, State> {
 
   onChangeUserProfileImage=(event) => {
       this.setState({userProfileImage: event.target.files[0]})
-    }
-  renderPetProfileImage = () => {
-    let table = []
-    let img
-    let i = 0;
-    {this.props.pets.map((listValue,index)=> {
-      table.concat(<div><img src={listValue.petProfileImage} onClick={() =>{
-        this.props.history.push(`/petProfile/${listValue.Id}`)}}/>  <span>{listValue.petName}</span></div>)
-    }
-      )}
-    return table
-  }
+    };
   renderUserPicture = () => {
     let table = []
     let img
@@ -176,7 +168,6 @@ class UserProfileView extends Component<Props, State> {
   renderNormal(){
     return (
       <Col>
-        <img src={this.props.userProfileImage}/>
         <th>introduceText: {this.props.introduceText}</th>
         <th>username: {this.props.username}</th>
         <th>userBirthDay: {this.props.userBirthDay}</th>
@@ -187,7 +178,7 @@ class UserProfileView extends Component<Props, State> {
     console.log(this.state.isEdit,"edit");
     if(this.state.isEdit===true)
     {
-      this.props.editUserProfileRequest(this.props.username,this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then( ()=>this.props.getUserProfileRequest(Storage.get(KEYS.userEmail)).then(()=>this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))).catch((e)=>console.log(e))
+      this.props.editUserProfileRequest(this.props.username,this.state.introduceText,this.state.userBirthDay,this.state.userProfileImage).then(()=>this.props.getUserProfileRequest(Storage.get(KEYS.userEmail)).then(()=>this.setState({isEdit: !this.state.isEdit})).catch((e)=>console.log(e))).catch((e)=>console.log(e))
     }
     else {
       this.setState({isEdit: !this.state.isEdit})
@@ -232,6 +223,12 @@ onUpdateImage(){
 }
 
   render() {
+    const renderPetProfileImage= _.map(this.props.pets,(listValue)=>{
+      return (<div><img src={`${API_SERVER}/${listValue.petProfileImage.picture_url}`} onClick={() =>{
+      }}/>  <span>Name : {listValue.petName}  </span>
+          <span>Introduce :  {listValue.IntroduceText}  </span>
+      </div>)
+    });
     console.log(this.props.userProfileName,'name');
     console.log(Storage.get(KEYS.userEmail),'email');
     console.log(qs.parse(this.props.location.search.replace('?', '').query));
@@ -246,7 +243,7 @@ onUpdateImage(){
               <div className="cnt12">
                 <Row className="row1">
                   <Col sm="4">
-                    <img width="200" height="200" src={require('../../assets/images/user.png')}/>
+                    <img width="200" height="200" src={`${API_SERVER}/${this.props.userProfileImage}`}/>
                   </Col>
                   <Col sm="8">
                     <Table>
@@ -282,7 +279,7 @@ onUpdateImage(){
                 </Row>
                 <Row>
                   <Col>
-                    {this.renderPetProfileImage}
+                    {renderPetProfileImage}
                     <hr/>
                   </Col>
                 </Row>
@@ -309,7 +306,7 @@ onUpdateImage(){
               <div className="cnt12">
           <Row className="row1">
             <Col sm={{size:4}}>
-              <img width="200" height="200" src={this.props.userProfileImage}/>
+              <img width="200" height="200" src={`${API_SERVER}/${this.props.userProfileImage}`}/>
             </Col>
             <Col sm="8">
               <Table>
@@ -354,7 +351,7 @@ onUpdateImage(){
           </Row>
                 <Row>
                   <Col>
-                    {this.renderPetProfileImage}
+                    {renderPetProfileImage}
                     <hr/>
                   </Col>
                 </Row>

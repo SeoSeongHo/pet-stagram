@@ -49,6 +49,7 @@ class CardWriteView extends Component<Props, State> {
     super(props);
     this.state = { pictures: [], pets:0, text:"", title:"",
     picturesURL:[],
+      items:[],
     };
    // this.onDrop=this.onDrop.bind(this);
     autoBind(this)
@@ -75,6 +76,7 @@ class CardWriteView extends Component<Props, State> {
 
   selectPets(event){
       this.setState({pets: event.target.selectedOptions});
+      console.log(pets,"pets");
   }
   onSubmitPressed() {
     this.setState({

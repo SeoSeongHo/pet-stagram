@@ -57,7 +57,7 @@ function* requestEditIntroduce({ username,text, userBirthDay, userProfileImage }
   }
   console.log(formData,"formData");
   try {
-    const token = yield api.put(`${API_ROOT}/user/${Storage.get(KEYS.userEmail)}`,formData, { isFormData: true }
+    const token = yield api.post(`${API_ROOT}/user/${Storage.get(KEYS.userEmail)}/edit`,formData, { isFormData: true }
     );
     if (token) {
       console.log(token)

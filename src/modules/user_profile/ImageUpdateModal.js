@@ -55,7 +55,7 @@ class ImageUpdateModal extends Component{
   }
   onUpdatePressed(){
       this.props.postPetRequest(this.state.petName,this.state.petProfileImage,this.state.petBirthDay,this.state.introduceText,Storage.get(KEYS.userEmail)).then(()=>
-      this.props.getUserProfileRequest(Storage.get(KEYS.userEmail)).catch((e)=>console.log(e)))
+      this.props.getUserProfileRequest(Storage.get(KEYS.userEmail)).then(()=>this.closeModal()).catch((e)=>console.log(e)))
   }
 
   render(){
