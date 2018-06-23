@@ -11,12 +11,9 @@ import CardWriteView from '../card_write/CardWriteViewContainer'
 import './CardDetailView.css'
 import autoBind from 'react-autobind'
 import Storage, {KEYS} from "../../utils/petStagramStorage";
-import moment from 'moment';
-import ScrollArea from 'react-scrollbar';
 import Moment from 'react-moment';
 import Constants from '../../constants/constants'
-import axios from 'axios';
-
+import _ from 'lodash'
 const {API_ROOT,API_SERVER} = Constants;
 type State = {
   pictures: any,
@@ -87,6 +84,7 @@ class CardDetailView extends Component<Props, State> {
       modalIsOpen: false,
       activeIndex: 0,
       source:[],
+      items:[],
     };
     autoBind(this)
     this.openModal = this.openModal.bind(this);
@@ -95,11 +93,17 @@ class CardDetailView extends Component<Props, State> {
   }
 
   componentWillMount(){
-    this.props.getCardRequest(this.props.card_id)
+    this.props.getCardRequest(this.props.card_id).then(()=>  _.map(this.props.pictures,(item,index) => {
+      const item2 = {
+        src: item.picture_url,
+        altText: '',
+        caption: '',
+      }
+      this.setState({items:[]},()=>  this.state.items.push(item2))
+    }))
       .catch(e=>{console.log(e)});
   }
   componentWillReceiveProps(){
-
   }
   onClickComment(){
     this.props.postCommentRequest(this.props.card_id, this.state.comment).then(()=>this.props.getCardRequest(this.props.card_id).catch(e=>console.log(e))).then(()=>this.setState({comment:""}))
@@ -122,10 +126,15 @@ class CardDetailView extends Component<Props, State> {
   }
   openModal() {
     this.setState({modalIsOpen: true});
+    this.props.getCardRequest(this.props.card_id)
+      .catch(e=>{console.log(e)});
   }
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
+    this.props.getCardRequest(this.props.card_id)
+      .catch(e=>{console.log(e)});
+
   }
 
   closeModal() {
@@ -213,7 +222,7 @@ class CardDetailView extends Component<Props, State> {
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item}
+          key={item.picture_url+index}
         >
           <img src={picture_url} alt={item.picture_url} width="500" height="500"/>
           <CarouselCaption captionText="" captionHeader="" />
@@ -241,7 +250,7 @@ class CardDetailView extends Component<Props, State> {
               previous={this.previous}
               className="car1"
             >
-                <CarouselIndicators items={this.props.pictures} activeIndex={activeIndex}
+                <CarouselIndicators items={this.state.items} activeIndex={activeIndex}
                                     onClickHandler={this.goToIndex}/>
               {slides}
                 <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
